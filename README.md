@@ -19,7 +19,14 @@ Initially the site will contain one game. The game needs only one page, as it wo
 As the site will feature one page with a single game on it, there will be no need for a menu. As the game itself will be flashy and draw focus, the rest of the page will be minimalistic to keep the users focus on the game. 
 
 ### Skeleton
-- 
+1. Start page ![Start page](assets/wireframes/start.png)
+2. Setup page ![Setup page](assets/wireframes/setup.png)
+3. Playing - example 1 ![Playing - example 1](assets/wireframes/playing1.png)
+4. Playing - example 2 ![Playing - example 2](assets/wireframes/playing2.png)
+5. Submit answer ![Submit answer](assets/wireframes/submit-answer.png)
+6. Result - failed ![Result - failed](assets/wireframes/result-failed.png)
+7. Result - succes ![Result - succes](assets/wireframes/result-succes.png)
+8. Highscores ![Highscores](assets/wireframes/highscores.png)
 
 ### Surface
 The website will feature soft, unobtrusive colors like off-white. This is so chosen because the shapes in the game will have strong vibrant colors to provide maximal contrast. The chosen font is Oswald. The shapes are created in MS Paint as this allows for simplistic shapes that are easily recognisable. This is important because the target audience is children. 
