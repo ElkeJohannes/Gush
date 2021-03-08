@@ -35,7 +35,22 @@ body{
     display: none;
 }
 
+/* ------------- Game area ------------- */
+
+.game-container{
+    border: 1px solid aquamarine;
+    max-width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.game-container > div {
+    width: 33%;
+}
+
 /* ------------- Media Queries ------------- */
+
 @media(min-width: 567px){
     .hyphen{
         display: inline;
