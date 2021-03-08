@@ -1,5 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
 
+/* ------------- General helpers & settings ------------- */
+
+body, button{
+    font-family: 'Oswald', sans-serif;
+}
+
+body{
+    text-align: center;
+}
+
 .hide {
     display: none;
+}
+
+/* ------------- Header ------------- */
+
+.header{
+    margin: 0 auto;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.header-main{
+    display: inline;
+}
+
+.header-sub{
+    display: block;
+    font-style: italic;   
+}
+
+.hyphen {
+    display: none;
+}
+
+/* ------------- Media Queries ------------- */
+@media(min-width: 567px){
+    .hyphen{
+        display: inline;
+    }
+
+    .header-sub{
+        display: inline;    
+    }
 }
