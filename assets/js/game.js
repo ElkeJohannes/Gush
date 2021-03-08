@@ -8,6 +8,6 @@ function loadShapes(){
     console.log(shapes);
     for(i = 1;i < 10; i++){
         shapes.innerHTML += `
-            <div><img src="assets/images/shape${i}.png" /></div>`
+            <img src="assets/images/shape${i}.png" />`
     }
 }
