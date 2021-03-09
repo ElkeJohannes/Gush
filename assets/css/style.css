@@ -56,34 +56,34 @@ body{
 
 /* ------------- Game styles ------------- */
 
-.speed1{
+.speed1000{
     animation-name: shape-active;
-    animation-duration: 1s;
+    animation-duration: 1000ms;
 }
 
-.speed2{
+.speed750{
     animation-name: shape-active;
-    animation-duration: 0.75s;
+    animation-duration: 750ms;
 }
 
-.speed3{
+.speed500{
     animation-name: shape-active;
-    animation-duration: 0.5s;
+    animation-duration: 500ms;
 }
 
-.speed4{
+.speed250{
     animation-name: shape-active;
-    animation-duration: 0.25s;
+    animation-duration: 250ms;
 }
 
-.speed5{
+.speed150{
     animation-name: shape-active;
-    animation-duration: 0.15s;
+    animation-duration: 150ms;
 }
 
-.speed6{
+.speed100{
     animation-name: shape-active;
-    animation-duration: 0.1s;
+    animation-duration: 100ms;
 }
 
 @keyframes shape-active{

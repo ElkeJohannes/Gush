@@ -104,4 +104,5 @@ Alternatively you can clone this repository by using the GitHub cli. Should you 
 * Amazing shapes designed and created by myself in MS Paint
 
 ### Acknowledgements
-* [learn.jquery](https://learn.jquery.com/) which provided me with lots of extra info on how to use jquery.
+* [learn.jquery](https://learn.jquery.com/) that provided me with lots of extra info on how to use jquery.
+* [w3schools](https://wwww.w3schools.com) for being my 'cheat sheet'.
