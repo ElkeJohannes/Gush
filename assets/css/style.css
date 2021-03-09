@@ -10,7 +10,7 @@ body{
     text-align: center;
 }
 
-.hide {
+.hidden {
     display: none;
 }
 
@@ -53,6 +53,44 @@ body{
     max-height: calc(72vh / 3);
     margin: 1.1%;
 }
+
+/* ------------- Game styles ------------- */
+
+.speed1{
+    animation-name: shape-active;
+    animation-duration: 1s;
+}
+
+.speed2{
+    animation-name: shape-active;
+    animation-duration: 0.75s;
+}
+
+.speed3{
+    animation-name: shape-active;
+    animation-duration: 0.5s;
+}
+
+.speed4{
+    animation-name: shape-active;
+    animation-duration: 0.25s;
+}
+
+.speed5{
+    animation-name: shape-active;
+    animation-duration: 0.15s;
+}
+
+.speed6{
+    animation-name: shape-active;
+    animation-duration: 0.1s;
+}
+
+@keyframes shape-active{
+    0%   {background-color: white;}
+    100%  {background-color: yellow;}   
+}
+
 
 /* ------------- Media Queries ------------- */
 
