@@ -41,16 +41,34 @@ function highlightShapes(speed, numOfShapes) {
         if(shapeID !== ""){
             $(shapeID).removeClass(speedString);
         } 
+
         //  Now if we have not reached the desired number of shapes highlighted yet:
         if (i <= numOfShapes) {
-            // Then select a random shape and add the class
-            shapeID = '#shape' + String(Math.floor(Math.random() * 9) + 1);
+            // Then select a random shape by generating a random number
+            // Make sure it isn't the same number twice in a row
+            // by using a do while until we have different numbers
+            let previousNum = Number(shapeID.slice(6));
+            let newNum;
+            let numCheck = false;
+            do {
+                newNum = Math.floor(Math.random() * 9) + 1
+                if(newNum !== previousNum){
+                    numCheck = true;
+                }
+            } while (numCheck == false);
+
+            // Now add the number to the string
+            // Then use that string ID to add the class
+            shapeID = '#shape' + String(newNum);
             $(shapeID).addClass(speedString);
+
             // Add shape highlighted to the array so we can check later
             shapesHighlighted.push(shapeID);
         } else {
             // If we are done, stop the interval
             clearInterval(interval);
+
+            // Now setup the game for providing an answer
             setAnswer(shapesHighlighted);
         }
     }    

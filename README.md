@@ -71,7 +71,8 @@ Libraries used are:
 ## Bugs encountered
 1. During a first run of the game, removeClass() would throw an error
     - shapeID is always empty during the first run in the interval (). Added an if statement to only removeClass() when it isn't empty.
-    
+2. During a run, the same number could be generated twice in a row. This would result in no shape being highlighted
+    - Added a do while loop before adding the class, so the number is checked against the number of the previous run first.    
 ---
 
 ## Deployment
