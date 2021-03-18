@@ -20,24 +20,64 @@ function playGame() {
     let speed = 1000;
     let numOfShapes = 3;
 
+    // Highlight the shapes using another function
+    highlightShapes(speed, numOfShapes);
+
+    // Remove the click function from the shapes
+}
+
+function highlightShapes(speed, numOfShapes) {
     // Set an interval to change the classes of the shapes
     let i = 0;
     let interval = setInterval(setClass, speed)
-    
+
+    let shapesHighlighted = [];
     let shapeID;
     let speedString = `speed${String(speed)}`;
     function setClass() {
         i++;
         // First remove the class from the previous run
         $(shapeID).removeClass(speedString);
-        //  Now if we have not reached the desired number of shapes shown yet;
+        //  Now if we have not reached the desired number of shapes highlighted yet:
         if (i <= numOfShapes) {
             // Then select a random shape and add the class
             shapeID = '#shape' + String(Math.floor(Math.random() * 9) + 1);
             $(shapeID).addClass(speedString);
+            // Add shape highlighted to the array so we can check later
+            shapesHighlighted.push(shapeID);
         } else {
             // If we are done, stop the interval
             clearInterval(interval);
+            setAnswer(shapesHighlighted);
         }
-    }
+    }    
+}
+
+function setAnswer(shapes){
+    // Add event listeners to all the shapes so user
+    // can click on them
+    
+    // Display the answers in a text field to the side for a sec
+    // So you know what you chose
+
+    // Hide play button
+    // Make submit answer button visible
+}
+
+function addAnswer(shapeID){
+    // Add to the answers array in the text field
+
+    // Call the checkanswer function to see if it's still going well 
+    // If not, abort and call failed screen from that function
+}
+
+function submitAnswer(){
+    // Read the text field containing the answers
+    // Read the hidden text field containing the correct answers
+
+    // Compare the above two 
+    // Show either succes (--> set highscore) or failed message
+
+    // Hide submit button
+    // Make play button visible
 }
