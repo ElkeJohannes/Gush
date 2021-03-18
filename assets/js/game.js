@@ -32,12 +32,15 @@ function highlightShapes(speed, numOfShapes) {
     let interval = setInterval(setClass, speed)
 
     let shapesHighlighted = [];
-    let shapeID;
+    let shapeID = "";
     let speedString = `speed${String(speed)}`;
     function setClass() {
         i++;
         // First remove the class from the previous run
-        $(shapeID).removeClass(speedString);
+        // (if there is one)
+        if(shapeID !== ""){
+            $(shapeID).removeClass(speedString);
+        } 
         //  Now if we have not reached the desired number of shapes highlighted yet:
         if (i <= numOfShapes) {
             // Then select a random shape and add the class

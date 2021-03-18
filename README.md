@@ -69,7 +69,8 @@ Libraries used are:
 
 
 ## Bugs encountered
-
+1. During a first run of the game, removeClass() would throw an error
+    - shapeID is always empty during the first run in the interval (). Added an if statement to only removeClass() when it isn't empty.
     
 ---
 
