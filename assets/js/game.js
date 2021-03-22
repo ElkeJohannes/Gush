@@ -38,28 +38,18 @@ function highlightShapes(speed, numOfShapes) {
         i++;
         // First remove the class from the previous run
         // (if there is one)
-        if(shapeID !== ""){
+        if (shapeID !== "") {
             $(shapeID).removeClass(speedString);
-        } 
+        }
 
         //  Now if we have not reached the desired number of shapes highlighted yet:
         if (i <= numOfShapes) {
-            // Then select a random shape by generating a random number
-            // Make sure it isn't the same number twice in a row
-            // by using a do while until we have different numbers
-            let previousNum = Number(shapeID.slice(6));
-            let newNum;
-            let numCheck = false;
-            do {
-                newNum = Math.floor(Math.random() * 9) + 1
-                if(newNum !== previousNum){
-                    numCheck = true;
-                }
-            } while (numCheck == false);
+            // Generate a new random number
+            let randomNum = generateNewRandomNumber(shapeID.slice(6));
 
             // Now add the number to the string
             // Then use that string ID to add the class
-            shapeID = '#shape' + String(newNum);
+            shapeID = '#shape' + String(randomNum);
             $(shapeID).addClass(speedString);
 
             // Add shape highlighted to the array so we can check later
@@ -71,13 +61,38 @@ function highlightShapes(speed, numOfShapes) {
             // Now setup the game for providing an answer
             setAnswer(shapesHighlighted);
         }
-    }    
+    }
 }
 
-function setAnswer(shapes){
+function generateNewRandomNumber(oldNum) {
+    // Create a new random number between 1 and 9
+    // ensure this is a different number from the one inputted by doing
+    // a do while loop until we have a different number. 
+    let newNum;
+    let numCheck = false;
+
+    // Only try to process if the input supplied is a number
+    // Credit to using the Number.isFinite() method for checking goes to:
+    // Marcus Sanatan
+    // https://stackabuse.com/javascript-check-if-variable-is-a-number/
+    if (Number.isFinite(Number(oldNum)) || Number(oldNum) === 0) {
+        do {
+            newNum = Math.floor(Math.random() * 9) + 1
+            if (newNum !== oldNum) {
+                numCheck = true;
+            }
+        } while (numCheck == false);
+
+        return newNum;
+    } else{
+        console.log(`Wrong input supplied. Given: ${Number(oldNum)}`);
+    }
+}
+
+function setAnswer(shapes) {
     // Add event listeners to all the shapes so user
     // can click on them
-    
+
     // Display the answers in a text field to the side for a sec
     // So you know what you chose
 
@@ -85,14 +100,14 @@ function setAnswer(shapes){
     // Make submit answer button visible
 }
 
-function addAnswer(shapeID){
+function addAnswer(shapeID) {
     // Add to the answers array in the text field
 
     // Call the checkanswer function to see if it's still going well 
     // If not, abort and call failed screen from that function
 }
 
-function submitAnswer(){
+function submitAnswer() {
     // Read the text field containing the answers
     // Read the hidden text field containing the correct answers
 
