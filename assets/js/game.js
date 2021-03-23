@@ -1,5 +1,63 @@
+class Game {
+
+    constructor() {
+        this.shapesHighlighted = [];
+        this.randomNum = 0;
+    }
+
+    highlightShapes() {
+        // Set the starting variables 
+        // speed and number of shapes to show
+        let speed = 1000;
+        let numOfShapes = 3;
+
+        // Generate the correct answers and store them
+        // inside the array of this object for later use
+        let i = 0;
+        do {
+            // Generate a new random number each loop
+            this.randomNum = generateNewRandomNumber(this.randomNum);
+            // Add the number to the array
+            this.shapesHighlighted.push(this.randomNum);
+            i++;
+        } while (i < numOfShapes)
+
+        console.log(this.shapesHighlighted);
+
+        // Set an interval to show the corresponding shapes
+        // Start by setting up some variables that we'll be needing
+        let counter = 0;
+        let shapesToShow = this.shapesHighlighted;
+        let shapeID = '';
+        let speedString = `speed${String(speed)}`;
+
+        // Start the interval
+        let interval = setInterval(function () {
+            // Check if we've processed the required amount of shapes
+            if (counter < numOfShapes) {
+                // Remove the class from the previous shape shown
+                if (shapeID !== '') {
+                    $(shapeID).removeClass(speedString);
+                }
+
+                // Add the identifier to the number
+                // Select the right element using jQuery
+                // Add the class
+                shapeID = '#shape' + String(shapesToShow[counter]);
+                $(shapeID).addClass(speedString);
+            } else {
+                // We're done, stop the interval
+                clearInterval(interval);
+            }
+            // Increment the counter so we know when to stop
+            counter++;
+        }, speed);
+    }
+}
+
 // When the DOM has finished loading, start loading the basics for the game.
 document.addEventListener("DOMContentLoaded", function () {
+
     // Button event handlers
     $('.play-button').click(playGame);
 
@@ -8,7 +66,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function loadShapes() {
     let shapes = $('.game-container')[0];
-    console.log(shapes);
     for (i = 1; i < 10; i++) {
         shapes.innerHTML += `
             <img src="assets/images/shape${i}.png" class="shape" id="shape${i}" />`
@@ -16,52 +73,12 @@ function loadShapes() {
 }
 
 function playGame() {
-    // Set the speed and the number of shapes to show
-    let speed = 1000;
-    let numOfShapes = 3;
-
-    // Highlight the shapes using another function
-    highlightShapes(speed, numOfShapes);
+    // Create instance of Game Class
+    // Inside of this object will be our running game info
+    let game = new Game();
+    game.highlightShapes();
 
     // Remove the click function from the shapes
-}
-
-function highlightShapes(speed, numOfShapes) {
-    // Set an interval to change the classes of the shapes
-    let i = 0;
-    let interval = setInterval(setClass, speed)
-
-    let shapesHighlighted = [];
-    let shapeID = "";
-    let speedString = `speed${String(speed)}`;
-    function setClass() {
-        i++;
-        // First remove the class from the previous run
-        // (if there is one)
-        if (shapeID !== "") {
-            $(shapeID).removeClass(speedString);
-        }
-
-        //  Now if we have not reached the desired number of shapes highlighted yet:
-        if (i <= numOfShapes) {
-            // Generate a new random number
-            let randomNum = generateNewRandomNumber(shapeID.slice(6));
-
-            // Now add the number to the string
-            // Then use that string ID to add the class
-            shapeID = '#shape' + String(randomNum);
-            $(shapeID).addClass(speedString);
-
-            // Add shape highlighted to the array so we can check later
-            shapesHighlighted.push(shapeID);
-        } else {
-            // If we are done, stop the interval
-            clearInterval(interval);
-
-            // Now setup the game for providing an answer
-            setAnswer(shapesHighlighted);
-        }
-    }
 }
 
 function generateNewRandomNumber(oldNum) {
@@ -84,7 +101,7 @@ function generateNewRandomNumber(oldNum) {
         } while (numCheck == false);
 
         return newNum;
-    } else{
+    } else {
         console.log(`Wrong input supplied. Given: ${Number(oldNum)}`);
     }
 }
