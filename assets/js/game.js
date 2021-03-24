@@ -3,14 +3,11 @@ class Game {
     constructor() {
         this.shapesHighlighted = [];
         this.randomNum = 0;
-    }
-
-    highlightShapes() {
-        // Set the starting variables 
-        // speed and number of shapes to show
         let speed = 1000;
         let numOfShapes = 3;
+    }
 
+    setShapesToShow() {
         // Generate the correct answers and store them
         // inside the array of this object for later use
         let i = 0;
@@ -20,14 +17,18 @@ class Game {
             // Add the number to the array
             this.shapesHighlighted.push(this.randomNum);
             i++;
-        } while (i < numOfShapes)
+        } while (i < this.numOfShapes)
 
         console.log(this.shapesHighlighted);
+    }
 
+    highlightShapes() {
         // Set an interval to show the corresponding shapes
         // Start by setting up some variables that we'll be needing
-        let counter = 0;
         let shapesToShow = this.shapesHighlighted;
+        let speed = this.speed;
+        let numOfShapes = this.numOfShapes;
+        let counter = 0;
         let shapeID = '';
         let speedString = `speed${String(speed)}`;
 
@@ -59,13 +60,13 @@ class Game {
 document.addEventListener("DOMContentLoaded", function () {
 
     // Button event handlers
-    $('.play-button').click(playGame);
+    $('#play-button').click(playGame);
 
     loadShapes();
 });
 
 function loadShapes() {
-    let shapes = $('.game-container')[0];
+    let shapes = $('#game-container')[0];
     for (i = 1; i < 10; i++) {
         shapes.innerHTML += `
             <img src="assets/images/shape${i}.png" class="shape" id="shape${i}" />`
@@ -76,6 +77,7 @@ function playGame() {
     // Create instance of Game Class
     // Inside of this object will be our running game info
     let game = new Game();
+    game.setShapesToShow();
     game.highlightShapes();
 
     // Remove the click function from the shapes
