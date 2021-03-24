@@ -22,23 +22,6 @@ class Game {
         console.log(this.shapesHighlighted);
     }
 
-    static prepareForAnswers() {
-        // Add event listeners to all the shapes so user
-        // can click on them
-        $('.shape').click(function(){
-            addAnswer(this.id);
-        });        
-
-        // Display the answers-pane to the side 
-        // So you know what you chose
-        $('#answers-pane').removeClass('hidden');        
-
-        // Hide play button
-        // Make submit answer button visible
-        $('#submit-button').removeClass('hidden');
-        $('#play-button').addClass('hidden');
-    }
-
     highlightShapes() {
         // Set an interval to show the corresponding shapes
         // Start by setting up some variables that we'll be needing
@@ -68,7 +51,7 @@ class Game {
                 clearInterval(interval);
 
                 // Now get ready for the user to input the answers
-                Game.prepareForAnswers();
+                prepareForAnswers();
             }
             // Increment the counter so we know when to stop
             counter++;
@@ -128,8 +111,25 @@ function generateNewRandomNumber(oldNum) {
     }
 }
 
+function prepareForAnswers() {
+    // Add event listeners to all the shapes so user
+    // can click on them
+    $('.shape').click(function () {
+        addAnswer(this.id);
+    });
+
+    // Display the answers-pane to the side 
+    // So you know what you chose
+    $('#answers-pane').removeClass('hidden');
+
+    // Hide play button
+    // Make submit answer button visible
+    $('#submit-button').removeClass('hidden');
+    $('#play-button').addClass('hidden');
+}
+
 function addAnswer(shapeID) {
-    // Add to the answers array in the text field
+    // Add to the answers in the text field
 
     // Call the checkanswer function to see if it's still going well 
     // If not, abort and call failed screen from that function
