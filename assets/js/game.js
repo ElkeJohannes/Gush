@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Button event handlers
     $('#play-button').click(function () {
-        playGame(3, 1000);
+        playGame(3, 250);
     });
 
     loadShapes();
@@ -116,11 +116,28 @@ function prepareForAnswers(shapes) {
     $('#answers').html(`${shapes}`);
 }
 
-function checkAnswer(shapeID) {
-    // Keep track of the number of shapes clicked
-    // Like it's the first one, then the second etc.
-    // Check against the div containing the right answers each time
+function checkAnswer(shape) {
+    // Get all the answers from the div
+    // Take out the first one to check against 
+    // the shape that was clicked
     let answersDiv = $('#answers').html();
-    let correctAnswers = answersDiv.split(',');
+    let answers = answersDiv.split(',');
+    let correctAnswer = Number(answers[0]);
+
+    // Get the number from the shape
+    // that was clicked
+    let shapeID = Number(shape.slice(5));
+
+    if(shapeID === correctAnswer){
+        // Correct answer given
+        console.log('Correct!');
+        // Remove the correct(first) answer from the array
+        answers.shift();
+        // Now write it back to the div
+        $('#answers').html(`${answers}`);
+    } else{
+        // Wrong answer given
+        console.log('Wrong!');
+    }
 }
 // -------- / Answer functions ------
