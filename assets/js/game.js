@@ -115,33 +115,19 @@ function prepareForAnswers() {
     // Add event listeners to all the shapes so user
     // can click on them
     $('.shape').click(function () {
-        addAnswer(this.id);
+        checkAnswer(this.id);
     });
 
-    // Display the answers-pane to the side 
-    // So you know what you chose
-    $('#answers-pane').removeClass('hidden');
-
     // Hide play button
-    // Make submit answer button visible
-    $('#submit-button').removeClass('hidden');
     $('#play-button').addClass('hidden');
 }
 
-function addAnswer(shapeID) {
-    // Add to the answers in the text field
+function checkAnswer(shapeID) {
+    // Keep track of the number of shapes clicked
+    // Like it's the first one, then the second etc.
+    // Check against the array containing the right answers each time
+    
 
-    // Call the checkanswer function to see if it's still going well 
-    // If not, abort and call failed screen from that function
-}
 
-function submitAnswer() {
-    // Read the text field containing the answers
-    // Read the hidden text field containing the correct answers
-
-    // Compare the above two 
-    // Show either succes (--> set highscore) or failed message
-
-    // Hide submit button
-    // Make play button visible
+    console.log(shapeID);    
 }
