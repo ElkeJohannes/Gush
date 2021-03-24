@@ -60,7 +60,7 @@ function highlightShapes(numOfShapes, speed, shapesToShow) {
             clearInterval(interval);
 
             // Now get ready for the user to input the answers
-            prepareForAnswers();
+            prepareForAnswers(shapesToShow);
         }
         // Increment the counter so we know when to stop
         counter++;
@@ -74,8 +74,6 @@ function playGame(numOfShapes, speed) {
     let shapes = setShapesToShow(numOfShapes);
     // Start highlighting those shapes
     highlightShapes(numOfShapes, speed, shapes);
-    // Write them down so we can check later
-    writeCorrectAnswers(shapes);
 }
 
 function generateNewRandomNumber(oldNum) {
@@ -104,11 +102,7 @@ function generateNewRandomNumber(oldNum) {
 }
 
 // -------- Answer functions ------
-function writeCorrectAnswers(shapes){
-
-}
-
-function prepareForAnswers() {
+function prepareForAnswers(shapes) {
     // Add event listeners to all the shapes so user
     // can click on them
     $('.shape').click(function () {
@@ -117,12 +111,16 @@ function prepareForAnswers() {
 
     // Hide play button
     $('#play-button').addClass('hidden');
+
+    // Write down the correct answers
+    $('#answers').html(`${shapes}`);
 }
 
 function checkAnswer(shapeID) {
     // Keep track of the number of shapes clicked
     // Like it's the first one, then the second etc.
     // Check against the div containing the right answers each time
-    
+    let answersDiv = $('#answers').html();
+    let correctAnswers = answersDiv.split(',');
 }
 // -------- / Answer functions ------
