@@ -3,8 +3,8 @@ class Game {
     constructor() {
         this.shapesHighlighted = [];
         this.randomNum = 0;
-        let speed = 1000;
-        let numOfShapes = 3;
+        this.speed = 1000;
+        this.numOfShapes = 3;
     }
 
     setShapesToShow() {
@@ -20,6 +20,23 @@ class Game {
         } while (i < this.numOfShapes)
 
         console.log(this.shapesHighlighted);
+    }
+
+    static prepareForAnswers() {
+        // Add event listeners to all the shapes so user
+        // can click on them
+        $('.shape').click(function(){
+            addAnswer(this.id);
+        });        
+
+        // Display the answers-pane to the side 
+        // So you know what you chose
+        $('#answers-pane').removeClass('hidden');        
+
+        // Hide play button
+        // Make submit answer button visible
+        $('#submit-button').removeClass('hidden');
+        $('#play-button').addClass('hidden');
     }
 
     highlightShapes() {
@@ -49,6 +66,9 @@ class Game {
             } else {
                 // We're done, stop the interval
                 clearInterval(interval);
+
+                // Now get ready for the user to input the answers
+                Game.prepareForAnswers();
             }
             // Increment the counter so we know when to stop
             counter++;
@@ -106,17 +126,6 @@ function generateNewRandomNumber(oldNum) {
     } else {
         console.log(`Wrong input supplied. Given: ${Number(oldNum)}`);
     }
-}
-
-function setAnswer(shapes) {
-    // Add event listeners to all the shapes so user
-    // can click on them
-
-    // Display the answers in a text field to the side for a sec
-    // So you know what you chose
-
-    // Hide play button
-    // Make submit answer button visible
 }
 
 function addAnswer(shapeID) {
