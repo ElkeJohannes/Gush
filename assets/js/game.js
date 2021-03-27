@@ -76,6 +76,23 @@ function playGame(numOfShapes, speed) {
     highlightShapes(numOfShapes, speed, shapes);
 }
 
+function displayResults(){
+    // Make results pane visible
+    let resultsPane = $('#results-pane');
+    resultsPane.removeClass('hidden');
+
+    // Retrieve the results from the div
+    let results = $('#settings').html();
+    results = results.split(',');
+
+    // Display the results  in results pane
+    resultsPane.html(`
+    Congratulations!!!
+    
+    You guessed: ${results[0]} shapes right.
+    The game speed was set at: ${results[1]} miliseconds.`);
+}
+
 function generateNewRandomNumber(oldNum) {
     // Create a new random number between 1 and 9
     // ensure this is a different number from the one inputted by doing
@@ -120,24 +137,30 @@ function checkAnswer(shape) {
     // Get all the answers from the div
     // Take out the first one to check against 
     // the shape that was clicked
-    let answersDiv = $('#answers').html();
-    let answers = answersDiv.split(',');
+    let answers = $('#answers').html();
+    answers = answers.split(',');
     let correctAnswer = Number(answers[0]);
 
     // Get the number from the shape
     // that was clicked
     let shapeID = Number(shape.slice(5));
 
-    if(shapeID === correctAnswer){
+    if (shapeID === correctAnswer) {
         // Correct answer given
-        console.log('Correct!');
         // Remove the correct(first) answer from the array
         answers.shift();
-        // Now write it back to the div
-        $('#answers').html(`${answers}`);
-    } else{
+        // Check if all the correct answers are given
+        if (answers.length === 0) {
+            // Start a new game, incrementing the speed 
+            // and / or number of shapes
+            console.log('Array is now empty');
+        } else {
+            // If not, then write the array back to the div
+            $('#answers').html(`${answers}`);
+        }
+    } else {
         // Wrong answer given
-        console.log('Wrong!');
+        displayResults();
     }
 }
 // -------- / Answer functions ------
