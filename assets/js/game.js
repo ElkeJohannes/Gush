@@ -112,8 +112,12 @@ function setGameSettings() {
 }
 
 function playGame() {
-    // Reset the game for a fresh new round
-    resetGame();
+    // Hide play button
+    $('#play-button').addClass('hidden');
+    // Hide the results from the previous round
+    $('#results-pane').addClass('hidden');
+    // Setup for a new round
+    prepareNewRound();
     // Update the game settings
     setGameSettings();
     // Retrieve the game settings
@@ -129,18 +133,24 @@ function displayResults() {
     let resultsPane = $('#results-pane');
     resultsPane.removeClass('hidden');
 
-    // Retrieve the results from the div
-    let results = $('#settings').html().split(',');
+    // Retrieve the current settings
+    let settings = $('#settings').html().split(',');
+
+    // Retrieve the score
+    let score = $('#score').html();
 
     // Display the results  in results pane
     resultsPane.html(`
-    Congratulations!!!
-    
-    You guessed: ${results[0]} shapes right.
-    The game speed was set at: ${results[1]} miliseconds.`);
+    <p>Aaah wrong answer :(</P>    
+    <p>Well done though!<br>
+    You guessed: ${score} shapes right.<br>
+    The game speed was set at: ${settings[1]} miliseconds, 
+    showing ${settings[0]} shapes this round.</p>`);
+
+    preparePlayAgain();
 }
 
-function resetGame(){
+function prepareNewRound() {
     // Empty the div containing the correct answers
     $('#answers').html('');
 
@@ -149,6 +159,18 @@ function resetGame(){
     // The Electric toolbox
     // https://electrictoolbox.com/jquery-assign-remove-click-handler/
     $('.shape').unbind('click');
+}
+
+function preparePlayAgain() {
+    // Display the play button so user can play again
+    $('#play-button').removeClass('hidden');
+    $('#play-button').html('Play again!');
+
+    // Reset the settings
+    $('#settings').html('2,250');
+
+    // Reset the score
+    $('#score').html('');
 }
 // -------- / Game state functions ------
 
@@ -159,9 +181,6 @@ function prepareForAnswers(shapes) {
     $('.shape').click(function () {
         checkAnswer(this.id);
     });
-
-    // Hide play button
-    $('#play-button').addClass('hidden');
 
     // Write down the correct answers
     $('#answers').html(`${shapes}`);
@@ -180,6 +199,11 @@ function checkAnswer(shape) {
 
     if (shapeID === correctAnswer) {
         // Correct answer given
+        // Increment the score counter
+        let score = Number($('#score').html());
+        score++;
+        $('#score').html(score);
+
         // Remove the correct(first) answer from the array
         answers.shift();
         // Check if all the correct answers are given
