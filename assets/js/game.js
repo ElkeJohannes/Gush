@@ -61,6 +61,9 @@ function highlightShapes(shapesToShow) {
             // We're done, stop the interval
             clearInterval(interval);
 
+            // Remove the class from the last shape shown
+            $(shapeID).removeClass(speedString);
+
             // Now get ready for the user to input the answers
             prepareForAnswers(shapesToShow);
         }
@@ -75,7 +78,7 @@ function setGameSettings() {
     // Retrieve the current game settings
     let settings = $('#settings').html().split(',');
     // Convert the array entries to numbers
-    // With thanks to Jonas Answeeuw for this trick
+    // With thanks to Jonas Answeeuw
     // https://stackoverflow.com/questions/4437916/how-to-convert-all-elements-in-an-array-to-integer-in-javascript
     settings = settings.map(Number);
 
@@ -109,6 +112,8 @@ function setGameSettings() {
 }
 
 function playGame() {
+    // Reset the game for a fresh new round
+    resetGame();
     // Update the game settings
     setGameSettings();
     // Retrieve the game settings
@@ -133,6 +138,17 @@ function displayResults() {
     
     You guessed: ${results[0]} shapes right.
     The game speed was set at: ${results[1]} miliseconds.`);
+}
+
+function resetGame(){
+    // Empty the div containing the correct answers
+    $('#answers').html('');
+
+    // Remove the click function from the shapes
+    // Credit on how to do this:
+    // The Electric toolbox
+    // https://electrictoolbox.com/jquery-assign-remove-click-handler/
+    $('.shape').unbind('click');
 }
 // -------- / Game state functions ------
 
@@ -168,9 +184,8 @@ function checkAnswer(shape) {
         answers.shift();
         // Check if all the correct answers are given
         if (answers.length === 0) {
-            // Start a new game, incrementing the speed 
-            // and / or number of shapes
-            console.log('Array is now empty');
+            // Start a new round
+            playGame();
         } else {
             // If not, then write the array back to the div
             $('#answers').html(`${answers}`);
