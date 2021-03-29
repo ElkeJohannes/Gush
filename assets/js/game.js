@@ -38,14 +38,15 @@ function setShapesToShow(numOfShapes) {
 function highlightShapes(shapesToShow) {
     // Set an interval to show the corresponding shapes
     // Retrieve the current game settings
-    let settings = $('#settings').html().split(',');
+    let speed = $('#speed').html();
+    let shapes = $('#shapes').html();
     // Now set up some variables that we'll be needing
     let counter = 0;
     let shapeID = '';
-    let speedString = `speed${settings[1]}`;
+    let speedString = `speed${speed}`;
 
     let intervalSpeed;
-    switch (settings[1]) {
+    switch (speed) {
         case 1:
             intervalSpeed = 1000
             break;
@@ -72,7 +73,7 @@ function highlightShapes(shapesToShow) {
     // Start the interval
     let interval = setInterval(function () {
         // Check if we've processed the required amount of shapes
-        if (counter < settings[0]) {
+        if (counter < shapes) {
             // Remove the class from the previous shape shown
             if (shapeID !== '') {
                 $(shapeID).removeClass(speedString);
@@ -101,39 +102,37 @@ function highlightShapes(shapesToShow) {
 // -------- Game state functions ------
 function setGameSettings() {
     // Retrieve the current game settings
-    let settings = $('#settings').html().split(',');
-    // Convert the array entries to numbers
-    // With thanks to Jonas Answeeuw
-    // https://stackoverflow.com/questions/4437916/how-to-convert-all-elements-in-an-array-to-integer-in-javascript
-    settings = settings.map(Number);
+    let speed = Number($('#speed').html());
+    let shapes = Number($('#shapes').html());
 
     // Set the new game settings
     // Number of shapes always just gets incremented by one
     // Speed is incremented at set shape numbers
-    settings[0] += 1;
-    switch (settings[0]) {
+    shapes += 1;
+    switch (shapes) {
         case 3:
-            settings[1] = 1;
+            speed = 1;
             break;
         case 5:
-            settings[1] = 2;
+            speed = 2;
             break;
         case 7:
-            settings[1] = 3;
+            speed = 3;
             break;
         case 9:
-            settings[1] = 4;
+            speed = 4;
             break;
         case 11:
-            settings[1] = 5;
+            speed = 5;
             break;
         case 13:
-            settings[1] = 6;
+            speed = 6;
             break;
     }
 
-    // Now write the new values back to the div
-    $('#settings').html(`${settings}`);
+    // Now write the new values back to the dom
+    $('#speed').html(`${speed}`);
+    $('#shapes').html(`${shapes}`);
 }
 
 function playGame() {
@@ -146,11 +145,11 @@ function playGame() {
     // Update the game settings
     setGameSettings();
     // Retrieve the game settings
-    let settings = $('#settings').html().split(',');
+    let shapes = $('#shapes').html();
     // Load up the shapes that will be shown
-    let shapes = setShapesToShow(settings[0]);
+    let shapesToHighlight = setShapesToShow(shapes);
     // Start highlighting those shapes
-    highlightShapes(shapes);
+    highlightShapes(shapesToHighlight);
 }
 
 function displayResults() {
@@ -159,7 +158,8 @@ function displayResults() {
     resultsPane.removeClass('hidden');
 
     // Retrieve the current settings
-    let settings = $('#settings').html().split(',');
+    let speed = Number($('#speed').html());
+    let shapes = $('#shapes').html();
 
     // Retrieve the score
     let score = $('#score').html();
@@ -169,8 +169,8 @@ function displayResults() {
     <p>Aaah wrong answer :(</P>    
     <p>Well done though!<br>
     You guessed: ${score} shapes right.<br>
-    The game speed was set at: ${settings[1]} miliseconds, 
-    showing ${settings[0]} shapes this round.</p>`);
+    The game speed was: ${speed} , 
+    showing ${shapes} shapes.</p>`);
 
     preparePlayAgain();
 }
@@ -192,10 +192,11 @@ function preparePlayAgain() {
     $('#play-button').html('Play again!');
 
     // Reset the settings
-    $('#settings').html('2,1');
+    $('#speed').html('1');
+    $('#shapes').html('2');
 
     // Reset the score
-    $('#score').html('');
+    $('#score').html('0');
 }
 // -------- / Game state functions ------
 

@@ -20,17 +20,31 @@
     </h1>
     <button>View Highscores</button>
 
+    <!-- Game info -->
+    <div id="game-info">
+        <table>
+            <tr>
+                <th>Speed:</th>
+                <th>Shapes:</th>
+                <th>Score:</th>
+            </tr>
+            <tr>
+                <td id="speed">1</td>
+                <td id="shapes">2</td>
+                <td id="score">0</td>
+            </tr>
+        </table>
+    </div>   
+
     <section id="game-container">
     </section>
 
     <div class="hidden" id="results-pane">results-pane</div>
     <button id="play-button">Play!</button> 
 
-    <!-- 'Hidden' game info section -->
+    <!-- Hidden answers -->
     <div class="hidden" id="answers"></div>
-    <div class="hidden" id="settings">2,250</div>
-    <div class="hidden" id="score">0</div>
-
+    
     <!-- Include my own javascript files at the bottom of the page -->
     <script src="assets/js/game.js" type="text/javascript"></script>
 </body>
