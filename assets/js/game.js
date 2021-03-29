@@ -44,6 +44,31 @@ function highlightShapes(shapesToShow) {
     let shapeID = '';
     let speedString = `speed${settings[1]}`;
 
+    let intervalSpeed;
+    switch (settings[1]) {
+        case 1:
+            intervalSpeed = 1000
+            break;
+        case 2:
+            intervalSpeed = 750
+            break;
+        case 3:
+            intervalSpeed = 500
+            break;
+        case 4:
+            intervalSpeed = 250
+            break;
+        case 5:
+            intervalSpeed = 150
+            break;
+        case 6:
+            intervalSpeed = 100
+            break;
+        default:
+            intervalSpeed = 1000
+            break;
+    }
+
     // Start the interval
     let interval = setInterval(function () {
         // Check if we've processed the required amount of shapes
@@ -69,7 +94,7 @@ function highlightShapes(shapesToShow) {
         }
         // Increment the counter so we know when to stop
         counter++;
-    }, settings[1]);
+    }, intervalSpeed);
 }
 // -------- / Shapes functions ------
 
@@ -88,22 +113,22 @@ function setGameSettings() {
     settings[0] += 1;
     switch (settings[0]) {
         case 3:
-            settings[1] = 1000;
+            settings[1] = 1;
             break;
         case 5:
-            settings[1] = 750;
+            settings[1] = 2;
             break;
         case 7:
-            settings[1] = 500;
+            settings[1] = 3;
             break;
         case 9:
-            settings[1] = 250;
+            settings[1] = 4;
             break;
         case 11:
-            settings[1] = 150;
+            settings[1] = 5;
             break;
         case 13:
-            settings[1] = 100;
+            settings[1] = 6;
             break;
     }
 
@@ -167,7 +192,7 @@ function preparePlayAgain() {
     $('#play-button').html('Play again!');
 
     // Reset the settings
-    $('#settings').html('2,250');
+    $('#settings').html('2,1');
 
     // Reset the score
     $('#score').html('');

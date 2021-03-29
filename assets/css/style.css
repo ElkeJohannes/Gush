@@ -56,32 +56,32 @@ body{
 
 /* ------------- Game styles ------------- */
 
-.speed1000{
+.speed1{
     animation-name: shape-active;
     animation-duration: 1000ms;
 }
 
-.speed750{
+.speed2{
     animation-name: shape-active;
     animation-duration: 750ms;
 }
 
-.speed500{
+.speed3{
     animation-name: shape-active;
     animation-duration: 500ms;
 }
 
-.speed250{
+.speed4{
     animation-name: shape-active;
     animation-duration: 250ms;
 }
 
-.speed150{
+.speed5{
     animation-name: shape-active;
     animation-duration: 150ms;
 }
 
-.speed100{
+.speed6{
     animation-name: shape-active;
     animation-duration: 100ms;
 }
