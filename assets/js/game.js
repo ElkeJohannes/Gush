@@ -102,9 +102,6 @@ function setGameSettings() {
         case 13:
             settings[1] = 100;
             break;
-        default:
-            settings[1] = 1000;
-            break;
     }
 
     // Now write the new values back to the div
