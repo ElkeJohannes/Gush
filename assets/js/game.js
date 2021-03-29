@@ -232,6 +232,14 @@ function checkAnswer(shape) {
 
         // Remove the correct(first) answer from the array
         answers.shift();
+
+        // Light up the background in green for a second
+        // to provide visual feedback that the correct answer was given
+        $(`#${shape}`).addClass('correct');
+        setTimeout(function(){
+            $(`#${shape}`).removeClass('correct');
+        },400)
+
         // Check if all the correct answers are given
         if (answers.length === 0) {
             // Start a new round
