@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // -------- Shapes functions ------
 function loadShapes() {
-    let shapes = $('#game-container')[0];
+    let shapes = $('#shape-container')[0];
     for (i = 1; i < 10; i++) {
         shapes.innerHTML += `
             <img src="assets/images/shape${i}.png" class="shape" id="shape${i}" />`
