@@ -184,6 +184,11 @@ function prepareNewRound() {
     // The Electric toolbox
     // https://electrictoolbox.com/jquery-assign-remove-click-handler/
     $('.shape').unbind('click');
+
+    // Increment the round number
+    let currentRound = Number($('#current-round-counter').html());
+    currentRound++;
+    $('#current-round-counter').html(`${currentRound}`);
 }
 
 function preparePlayAgain() {
