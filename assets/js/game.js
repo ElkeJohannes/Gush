@@ -1,9 +1,10 @@
 // When the DOM has finished loading, start loading the basics for the game.
 document.addEventListener("DOMContentLoaded", function () {
 
-    // Add events to play button and overlay
+    // Add events to play buttons and overlay
     $('#play-button').click(playGame);
-    $('#overlay').click(function(){
+    $('.play-again-button').click(playAgain);
+    $('#overlay').click(function () {
         $(this).addClass('hidden');
     })
 
@@ -140,21 +141,26 @@ function playGame() {
     // Hide play button and overlay
     $('#play-button').addClass('hidden');
     $('#overlay').addClass('hidden');
-    // Hide the results from the previous round
-    $('#results-pane').addClass('hidden');
+
     // Setup for a new round
     prepareNewRound();
+
     // Update the game settings
     setGameSettings();
+
     // Retrieve the game settings
     let shapes = $('#shapes').html();
+
     // Load up the shapes that will be shown
     let shapesToHighlight = setShapesToShow(shapes);
+    
     // Start highlighting those shapes
     highlightShapes(shapesToHighlight);
 }
 
 function displayResults() {
+    // Show the overlay
+    $('#overlay').removeClass('hidden');
     // Make results pane visible
     let resultsPane = $('#results-pane');
     resultsPane.removeClass('hidden');
@@ -173,10 +179,8 @@ function displayResults() {
     You guessed: ${score} shapes right.<br>
     The game speed was: ${speed} , 
     showing ${shapes} shapes.</p>
-    <button id='play-again-button' class='game-control'>Play again!</button>
+    <button class='game-control play-again-button' onclick='playAgain()'>Play again!</button>
     `);
-
-    preparePlayAgain();
 }
 
 function prepareNewRound() {
@@ -195,14 +199,7 @@ function prepareNewRound() {
     $('#current-round-counter').html(`${currentRound}`);
 }
 
-function preparePlayAgain() {
-    // Display the play again button so user can play again
-    $('#play-again-button').removeClass('hidden');
-    // Add the event listener
-    $('#play-again-button').click(playGame);
-    // Show the overlay
-    $('#overlay').removeClass('hidden');
-
+function playAgain() {
     // Reset the settings
     $('#speed').html('1');
     $('#shapes').html('2');
@@ -212,6 +209,9 @@ function preparePlayAgain() {
 
     // Reset the round number
     $('#current-round-counter').html('0');
+
+    // Now start playing normally
+    playGame();
 }
 // -------- / Game state functions ------
 
