@@ -202,6 +202,9 @@ function preparePlayAgain() {
 
     // Reset the score
     $('#score').html('0');
+
+    // Reset the round number
+    $('#current-round-counter').html('0');
 }
 // -------- / Game state functions ------
 
