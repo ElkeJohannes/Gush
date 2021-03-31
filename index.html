@@ -37,18 +37,21 @@
             <div id="current-round">Current Round
                 <div id="current-round-counter">0</div>
             </div>
-            
             <!-- / Current game info -->
-            <button id="highscores-button">View Highscores</button>
+            <button id="highscores-button" class="game-control">View Highscores</button>
         </div>
         <div id="shape-container"></div>
     </div>
+    </div>
 
-    <div class="hidden" id="results-pane">results-pane</div>
-    <button id="play-button">Play!</button>
+    
+    <div id="overlay">
+        <div id="results-pane" class="hidden"></div>
+        <button id="play-button" class="game-control">Play!</button>
+    </div>
 
     <!-- Hidden answers -->
-    <div class="hidden" id="answers"></div>
+    <div id="answers" class="hidden"></div>
 
     <!-- Include my own javascript files at the bottom of the page -->
     <script src="assets/js/game.js" type="text/javascript"></script>

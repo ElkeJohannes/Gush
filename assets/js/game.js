@@ -1,10 +1,11 @@
 // When the DOM has finished loading, start loading the basics for the game.
 document.addEventListener("DOMContentLoaded", function () {
 
-    // Button event handlers
-    $('#play-button').click(function () {
-        playGame();
-    });
+    // Add events to play button and overlay
+    $('#play-button').click(playGame);
+    $('#overlay').click(function(){
+        $(this).addClass('hidden');
+    })
 
     loadShapes();
 });
@@ -136,8 +137,9 @@ function setGameSettings() {
 }
 
 function playGame() {
-    // Hide play button
+    // Hide play button and overlay
     $('#play-button').addClass('hidden');
+    $('#overlay').addClass('hidden');
     // Hide the results from the previous round
     $('#results-pane').addClass('hidden');
     // Setup for a new round
@@ -170,7 +172,9 @@ function displayResults() {
     <p>Well done though!<br>
     You guessed: ${score} shapes right.<br>
     The game speed was: ${speed} , 
-    showing ${shapes} shapes.</p>`);
+    showing ${shapes} shapes.</p>
+    <button id='play-again-button' class='game-control'>Play again!</button>
+    `);
 
     preparePlayAgain();
 }
@@ -192,9 +196,12 @@ function prepareNewRound() {
 }
 
 function preparePlayAgain() {
-    // Display the play button so user can play again
-    $('#play-button').removeClass('hidden');
-    $('#play-button').html('Play again!');
+    // Display the play again button so user can play again
+    $('#play-again-button').removeClass('hidden');
+    // Add the event listener
+    $('#play-again-button').click(playGame);
+    // Show the overlay
+    $('#overlay').removeClass('hidden');
 
     // Reset the settings
     $('#speed').html('1');
@@ -244,9 +251,9 @@ function checkAnswer(shape) {
         // Light up the background in green for a second
         // to provide visual feedback that the correct answer was given
         $(`#${shape}`).addClass('correct');
-        setTimeout(function(){
+        setTimeout(function () {
             $(`#${shape}`).removeClass('correct');
-        },400)
+        }, 400)
 
         // Check if all the correct answers are given
         if (answers.length === 0) {
