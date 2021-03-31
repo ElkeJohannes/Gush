@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
 
+/* Variables */
+:root {
+    --green: rgb(94, 255, 0);
+    --grey: rgb(67, 68, 67);
+}
+    
+
 /* ------------- General helpers & settings ------------- */
 
 body, button{
@@ -53,7 +60,7 @@ body{
 }
 
 #game-info {
-    border: 3px solid rgb(67, 68, 67);
+    border: 3px solid var(--grey);
     border-radius: 5%;
     justify-content: flex-start;
 }
@@ -63,16 +70,27 @@ body{
 }
 
 #shape-container{
-    border:4px solid rgb(67, 68, 67);
+    border:4px solid var(--grey);
     border-radius: 5%;    
-    max-height: 80vh;
     margin: 1vh auto;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-#shape-container > img {
-    width: 30%;
+.shape {
+    width: 29%;
     max-height: calc(72vh / 3);
-    margin: 1.1%;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10%;
+}
+
+.shape:hover{
+    border: 5px dotted var(--green);
+    margin: 0px;
+    cursor: pointer;
 }
 
 #overlay{
@@ -136,9 +154,7 @@ body{
 }
 
 @keyframes shape-correct{
-    0% {background-color: rgb(94, 255, 0);}
-    50% {background-color: white;}
-    75% {background-color: rgb(94, 255, 0);}
+    0% {background-color: var(--green);}
     100% {background-color: white;}
 }
 
