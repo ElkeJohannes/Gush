@@ -47,6 +47,10 @@ function highlightShapes(shapesToShow) {
     let shapeID = '';
     let speedString = `speed${speed}`;
 
+    // Start running the game sound
+    let playingSound = new Audio('assets/audio/playing.wav');
+    playingSound.play();
+
     let intervalSpeed;
     switch (speed) {
         case 1:
@@ -91,6 +95,9 @@ function highlightShapes(shapesToShow) {
 
             // Remove the class from the last shape shown
             $(shapeID).removeClass(speedString);
+
+            // Stop the game sound
+            playingSound.pause();
 
             // Now get ready for the user to input the answers
             prepareForAnswers(shapesToShow);
@@ -248,6 +255,10 @@ function checkAnswer(shape) {
         // Remove the correct(first) answer from the array
         answers.shift();
 
+        // Play confirming sound
+        let correctSound = new Audio('assets/audio/correct.wav');
+        correctSound.play();
+
         // Light up the background in green for a second
         // to provide visual feedback that the correct answer was given
         $(`#${shape}`).addClass('correct');
@@ -265,6 +276,11 @@ function checkAnswer(shape) {
         }
     } else {
         // Wrong answer given
+        // Play losing sound
+        let losingSound = new Audio('assets/audio/lose.wav');
+        losingSound.play();
+
+        // Display results
         displayResults();
     }
 }
