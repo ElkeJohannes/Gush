@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     $('#overlay').click(function () {
         $(this).addClass('hidden');
     })
+    $('#highscores-button').click(getHighscores);
 
     loadShapes();
 });
@@ -160,7 +161,7 @@ function playGame() {
 
     // Load up the shapes that will be shown
     let shapesToHighlight = setShapesToShow(shapes);
-    
+
     // Start highlighting those shapes
     highlightShapes(shapesToHighlight);
 }
@@ -178,6 +179,7 @@ function displayResults() {
 
     // Retrieve the score
     let score = $('#score').html();
+    setCookie('score', score);
 
     // Display the results  in results pane
     resultsPane.html(`
@@ -310,5 +312,46 @@ function generateNewRandomNumber(oldNum) {
     } else {
         console.log(`Wrong input supplied. Given: ${Number(oldNum)}`);
     }
+}
+
+function getHighscores() {
+    getCookie('score');
+}
+
+function setCookie(cookieName, value, ttl) {
+    // Create a date object of the current date
+    // + the specified number of days (time to live)
+    let date = addDays(ttl);
+    // Create the cookie 
+    document.cookie = `${cookieName}=${value};${date.toUTCString()};path=/;SameSite=Lax;`;
+}
+
+function getCookie(cookieName) {
+    // Get all the cookies
+    let cookies = document.cookie.split(';');
+    // Get the length of the string we are looking for
+    let len = cookieName.length +1;    
+    for (cookie of cookies) {
+        // Now check each value in the array
+        if (cookie.slice(1, len) === cookieName) {
+            console.log(`This is the cookie you were looking for: '${cookie.slice(1, len)}'`);
+            console.log(`It's value is: '${cookie.slice(len + 1)}'`);
+        }
+    }
+}
+
+function addDays(days) {
+    // Genereate new date object outside the if so we can 
+    // always return this if days provided is 0
+    let date = new Date();
+    if (days !== 0 | days !== NaN | days !== null) {
+        // Convert the input days to miliseconds
+        let miliseconds = days * 24 * 60 * 60 * 1000;
+        miliseconds = date.getMilliseconds() + miliseconds;
+        // Redeclare the date variable with a new timestamp
+        date = new Date(miliseconds);
+    }
+    // Always return a date object
+    return date;
 }
 // -------- / Helper functions ------
