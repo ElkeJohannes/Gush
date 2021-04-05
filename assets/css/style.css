@@ -1,19 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
-
 /* Variables */
+
 :root {
     --green: rgb(94, 255, 0);
     --grey: rgb(67, 68, 67);
 }
-    
 
 /* ------------- General helpers & settings ------------- */
 
-body, button{
+body, button {
     font-family: 'Oswald', sans-serif;
 }
 
-body{
+body {
     text-align: center;
 }
 
@@ -23,19 +22,19 @@ body{
 
 /* ------------- Header ------------- */
 
-.header{
+.header {
     margin: 0 auto;
     font-style: italic;
     text-decoration: underline;
 }
 
-.header-main{
+.header-main {
     display: inline;
 }
 
-.header-sub{
+.header-sub {
     display: block;
-    font-style: italic;   
+    font-style: italic;
 }
 
 .hyphen {
@@ -44,7 +43,7 @@ body{
 
 /* ------------- Game area ------------- */
 
-#game-container{
+#game-container {
     max-width: 95%;
     display: flex;
     flex-direction: column;
@@ -52,26 +51,37 @@ body{
     margin: 0 auto;
 }
 
-#top-info{
+#top-info {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin: 10px 0px;
 }
 
-#game-info {
+#game-info, #highscores {
     border: 3px solid var(--grey);
     border-radius: 5%;
+}
+
+#highscores {
+    border-collapse: collapse;
+}
+
+#highscores tr {
+    border-bottom: 2px solid var(--grey);
+}
+
+#game-info {
     justify-content: flex-start;
 }
 
-#highscores-button{
+#highscores-button {
     justify-content: flex-end;
 }
 
-#shape-container{
-    border:4px solid var(--grey);
-    border-radius: 5%;    
+#shape-container {
+    border: 4px solid var(--grey);
+    border-radius: 5%;
     margin: 1vh auto;
     padding: 5px;
     display: flex;
@@ -87,13 +97,13 @@ body{
     border-radius: 10%;
 }
 
-.shape:hover{
+.shape:hover {
     border: 5px dotted var(--green);
     margin: 0px;
     cursor: pointer;
 }
 
-#overlay{
+#overlay {
     position: fixed;
     top: 0;
     right: 0;
@@ -105,45 +115,45 @@ body{
     z-index: 2;
 }
 
-#play-button, #results-pane{
+#overlay>* {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
 
-#results-pane {
+#results-pane, #highscores {
     background-color: seashell;
 }
 
 /* ------------- Game styles ------------- */
 
-.speed1{
+.speed1 {
     animation-name: shape-active;
     animation-duration: 1000ms;
 }
 
-.speed2{
+.speed2 {
     animation-name: shape-active;
     animation-duration: 750ms;
 }
 
-.speed3{
+.speed3 {
     animation-name: shape-active;
     animation-duration: 500ms;
 }
 
-.speed4{
+.speed4 {
     animation-name: shape-active;
     animation-duration: 250ms;
 }
 
-.speed5{
+.speed5 {
     animation-name: shape-active;
     animation-duration: 150ms;
 }
 
-.speed6{
+.speed6 {
     animation-name: shape-active;
     animation-duration: 100ms;
 }
@@ -153,35 +163,40 @@ body{
     animation-duration: 400ms;
 }
 
-@keyframes shape-correct{
-    0% {background-color: var(--green);}
-    100% {background-color: white;}
+@keyframes shape-correct {
+    0% {
+        background-color: var(--green);
+    }
+    100% {
+        background-color: white;
+    }
 }
 
-@keyframes shape-active{
-    0%   {background-color: white;}
-    100%  {background-color: yellow;}   
+@keyframes shape-active {
+    0% {
+        background-color: white;
+    }
+    100% {
+        background-color: yellow;
+    }
 }
-
 
 /* ------------- Media Queries ------------- */
 
-@media(min-width: 567px){
-    .hyphen{
+@media(min-width: 567px) {
+    .hyphen {
         display: inline;
     }
-
-    .header-sub{
-        display: inline;    
+    .header-sub {
+        display: inline;
     }
-
-    #game-container{
+    #game-container {
         max-width: 70%;
     }
 }
 
-@media(min-width: 992px){
-    #game-container{
+@media(min-width: 992px) {
+    #game-container {
         max-width: 50%;
     }
 }

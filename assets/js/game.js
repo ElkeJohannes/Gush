@@ -4,9 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Add events to play buttons and overlay
     $('#play-button').click(playGame);
     $('.play-again-button').click(playAgain);
-    $('#overlay').click(function () {
-        $(this).addClass('hidden');
-    })
+    $('#overlay').click(hideOverlay)
     $('#highscores-button').click(getHighscores);
 
     loadShapes();
@@ -146,9 +144,8 @@ function setGameSettings() {
 }
 
 function playGame() {
-    // Hide play button and overlay
-    $('#play-button').addClass('hidden');
-    $('#overlay').addClass('hidden');
+    // Hide overlay
+    hideOverlay();
 
     // Setup for a new round
     prepareNewRound();
@@ -320,23 +317,34 @@ function getHighscores() {
     let scoreNumbers = getCookie('Highscore-numbers');
     let scoreNames = getCookie('Highscore-names');
 
-    // Check for undefined credit to:
+    // Reset the view by redefining it's content
+    $('#highscores').html(`
+    <tr>
+      <th>Name</th>
+      <th>Score</th>
+    </tr> `);
+
+    // 'Check for undefined' credit to:
     // Flaviocopes
     // https://flaviocopes.com/how-to-check-undefined-property-javascript/
     if (typeof (scoreNumbers) === 'undefined') {
         console.log('No previous scores to show');
     } else if (!scoreNumbers.includes(',')) {
         // There is only 1 entry
-        console.log(`Current highscore: ${scoreNames} ; ${scoreNumbers}`);
+        addHighscore(scoreNames, scoreNumbers);
     } else {
         // There is more than 1 entry
         // So make an array, and loop through
         scoreNumbers = scoreNumbers.split(',');
         scoreNames = scoreNames.split(',');
         for (let i = 0; i < scoreNumbers.length; i++) {
-            console.log(`Current highscores: ${scoreNames[i]} ; ${scoreNumbers[i]}`);
+            addHighscore(scoreNames[i], scoreNumbers[i]);
         }
     }
+
+    // Make the highscores visible
+    $('#overlay').removeClass('hidden');
+    $('#highscores').removeClass('hidden');
 }
 
 function setHighScores(score, name) {
@@ -345,7 +353,7 @@ function setHighScores(score, name) {
     let scoreNames = getCookie('Highscore-names');
 
     // Add the new score
-    // Check for undefined credit to:
+    // 'Check for undefined' credit to:
     // Flaviocopes
     // https://flaviocopes.com/how-to-check-undefined-property-javascript/
     if (typeof (scoreNumbers) === 'undefined') {
@@ -360,6 +368,15 @@ function setHighScores(score, name) {
     // Rewrite the cookies
     setCookie('Highscore-numbers', scoreNumbers, 365);
     setCookie('Highscore-names', scoreNames, 365);
+}
+
+function addHighscore(name, score) {
+    let highScore = `
+    <tr>
+      <td>${name}</td>
+      <td>${score}</td>
+    </tr>`;
+    $('#highscores').append(highScore);
 }
 
 function setCookie(cookieName, value, ttl) {
@@ -400,5 +417,12 @@ function addDays(days) {
     }
     // Always return a date object
     return date;
+}
+
+function hideOverlay(){
+    $('#overlay').addClass('hidden');
+    $('#results-pane').addClass('hidden');
+    $('#play-button').addClass('hidden');
+    $('#highscores').addClass('hidden');
 }
 // -------- / Helper functions ------
