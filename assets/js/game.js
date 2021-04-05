@@ -179,7 +179,9 @@ function displayResults() {
 
     // Retrieve the score
     let score = $('#score').html();
-    setCookie('score', score);
+
+    // Update the highscores
+    setHighScores(score, 'Elke');
 
     // Display the results  in results pane
     resultsPane.html(`
@@ -315,7 +317,49 @@ function generateNewRandomNumber(oldNum) {
 }
 
 function getHighscores() {
-    getCookie('score');
+    let scoreNumbers = getCookie('Highscore-numbers');
+    let scoreNames = getCookie('Highscore-names');
+
+    // Check for undefined credit to:
+    // Flaviocopes
+    // https://flaviocopes.com/how-to-check-undefined-property-javascript/
+    if (typeof (scoreNumbers) === 'undefined') {
+        console.log('No previous scores to show');
+    } else if (!scoreNumbers.includes(',')) {
+        // There is only 1 entry
+        console.log(`Current highscore: ${scoreNames} ; ${scoreNumbers}`);
+    } else {
+        // There is more than 1 entry
+        // So make an array, and loop through
+        scoreNumbers = scoreNumbers.split(',');
+        scoreNames = scoreNames.split(',');
+        for (let i = 0; i < scoreNumbers.length; i++) {
+            console.log(`Current highscores: ${scoreNames[i]} ; ${scoreNumbers[i]}`);
+        }
+    }
+}
+
+function setHighScores(score, name) {
+    // First get the cookies containing the current highscores
+    let scoreNumbers = getCookie('Highscore-numbers');
+    let scoreNames = getCookie('Highscore-names');
+
+    // Add the new score
+    // Check for undefined credit to:
+    // Flaviocopes
+    // https://flaviocopes.com/how-to-check-undefined-property-javascript/
+    if (typeof (scoreNumbers) === 'undefined') {
+        scoreNumbers = score;
+        scoreNames = name;
+    } else {
+        // If there is a previous value, add a comma
+        scoreNumbers += ',' + score;
+        scoreNames += ',' + name;
+    }
+
+    // Rewrite the cookies
+    setCookie('Highscore-numbers', scoreNumbers, 365);
+    setCookie('Highscore-names', scoreNames, 365);
 }
 
 function setCookie(cookieName, value, ttl) {
@@ -330,12 +374,15 @@ function getCookie(cookieName) {
     // Get all the cookies
     let cookies = document.cookie.split(';');
     // Get the length of the string we are looking for
-    let len = cookieName.length +1;    
+    let len = cookieName.length;
     for (cookie of cookies) {
+        // Ensure there is no whitespace counted
+        cookie = cookie.trim();
+        // Get the name part of the cookie
+        let cookieSlice = cookie.slice(0, len);
         // Now check each value in the array
-        if (cookie.slice(1, len) === cookieName) {
-            console.log(`This is the cookie you were looking for: '${cookie.slice(1, len)}'`);
-            console.log(`It's value is: '${cookie.slice(len + 1)}'`);
+        if (cookieSlice === cookieName) {
+            return cookie.slice(len + 1);
         }
     }
 }
