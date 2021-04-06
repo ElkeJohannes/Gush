@@ -384,7 +384,7 @@ function setCookie(cookieName, value, ttl) {
     // + the specified number of days (time to live)
     let date = addDays(ttl);
     // Create the cookie 
-    document.cookie = `${cookieName}=${value};${date.toUTCString()};path=/;SameSite=Lax;`;
+    document.cookie = `${cookieName}=${value};expires=${date.toUTCString()};path=/;SameSite=Lax;`;
 }
 
 function getCookie(cookieName) {
@@ -411,7 +411,7 @@ function addDays(days) {
     if (days !== 0 | days !== NaN | days !== null) {
         // Convert the input days to miliseconds
         let miliseconds = days * 24 * 60 * 60 * 1000;
-        miliseconds = date.getMilliseconds() + miliseconds;
+        miliseconds = date.getTime() + miliseconds;
         // Redeclare the date variable with a new timestamp
         date = new Date(miliseconds);
     }
