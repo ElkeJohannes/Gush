@@ -332,8 +332,15 @@ function getHighscores() {
     $('#highscores').removeClass('hidden');
 }
 
-function setHighscores(score, name) {
-// First get the cookies containing the current highscores
+function setHighscores(event) {
+    // Prevent the default submit browser action
+    event.preventDefault();
+
+    // Retrieve the score and name
+    let score = $('#score').html();
+    let name = $('#name').val();
+
+    // Get the cookies containing the current highscores
     let scoreNumbers = getCookie('Highscore-numbers');
     let scoreNames = getCookie('Highscore-names');
 
@@ -353,6 +360,8 @@ function setHighscores(score, name) {
     // Rewrite the cookies
     setCookie('Highscore-numbers', scoreNumbers, 365);
     setCookie('Highscore-names', scoreNames, 365);
+
+    hideOverlay();
 }
 
 function addHighscore(name, score) {
@@ -409,5 +418,6 @@ function hideOverlay(){
     $('#results-pane').addClass('hidden');
     $('#play-button').addClass('hidden');
     $('#highscores').addClass('hidden');
+    $('#play-again-highscore').addClass('hidden');
 }
 // -------- / Helper functions ------

@@ -39,7 +39,7 @@
             </div>
             <!-- / Current game info -->
             <div>
-                <button class='game-control play-again-button'>Play again!</button>
+                <button id='play-again-top' class='game-control play-again-button'>Play again!</button>
                 <button id="highscores-button" class="game-control">View Highscores</button>
             </div>
         </div>
@@ -57,14 +57,15 @@
             <form action='#' method='POST'>
                 <label for='name'>Name:</label>
                 <input type='text' id='name' name='Name' placeholder='John Doe' /><br>
-                <input type='submit' class='game-control submit-highscore-button' onclick='setHighscores()'
+                <input type='submit' class='game-control submit-highscore-button' onclick='setHighscores(event)'
                     value='Submit highscore' />
             </form>
-            <button class='game-control play-again-button' onclick='playAgain()'>Play again!</button>
+
         </div>
         <button id="play-button" class="game-control">Play!</button>
         <table id="highscores" class="hidden">
         </table>
+        <button id="play-again-highscore" class='game-control play-again-button'>Play again!</button>
     </div>
 
     <!-- Hidden area -->
