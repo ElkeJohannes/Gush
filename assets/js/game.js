@@ -167,28 +167,13 @@ function displayResults() {
     // Show the overlay
     $('#overlay').removeClass('hidden');
     // Make results pane visible
-    let resultsPane = $('#results-pane');
-    resultsPane.removeClass('hidden');
-
-    // Retrieve the current settings
-    let speed = Number($('#speed').html());
-    let shapes = $('#shapes').html();
+    $('#results-pane').removeClass('hidden');
 
     // Retrieve the score
     let score = $('#score').html();
 
-    // Update the highscores
-    setHighScores(score, 'Elke');
-
-    // Display the results  in results pane
-    resultsPane.html(`
-    <p>Aaah wrong answer :(</P>    
-    <p>Well done though!<br>
-    You guessed: ${score} shapes right.<br>
-    The game speed was: ${speed} , 
-    showing ${shapes} shapes.</p>
-    <button class='game-control play-again-button' onclick='playAgain()'>Play again!</button>
-    `);
+    // Fill the score in the results
+    $('#highscore').html(`${score}`);
 }
 
 function prepareNewRound() {
@@ -347,8 +332,8 @@ function getHighscores() {
     $('#highscores').removeClass('hidden');
 }
 
-function setHighScores(score, name) {
-    // First get the cookies containing the current highscores
+function setHighscores(score, name) {
+// First get the cookies containing the current highscores
     let scoreNumbers = getCookie('Highscore-numbers');
     let scoreNames = getCookie('Highscore-names');
 

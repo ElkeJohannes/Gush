@@ -41,15 +41,27 @@
             <div>
                 <button class='game-control play-again-button'>Play again!</button>
                 <button id="highscores-button" class="game-control">View Highscores</button>
-            </div>            
+            </div>
         </div>
         <div id="shape-container"></div>
     </div>
     </div>
 
-    
-    <div id="overlay">
-        <div id="results-pane" class="hidden"></div>
+
+    <div id="overlay"></div>
+    <div id="overlay-items">
+        <div id="results-pane" class="hidden">
+            <p>Aaah wrong answer :(</P>
+            <p>Well done though!<br>
+                You guessed: <span id="highscore">0</span> shapes right.</p>
+            <form action='#' method='POST'>
+                <label for='name'>Name:</label>
+                <input type='text' id='name' name='Name' placeholder='John Doe' /><br>
+                <input type='submit' class='game-control submit-highscore-button' onclick='setHighscores()'
+                    value='Submit highscore' />
+            </form>
+            <button class='game-control play-again-button' onclick='playAgain()'>Play again!</button>
+        </div>
         <button id="play-button" class="game-control">Play!</button>
         <table id="highscores" class="hidden">
         </table>
