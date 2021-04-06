@@ -6,7 +6,7 @@
     --grey: rgb(67, 68, 67);
 }
 
-/* ------------- General helpers & settings ------------- */
+/* ------------- General settings ------------- */
 
 body, button {
     font-family: 'Oswald', sans-serif;
@@ -14,10 +14,6 @@ body, button {
 
 body {
     text-align: center;
-}
-
-.hidden {
-    display: none;
 }
 
 /* ------------- Header ------------- */
@@ -71,14 +67,6 @@ body {
     border-bottom: 2px solid var(--grey);
 }
 
-#game-info {
-    justify-content: flex-start;
-}
-
-#highscores-button {
-    justify-content: flex-end;
-}
-
 #shape-container {
     border: 4px solid var(--grey);
     border-radius: 5%;
@@ -103,6 +91,8 @@ body {
     cursor: pointer;
 }
 
+/* ------------- Overlay ------------- */
+
 #overlay {
     position: fixed;
     top: 0;
@@ -115,17 +105,32 @@ body {
     z-index: 2;
 }
 
-#overlay-items>* {
+#results-pane, #play-button, #highscores-pane {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 3;
+    z-index: 4;
 }
 
-#results-pane, #highscores {
+#results-pane, #highscores-pane {
     background-color: seashell;
+    display: flex;
+    flex-flow: column;
 }
+
+.close-button {
+    margin-left: auto;
+    height: 15px;
+    width: 15px;
+    z-index: 10;
+}
+
+.close-button:hover {
+    cursor: pointer;
+}
+
+/* ------------- / Overlay ------------- */
 
 /* ------------- Game styles ------------- */
 
@@ -181,6 +186,14 @@ body {
         background-color: yellow;
     }
 }
+
+/* General helpers */
+
+.hidden {
+    display: none !important;
+}
+
+/* / General helpers */
 
 /* ------------- Media Queries ------------- */
 

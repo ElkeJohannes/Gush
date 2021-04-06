@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     $('.play-again-button').click(playAgain);
     $('#overlay').click(hideOverlay)
     $('#highscores-button').click(getHighscores);
+    $('.close-button').click(hideOverlay);
 
     loadShapes();
 });
@@ -329,7 +330,7 @@ function getHighscores() {
 
     // Make the highscores visible
     $('#overlay').removeClass('hidden');
-    $('#highscores').removeClass('hidden');
+    $('#highscores-pane').removeClass('hidden');
 }
 
 function setHighscores(event) {
@@ -417,7 +418,6 @@ function hideOverlay(){
     $('#overlay').addClass('hidden');
     $('#results-pane').addClass('hidden');
     $('#play-button').addClass('hidden');
-    $('#highscores').addClass('hidden');
-    $('#play-again-highscore').addClass('hidden');
+    $('#highscores-pane').addClass('hidden');
 }
 // -------- / Helper functions ------
