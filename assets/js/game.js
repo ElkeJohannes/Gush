@@ -312,7 +312,7 @@ function getHighscores(highlightScore) {
 
     // Reset the view by redefining it's content
     $('#highscores').html(`
-    <tr>
+    <tr id='skip-sort'>
       <th>Name</th>
       <th>Score</th>
     </tr> `);
@@ -343,6 +343,9 @@ function getHighscores(highlightScore) {
             }
         }
     }
+
+    // Sort the table
+    sortHighscores();
 
     // Make the highscores visible
     $('#overlay').removeClass('hidden');
@@ -404,6 +407,28 @@ function addHighscore(name, score, highlight) {
     setTimeout(function () {
         $(`.highlight-score`).removeClass('highlight-score');
     }, 1000);
+}
+
+function sortHighscores(){
+    let rows = $('#highscores tr');
+    let tdArray = [];
+
+    // Go through the array of rows and select all the td's
+    for(row of rows){
+        if(row.id !== 'skip-sort'){
+            // Put the td's containing the scores in a seperate array
+            tdArray.push(row.lastElementChild);
+            row.remove();
+        }
+    }
+
+    // Sort the array based on the numeric values
+    tdArray.sort(function(a,b){return Number(b.textContent)-Number(a.textContent)});
+
+    // Add them back in, in the correct order
+    for(let i = 0;i < tdArray.length;i++){
+        $('#highscores').append(tdArray[i].parentElement);
+    }
 }
 
 function setCookie(cookieName, value, ttl) {
