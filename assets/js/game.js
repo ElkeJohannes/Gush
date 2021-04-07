@@ -7,7 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
     $('#overlay').click(hideOverlay)
     $('#highscores-button').click(getHighscores);
     $('.close-button').click(hideOverlay);
-
+    $('#highscore-form').on('submit', setHighscores);
+    
     loadShapes();
 });
 
@@ -333,9 +334,9 @@ function getHighscores() {
     $('#highscores-pane').removeClass('hidden');
 }
 
-function setHighscores(event) {
+function setHighscores(e) {
     // Prevent the default submit browser action
-    event.preventDefault();
+    e.preventDefault();
 
     // Retrieve the score and name
     let score = $('#score').html();
@@ -362,7 +363,9 @@ function setHighscores(event) {
     setCookie('Highscore-numbers', scoreNumbers, 365);
     setCookie('Highscore-names', scoreNames, 365);
 
+    // Show the submitted highscore and highlight it
     hideOverlay();
+
 }
 
 function addHighscore(name, score) {

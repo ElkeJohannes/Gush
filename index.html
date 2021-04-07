@@ -55,19 +55,19 @@
         <p>Aaah wrong answer :(</P>
         <p>Well done though!<br>
             You guessed: <span id="highscore">0</span> shapes right.</p>
-        <form action='#' method='POST'>
+        <form action='#' method='POST' id="highscore-form">
             <label for='name'>Name:</label>
             <input type='text' id='name' name='Name' placeholder='John Doe' /><br>
-            <input type='submit' class='game-control submit-highscore-button' onclick='setHighscores(event)'
+            <input type='submit' class='game-control submit-highscore-button'
                 value='Submit highscore' />
         </form>
-        
+
     </div>
     <!-- Highscores window -->
     <div id="highscores-pane" class="hidden">
         <img src="assets/images/close.png" alt="Close" class="close-button">
         <table id="highscores">
-        </table>        
+        </table>
     </div>
     <!-- The starting play button -->
     <button id="play-button" class="game-control">Play!</button>
