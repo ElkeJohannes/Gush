@@ -306,7 +306,10 @@ function generateNewRandomNumber(oldNum) {
     }
 }
 
-function getHighscores(highlightScore) {
+function getHighscores() {
+    // Hide the overlay to avoid conflicts
+    hideOverlay();
+
     let scoreNumbers = getCookie('Highscore-numbers');
     let scoreNames = getCookie('Highscore-names');
 
@@ -325,28 +328,16 @@ function getHighscores(highlightScore) {
         console.log('No previous scores to show');
     } else if (!scoreNumbers.includes(',')) {
         // There is only 1 entry
-        if(highlightScore === true) {
-            addHighscore(scoreNames, scoreNumbers, true);    
-        } else {
-            addHighscore(scoreNames, scoreNumbers);    
-        }        
+        addHighscore(scoreNumbers, scoreNames, 1);
     } else {
         // There is more than 1 entry
         // So make an array, and loop through
         scoreNumbers = scoreNumbers.split(',');
         scoreNames = scoreNames.split(',');
         for (let i = 0; i < scoreNumbers.length; i++) {
-            if (i === scoreNumbers.length - 1 && highlightScore === true) {
-                // The last one is the latest, highlight it
-                addHighscore(scoreNames[i], scoreNumbers[i], true);
-            } else {
-                addHighscore(scoreNames[i], scoreNumbers[i]);
-            }
+            addHighscore(scoreNumbers[i], scoreNames[i], i + 1);
         }
     }
-
-    // Sort the table
-    sortHighscores();
 
     // Make the highscores visible
     $('#overlay').removeClass('hidden');
@@ -364,6 +355,7 @@ function setHighscores(e) {
     // Get the cookies containing the current highscores
     let scoreNumbers = getCookie('Highscore-numbers');
     let scoreNames = getCookie('Highscore-names');
+    let sortedHighscores;
 
     // Add the new score
     // 'Check for undefined' credit to:
@@ -376,61 +368,78 @@ function setHighscores(e) {
         // If there is a previous value, add a comma
         scoreNumbers += ',' + score;
         scoreNames += ',' + name;
+
+        // Sort the highscores
+        sortedHighscores = sortHighscores(scoreNumbers.split(','), scoreNames.split(','));
+        scoreNumbers = sortedHighscores.arrayNumbers;
+        scoreNames = sortedHighscores.arrayNames;
+
+        // If the number of highscores is greater than 10
+        // Pop the lowest one out
+        if(scoreNumbers.length > 10){
+            scoreNumbers.pop();
+            scoreNames.pop();
+        }
     }
 
     // Rewrite the cookies
     setCookie('Highscore-numbers', scoreNumbers, 365);
     setCookie('Highscore-names', scoreNames, 365);
 
-    // Show the submitted highscore and highlight it
-    hideOverlay();
-    getHighscores(true);
+    // // Show the submitted highscore and highlight it
+    getHighscores();
+    highlightScore(score, name, sortedHighscores);
 }
 
-function addHighscore(name, score, highlight) {
-    let highScore = `<tr>`;
-    if (highlight === true) {
-        highScore += `
-        <td class='highlight-score'>${name}</td>
-        <td class='highlight-score'>${score}</td>
-      `;
-    } else {
-        highScore += `
+function addHighscore(score, name, number) {
+    let highScore = `
+    <tr id=${number}>
+        <td>${number}</td>
         <td>${name}</td>
         <td>${score}</td>
-      `;
-    }
-      
-    highScore += `</tr >`;
+    </tr >`;
     $('#highscores').append(highScore);
+}
 
-    // Highlight the last entry
+function highlightScore(score, name, highscores){
+    let arrayNumbers = highscores.arrayNumbers;
+    let arrayNames = highscores.arrayNames;
+    // Find the new highscore and add the highlight class to it
+    for(let i = 0;i < arrayNumbers.length;i++){
+        if(score === arrayNumbers[i] && name === arrayNames[i]) {
+            $('tr#' + (i + 1)).addClass('highlight-score');
+        }
+    }
+
+    // Remove the class when done
     setTimeout(function () {
         $(`.highlight-score`).removeClass('highlight-score');
     }, 1000);
 }
 
-function sortHighscores(){
-    let rows = $('#highscores tr');
-    let tdArray = [];
-
-    // Go through the array of rows and select all the td's
-    for(row of rows){
-        if(row.id !== 'skip-sort'){
-            // Put the td's containing the scores in a seperate array
-            tdArray.push(row.lastElementChild);
-        }
+function sortHighscores(arrayNumbers, arrayNames) {
+    // Merge the arrays together so the values stay paired
+    let mergeArray = [];
+    for (let i = 0; i < arrayNumbers.length; i++) {
+        mergeArray.push([arrayNumbers[i], arrayNames[i]]);
     }
 
-    // Sort the array based on the numeric values
-    tdArray.sort(function(a,b){return Number(b.textContent)-Number(a.textContent)});
+    // Sort the merged array by the numbers
+    mergeArray.sort(function (a, b) { return Number(b[0]) - Number(a[0]) });
 
-    // Add the rows back into the DOM, in the correct order
-    for(let i = 0;i < tdArray.length;i++){
-        $('#highscores').append(tdArray[i].parentElement);
-        // Insert a number at the start of the row
-        $(tdArray[i].parentElement).prepend(i + 1);   
+    // Now split them back up
+    for (let i = 0; i < mergeArray.length; i++) {
+        arrayNumbers[i] = mergeArray[i][0];
+        arrayNames[i] = mergeArray[i][1];
     }
+
+    // Return both arrays as an object
+    // Credit to the return object idea from:
+    // https://stackoverflow.com/questions/2917175/return-multiple-values-in-javascript
+    return {
+        arrayNumbers: arrayNumbers,
+        arrayNames: arrayNames
+    };
 }
 
 function setCookie(cookieName, value, ttl) {
@@ -438,7 +447,7 @@ function setCookie(cookieName, value, ttl) {
     // + the specified number of days (time to live)
     let date = addDays(ttl);
     // Create the cookie 
-    document.cookie = `${ cookieName }=${ value }; expires = ${ date.toUTCString() }; path = /;SameSite=Lax;`;
+    document.cookie = `${cookieName}=${value}; expires = ${date.toUTCString()}; path = /;SameSite=Lax;`;
 }
 
 function getCookie(cookieName) {
