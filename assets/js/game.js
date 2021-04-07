@@ -188,6 +188,9 @@ function prepareNewRound() {
     // https://electrictoolbox.com/jquery-assign-remove-click-handler/
     $('.shape').unbind('click');
 
+    // Remove the hover effect
+    $('.shape').removeClass('clickableShape');
+
     // Increment the round number
     let currentRound = Number($('#current-round-counter').html());
     currentRound++;
@@ -217,6 +220,9 @@ function prepareForAnswers(shapes) {
     $('.shape').click(function () {
         checkAnswer(this.id);
     });
+
+    // Add hover effect to the shapes for added clarity
+    $('.shape').addClass('clickableShape');
 
     // Write down the correct answers
     $('#answers').html(`${shapes}`);

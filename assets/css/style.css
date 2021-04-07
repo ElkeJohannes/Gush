@@ -85,7 +85,7 @@ body {
     border-radius: 10%;
 }
 
-.shape:hover {
+.clickableShape:hover {
     border: 5px dotted var(--green);
     margin: 0px;
     cursor: pointer;
