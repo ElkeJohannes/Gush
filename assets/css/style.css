@@ -130,6 +130,10 @@ body {
     cursor: pointer;
 }
 
+.highlight-score {
+    animation: highlight-score ease-in 1000ms;
+}
+
 /* ------------- / Overlay ------------- */
 
 /* ------------- Game styles ------------- */
@@ -184,6 +188,15 @@ body {
     }
     100% {
         background-color: yellow;
+    }
+}
+
+@keyframes highlight-score {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }
 

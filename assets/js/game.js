@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     $('#highscores-button').click(getHighscores);
     $('.close-button').click(hideOverlay);
     $('#highscore-form').on('submit', setHighscores);
-    
+
     loadShapes();
 });
 
@@ -300,7 +300,7 @@ function generateNewRandomNumber(oldNum) {
     }
 }
 
-function getHighscores() {
+function getHighscores(highlightScore) {
     let scoreNumbers = getCookie('Highscore-numbers');
     let scoreNames = getCookie('Highscore-names');
 
@@ -318,14 +318,23 @@ function getHighscores() {
         console.log('No previous scores to show');
     } else if (!scoreNumbers.includes(',')) {
         // There is only 1 entry
-        addHighscore(scoreNames, scoreNumbers);
+        if(highlightScore === true) {
+            addHighscore(scoreNames, scoreNumbers, true);    
+        } else {
+            addHighscore(scoreNames, scoreNumbers);    
+        }        
     } else {
         // There is more than 1 entry
         // So make an array, and loop through
         scoreNumbers = scoreNumbers.split(',');
         scoreNames = scoreNames.split(',');
         for (let i = 0; i < scoreNumbers.length; i++) {
-            addHighscore(scoreNames[i], scoreNumbers[i]);
+            if (i === scoreNumbers.length - 1 && highlightScore === true) {
+                // The last one is the latest, highlight it
+                addHighscore(scoreNames[i], scoreNumbers[i], true);
+            } else {
+                addHighscore(scoreNames[i], scoreNumbers[i]);
+            }
         }
     }
 
@@ -365,16 +374,30 @@ function setHighscores(e) {
 
     // Show the submitted highscore and highlight it
     hideOverlay();
-
+    getHighscores(true);
 }
 
-function addHighscore(name, score) {
-    let highScore = `
-    <tr>
-      <td>${name}</td>
-      <td>${score}</td>
-    </tr>`;
+function addHighscore(name, score, highlight) {
+    let highScore = `<tr>`;
+    if (highlight === true) {
+        highScore += `
+        <td class='highlight-score'>${name}</td>
+        <td class='highlight-score'>${score}</td>
+      `;
+    } else {
+        highScore += `
+        <td>${name}</td>
+        <td>${score}</td>
+      `;
+    }
+      
+    highScore += `</tr >`;
     $('#highscores').append(highScore);
+
+    // Highlight the last entry
+    setTimeout(function () {
+        $(`.highlight-score`).removeClass('highlight-score');
+    }, 1000);
 }
 
 function setCookie(cookieName, value, ttl) {
@@ -382,7 +405,7 @@ function setCookie(cookieName, value, ttl) {
     // + the specified number of days (time to live)
     let date = addDays(ttl);
     // Create the cookie 
-    document.cookie = `${cookieName}=${value};expires=${date.toUTCString()};path=/;SameSite=Lax;`;
+    document.cookie = `${ cookieName }=${ value }; expires = ${ date.toUTCString() }; path = /;SameSite=Lax;`;
 }
 
 function getCookie(cookieName) {
@@ -417,7 +440,7 @@ function addDays(days) {
     return date;
 }
 
-function hideOverlay(){
+function hideOverlay() {
     $('#overlay').addClass('hidden');
     $('#results-pane').addClass('hidden');
     $('#play-button').addClass('hidden');
