@@ -313,6 +313,7 @@ function getHighscores(highlightScore) {
     // Reset the view by redefining it's content
     $('#highscores').html(`
     <tr id='skip-sort'>
+      <th>#</th>  
       <th>Name</th>
       <th>Score</th>
     </tr> `);
@@ -418,16 +419,17 @@ function sortHighscores(){
         if(row.id !== 'skip-sort'){
             // Put the td's containing the scores in a seperate array
             tdArray.push(row.lastElementChild);
-            row.remove();
         }
     }
 
     // Sort the array based on the numeric values
     tdArray.sort(function(a,b){return Number(b.textContent)-Number(a.textContent)});
 
-    // Add them back in, in the correct order
+    // Add the rows back into the DOM, in the correct order
     for(let i = 0;i < tdArray.length;i++){
         $('#highscores').append(tdArray[i].parentElement);
+        // Insert a number at the start of the row
+        $(tdArray[i].parentElement).prepend(i + 1);   
     }
 }
 
