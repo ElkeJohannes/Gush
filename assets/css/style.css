@@ -2,8 +2,10 @@
 /* Variables */
 
 :root {
-    --green: rgb(94, 255, 0);
     --grey: rgb(67, 68, 67);
+    --correct: #4AFF0D;
+    --active: #F2FF00;
+    --background: #fff5ee;
 }
 
 /* ------------- General settings ------------- */
@@ -86,7 +88,7 @@ body {
 }
 
 .clickableShape:hover {
-    border: 5px dotted var(--green);
+    border: 5px dotted var(--correct);
     margin: 0px;
     cursor: pointer;
 }
@@ -114,7 +116,7 @@ body {
 }
 
 #results-pane, #highscores-pane {
-    background-color: seashell;
+    background-color: var(--background);
     display: flex;
     flex-flow: column;
 }
@@ -175,19 +177,19 @@ body {
 
 @keyframes shape-correct {
     0% {
-        background-color: var(--green);
+        background-color: var(--correct);
     }
     100% {
-        background-color: white;
+        background-color: var(--background);
     }
 }
 
 @keyframes shape-active {
     0% {
-        background-color: white;
+        background-color: var(--background);
     }
     100% {
-        background-color: yellow;
+        background-color: var(--active);
     }
 }
 
@@ -200,13 +202,13 @@ body {
     }
 }
 
-/* General helpers */
+/* ------------- General helpers ------------- */
 
 .hidden {
     display: none !important;
 }
 
-/* / General helpers */
+/* ------------- / General helpers ------------- */
 
 /* ------------- Media Queries ------------- */
 
@@ -227,3 +229,5 @@ body {
         max-width: 50%;
     }
 }
+
+/* ------------- / Media Queries ------------- */
