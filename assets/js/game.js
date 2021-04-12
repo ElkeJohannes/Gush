@@ -52,31 +52,6 @@ function highlightShapes(shapesToShow) {
     let playingSound = new Audio('assets/audio/playing.wav');
     playingSound.play();
 
-    let intervalSpeed;
-    switch (speed) {
-        case 1:
-            intervalSpeed = 1000
-            break;
-        case 2:
-            intervalSpeed = 750
-            break;
-        case 3:
-            intervalSpeed = 500
-            break;
-        case 4:
-            intervalSpeed = 250
-            break;
-        case 5:
-            intervalSpeed = 150
-            break;
-        case 6:
-            intervalSpeed = 100
-            break;
-        default:
-            intervalSpeed = 1000
-            break;
-    }
-
     // Start the interval
     let interval = setInterval(function () {
         // Check if we've processed the required amount of shapes
@@ -105,7 +80,7 @@ function highlightShapes(shapesToShow) {
         }
         // Increment the counter so we know when to stop
         counter++;
-    }, intervalSpeed);
+    }, 1000);
 }
 // -------- / Shapes functions ------
 
@@ -117,27 +92,10 @@ function setGameSettings() {
 
     // Set the new game settings
     // Number of shapes always just gets incremented by one
-    // Speed is incremented at set shape numbers
-    shapes += 1;
-    switch (shapes) {
-        case 3:
-            speed = 1;
-            break;
-        case 5:
-            speed = 2;
-            break;
-        case 7:
-            speed = 3;
-            break;
-        case 9:
-            speed = 4;
-            break;
-        case 11:
-            speed = 5;
-            break;
-        case 13:
-            speed = 6;
-            break;
+    // Speed is incremented every 3 shapes
+    shapes++;
+    if (shapes % 3 === 0 ) {
+        speed++;
     }
 
     // Now write the new values back to the dom
@@ -200,7 +158,7 @@ function prepareNewRound() {
 function playAgain() {
     // Reset the settings
     $('#speed').html('1');
-    $('#shapes').html('2');
+    $('#shapes').html('0');
 
     // Reset the score
     $('#score').html('0');
@@ -376,7 +334,7 @@ function setHighscores(e) {
 
         // If the number of highscores is greater than 10
         // Pop the lowest one out
-        if(scoreNumbers.length > 10){
+        if (scoreNumbers.length > 10) {
             scoreNumbers.pop();
             scoreNames.pop();
         }
@@ -401,12 +359,12 @@ function addHighscore(score, name, number) {
     $('#highscores').append(highScore);
 }
 
-function highlightScore(score, name, highscores){
+function highlightScore(score, name, highscores) {
     let arrayNumbers = highscores.arrayNumbers;
     let arrayNames = highscores.arrayNames;
     // Find the new highscore and add the highlight class to it
-    for(let i = 0;i < arrayNumbers.length;i++){
-        if(score === arrayNumbers[i] && name === arrayNames[i]) {
+    for (let i = 0; i < arrayNumbers.length; i++) {
+        if (score === arrayNumbers[i] && name === arrayNames[i]) {
             $('tr#' + (i + 1)).addClass('highlight-score');
         }
     }

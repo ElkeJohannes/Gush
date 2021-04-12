@@ -76,12 +76,12 @@ body {
     padding: 5px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 .shape {
-    width: 29%;
-    max-height: calc(72vh / 3);
+    width: 25%;
+    max-height: calc(66vh / 3);
     margin: 5px;
     padding: 5px;
     border-radius: 10%;
@@ -141,33 +141,43 @@ body {
 /* ------------- Game styles ------------- */
 
 .speed1 {
-    animation-name: shape-active;
-    animation-duration: 1000ms;
+    animation: shape-active linear 1000ms;
 }
 
 .speed2 {
-    animation-name: shape-active;
-    animation-duration: 750ms;
+    animation: shape-active linear 900ms;
 }
 
 .speed3 {
-    animation-name: shape-active;
-    animation-duration: 500ms;
+    animation: shape-active linear 800ms;
 }
 
 .speed4 {
-    animation-name: shape-active;
-    animation-duration: 250ms;
+    animation: shape-active linear 700ms;
 }
 
 .speed5 {
-    animation-name: shape-active;
-    animation-duration: 150ms;
+    animation: shape-active linear 600ms;
 }
 
 .speed6 {
-    animation-name: shape-active;
-    animation-duration: 100ms;
+    animation: shape-active linear 500ms;
+}
+
+.speed7 {
+    animation: shape-active linear 400ms;
+}
+
+.speed8 {
+    animation: shape-active linear 300ms;
+}
+
+.speed9 {
+    animation: shape-active linear 200ms;
+}
+
+.speed10 {
+    animation: shape-active linear 100ms;
 }
 
 .correct {
