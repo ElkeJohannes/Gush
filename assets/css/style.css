@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
-/* Variables */
+/* ------------- Variables ------------- */
 
 :root {
     --grey: rgb(67, 68, 67);
@@ -136,8 +136,6 @@ body {
     animation: highlight-score ease-in 1000ms;
 }
 
-/* ------------- / Overlay ------------- */
-
 /* ------------- Game styles ------------- */
 
 .speed1 {
@@ -218,7 +216,25 @@ body {
     display: none !important;
 }
 
-/* ------------- / General helpers ------------- */
+.game-control {
+    background-image: linear-gradient(to bottom right, var(--active), #01FFDE);
+    border-radius: 20%;
+    border-style: none outset outset none;
+    border-width: 2px;
+    border-color: #922b94;
+    padding: 5px 15px;
+    color: #922b94;
+    font-weight: 900;
+    margin: auto 10px;
+}
+
+.game-control:hover {
+    cursor: pointer;
+    color: #8619FF;
+    border-color: #8619FF;
+    border-width: 3px;
+    margin-left: 9px;
+}
 
 /* ------------- Media Queries ------------- */
 
@@ -239,5 +255,3 @@ body {
         max-width: 50%;
     }
 }
-
-/* ------------- / Media Queries ------------- */
