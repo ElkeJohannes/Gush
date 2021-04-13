@@ -34,20 +34,23 @@
                     <td id="score">0</td>
                 </tr>
             </table>
-            <div id="current-round">Current Round
+            <div id="current-round">
+                <span>Current Round</span>
                 <div id="current-round-counter">0</div>
             </div>
             <!-- / Current game info -->
-            <div>
-                <button id='play-again-top' class='game-control play-again-button'>Play again!</button>
-                <button id="highscores-button" class="game-control">View Highscores</button>
+            <div class="game-controls d-sm-flex">
+                <button class='game-control play-again-button'>Play again!</button>
+                <button class="game-control highscores-button">View Highscores</button>
             </div>
         </div>
         <!-- Game area containing the shapes -->
         <div id="shape-container"></div>
+        <div id="game-controls" class="d-sm-hidden">
+            <button class='game-control play-again-button'>Play again!</button>
+            <button class="game-control highscores-button">View Highscores</button>
+        </div>
     </div>
-    </div>
-
 
     <div id="overlay"></div>
     <!-- Game results window -->
@@ -59,8 +62,7 @@
         <form action='#' method='POST' id="highscore-form">
             <label for='name'>Name:</label>
             <input type='text' id='name' name='Name' placeholder='John Doe' /><br>
-            <input type='submit' class='game-control submit-highscore-button'
-                value='Submit highscore' />
+            <input type='submit' class='game-control submit-highscore-button' value='Submit highscore' />
         </form>
 
     </div>

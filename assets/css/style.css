@@ -93,6 +93,37 @@ body {
     cursor: pointer;
 }
 
+/* ------------- Game controls ------------- */
+
+.game-controls {
+    display: flex;
+    flex-direction: column;    
+}
+
+.game-controls>*{
+    min-width: 121px;
+}
+
+.game-control {
+    background-image: linear-gradient(to bottom right, var(--active), #01FFDE);
+    border-radius: 20%;
+    border-style: none outset outset none;
+    border-width: 2px;
+    border-color: #922b94;
+    padding: 5px 15px;
+    color: #922b94;
+    font-weight: 900;
+    margin: 2px 0px;
+}
+
+.game-control:hover {
+    cursor: pointer;
+    color: #8619FF;
+    border-color: #8619FF;
+    border-width: 3px;
+    margin-bottom: 1px;
+}
+
 /* ------------- Overlay ------------- */
 
 #overlay {
@@ -216,24 +247,8 @@ body {
     display: none !important;
 }
 
-.game-control {
-    background-image: linear-gradient(to bottom right, var(--active), #01FFDE);
-    border-radius: 20%;
-    border-style: none outset outset none;
-    border-width: 2px;
-    border-color: #922b94;
-    padding: 5px 15px;
-    color: #922b94;
-    font-weight: 900;
-    margin: auto 10px;
-}
-
-.game-control:hover {
-    cursor: pointer;
-    color: #8619FF;
-    border-color: #8619FF;
-    border-width: 3px;
-    margin-left: 9px;
+.d-sm-flex {
+    display: none;
 }
 
 /* ------------- Media Queries ------------- */
@@ -247,6 +262,12 @@ body {
     }
     #game-container {
         max-width: 70%;
+    }
+    .d-sm-flex {
+        display: flex;
+    }
+    .d-sm-hidden {
+        display: none;
     }
 }
 

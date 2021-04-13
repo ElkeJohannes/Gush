@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     $('#play-button').click(playGame);
     $('.play-again-button').click(playAgain);
     $('#overlay').click(hideOverlay)
-    $('#highscores-button').click(getHighscores);
+    $('.highscores-button').click(getHighscores);
     $('.close-button').click(hideOverlay);
     $('#highscore-form').on('submit', setHighscores);
 
