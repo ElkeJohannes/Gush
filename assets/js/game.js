@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // -------- Shapes functions ------
 function loadShapes() {
+    // Load in 9 shapes using a loop
+    // This being a function allows for easy changing of number of shapes
+    // In a future release
     let shapes = $('#shape-container')[0];
     for (i = 1; i < 10; i++) {
         shapes.innerHTML += `
@@ -35,15 +38,17 @@ function setShapesToShow(numOfShapes) {
         i++;
     } while (i < numOfShapes)
 
+    // Write down the correct answers
+    $('#answers').html(`${ShapesToShow}`);
+
     return ShapesToShow;
 }
 
 function highlightShapes(shapesToShow) {
-    // Set an interval to show the corresponding shapes
     // Retrieve the current game settings
     let speed = $('#speed').html();
     let shapes = $('#shapes').html();
-    // Now set up some variables that we'll be needing
+    // Set up some variables that we'll be needing
     let counter = 0;
     let shapeID = '';
     let speedString = `speed${speed}`;
@@ -60,7 +65,6 @@ function highlightShapes(shapesToShow) {
             if (shapeID !== '') {
                 $(shapeID).removeClass(speedString);
             }
-
             // Add the identifier to the number
             // Select the right element using jQuery and add the class
             shapeID = '#shape' + String(shapesToShow[counter]);
@@ -68,21 +72,17 @@ function highlightShapes(shapesToShow) {
         } else {
             // We're done, stop the interval
             clearInterval(interval);
-
             // Remove the class from the last shape shown
             $(shapeID).removeClass(speedString);
-
             // Stop the game sound
             playingSound.pause();
-
-            // Now get ready for the user to input the answers
-            prepareForAnswers(shapesToShow);
+            // Get ready for the user to input the answers
+            enableAnswers();
         }
         // Increment the counter so we know when to stop
         counter++;
     }, 1000);
 }
-// -------- / Shapes functions ------
 
 // -------- Game state functions ------
 function setGameSettings() {
@@ -94,11 +94,11 @@ function setGameSettings() {
     // Number of shapes always just gets incremented by one
     // Speed is incremented every 3 shapes
     shapes++;
-    if (shapes % 3 === 0 ) {
+    if (shapes % 3 === 0) {
         speed++;
     }
 
-    // Now write the new values back to the dom
+    // Now write the new values back to the DOM
     $('#speed').html(`${speed}`);
     $('#shapes').html(`${shapes}`);
 }
@@ -106,53 +106,16 @@ function setGameSettings() {
 function playGame() {
     // Hide overlay
     hideOverlay();
-
     // Setup for a new round
     prepareNewRound();
-
     // Update the game settings
     setGameSettings();
-
     // Retrieve the game settings
     let shapes = $('#shapes').html();
-
-    // Load up the shapes that will be shown
+    // Generate the shapes that will be shown
     let shapesToHighlight = setShapesToShow(shapes);
-
     // Start highlighting those shapes
     highlightShapes(shapesToHighlight);
-}
-
-function displayResults() {
-    // Show the overlay
-    $('#overlay').removeClass('hidden');
-    // Make results pane visible
-    $('#results-pane').removeClass('hidden');
-
-    // Retrieve the score
-    let score = $('#score').html();
-
-    // Fill the score in the results
-    $('#highscore').html(`${score}`);
-}
-
-function prepareNewRound() {
-    // Empty the div containing the correct answers
-    $('#answers').html('');
-
-    // Remove the click function from the shapes
-    // Credit on how to do this:
-    // The Electric toolbox
-    // https://electrictoolbox.com/jquery-assign-remove-click-handler/
-    $('.shape').unbind('click');
-
-    // Remove the hover effect
-    $('.shape').removeClass('clickableShape');
-
-    // Increment the round number
-    let currentRound = Number($('#current-round-counter').html());
-    currentRound++;
-    $('#current-round-counter').html(`${currentRound}`);
 }
 
 function playAgain() {
@@ -166,13 +129,37 @@ function playAgain() {
     // Reset the round number
     $('#current-round-counter').html('0');
 
-    // Now start playing normally
+    // Start playing normally
     playGame();
 }
-// -------- / Game state functions ------
+
+function displayResults() {
+    // Show the overlay with the results pane
+    $('#overlay').removeClass('hidden');
+    $('#results-pane').removeClass('hidden');
+
+    // Retrieve the score
+    let score = $('#score').html();
+
+    // Fill in the score in the results pane
+    $('#highscore').html(`${score}`);
+}
+
+function prepareNewRound() {
+    // Empty the div containing the correct answers
+    $('#answers').html('');
+
+    // Disable the posibility to give an answer
+    disableAnswers();
+
+    // Increment the round number
+    let currentRound = Number($('#current-round-counter').html());
+    currentRound++;
+    $('#current-round-counter').html(`${currentRound}`);
+}
 
 // -------- Answer functions ------
-function prepareForAnswers(shapes) {
+function enableAnswers() {
     // Add event listeners to all the shapes so user
     // can click on them
     $('.shape').click(function () {
@@ -181,9 +168,17 @@ function prepareForAnswers(shapes) {
 
     // Add hover effect to the shapes for added clarity
     $('.shape').addClass('clickableShape');
+}
 
-    // Write down the correct answers
-    $('#answers').html(`${shapes}`);
+function disableAnswers() {
+    // Remove the click function from the shapes
+    // Credit on how to do this:
+    // The Electric toolbox
+    // https://electrictoolbox.com/jquery-assign-remove-click-handler/
+    $('.shape').unbind('click');
+
+    // Remove the hover effect
+    $('.shape').removeClass('clickableShape');
 }
 
 function checkAnswer(shape) {
@@ -198,26 +193,10 @@ function checkAnswer(shape) {
     let shapeID = Number(shape.slice(5));
 
     if (shapeID === correctAnswer) {
-        // Correct answer given
-        // Increment the score counter
-        let score = Number($('#score').html());
-        score++;
-        $('#score').html(score);
-
+        // Correct answer given, process
+        correctAnswerGiven(shape);
         // Remove the correct(first) answer from the array
         answers.shift();
-
-        // Play confirming sound
-        let correctSound = new Audio('assets/audio/correct.wav');
-        correctSound.play();
-
-        // Light up the background in green for a second
-        // to provide visual feedback that the correct answer was given
-        $(`#${shape}`).addClass('correct');
-        setTimeout(function () {
-            $(`#${shape}`).removeClass('correct');
-        }, 400)
-
         // Check if all the correct answers are given
         if (answers.length === 0) {
             // Start a new round
@@ -228,42 +207,41 @@ function checkAnswer(shape) {
         }
     } else {
         // Wrong answer given
-        // Play losing sound
-        let losingSound = new Audio('assets/audio/lose.wav');
-        losingSound.play();
-
-        // Display results
-        displayResults();
-    }
-}
-// -------- / Answer functions ------
-
-// -------- Helper functions ------
-function generateNewRandomNumber(oldNum) {
-    // Create a new random number between 1 and 9
-    // ensure this is a different number from the one inputted by doing
-    // a do while loop until we have a different number. 
-    let newNum;
-    let numCheck = false;
-
-    // Only try to process if the input supplied is a number
-    // Credit to using the Number.isFinite() method for checking goes to:
-    // Marcus Sanatan
-    // https://stackabuse.com/javascript-check-if-variable-is-a-number/
-    if (Number.isFinite(Number(oldNum)) || Number(oldNum) === 0) {
-        do {
-            newNum = Math.floor(Math.random() * 9) + 1
-            if (newNum !== oldNum) {
-                numCheck = true;
-            }
-        } while (numCheck == false);
-
-        return newNum;
-    } else {
-        console.log(`Wrong input supplied. Given: ${Number(oldNum)}`);
+        wrongAnswerGiven();
     }
 }
 
+function correctAnswerGiven(shape) {
+    // Increment the score counter
+    let score = Number($('#score').html());
+    score++;
+    $('#score').html(score);
+
+    // Play confirming sound
+    let correctSound = new Audio('assets/audio/correct.wav');
+    correctSound.play();
+
+    // Light up the background in green for a second
+    // to provide visual feedback that the correct answer was given
+    $(`#${shape}`).addClass('correct');
+    setTimeout(function () {
+        $(`#${shape}`).removeClass('correct');
+    }, 400)
+}
+
+function wrongAnswerGiven() {
+    // Play losing sound
+    let losingSound = new Audio('assets/audio/lose.wav');
+    losingSound.play();
+
+    // Disable the posibility to give an answer
+    disableAnswers();
+
+    // Display results
+    displayResults();
+}
+
+// -------- Highscore functions ------
 function getHighscores() {
     // Hide the overlay to avoid conflicts
     hideOverlay();
@@ -400,6 +378,32 @@ function sortHighscores(arrayNumbers, arrayNames) {
     };
 }
 
+// -------- Helper functions ------
+function generateNewRandomNumber(oldNum) {
+    // Create a new random number between 1 and 9
+    // ensure this is a different number from the one inputted by doing
+    // a do while loop until we have a different number. 
+    let newNum;
+    let numCheck = false;
+
+    // Only try to process if the input supplied is a number
+    // Credit to using the Number.isFinite() method for checking goes to:
+    // Marcus Sanatan
+    // https://stackabuse.com/javascript-check-if-variable-is-a-number/
+    if (Number.isFinite(Number(oldNum)) || Number(oldNum) === 0) {
+        do {
+            newNum = Math.floor(Math.random() * 9) + 1
+            if (newNum !== oldNum) {
+                numCheck = true;
+            }
+        } while (numCheck == false);
+
+        return newNum;
+    } else {
+        console.log(`Wrong input supplied. Given: ${Number(oldNum)}`);
+    }
+}
+
 function setCookie(cookieName, value, ttl) {
     // Create a date object of the current date
     // + the specified number of days (time to live)
@@ -446,4 +450,3 @@ function hideOverlay() {
     $('#play-button').addClass('hidden');
     $('#highscores-pane').addClass('hidden');
 }
-// -------- / Helper functions ------
