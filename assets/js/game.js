@@ -243,13 +243,14 @@ function wrongAnswerGiven() {
 
 // -------- Highscore functions ------
 function getHighscores() {
-    // Hide the overlay to avoid conflicts
+    // Hide the overlay
     hideOverlay();
 
+    // Fetch the previous highscores (if any)
     let scoreNumbers = getCookie('Highscore-numbers');
     let scoreNames = getCookie('Highscore-names');
 
-    // Reset the view by redefining it's content
+    // Reset the highscores table by redefining it's content
     $('#highscores').html(`
     <tr id='skip-sort'>
       <th>#</th>  
@@ -257,21 +258,22 @@ function getHighscores() {
       <th>Score</th>
     </tr> `);
 
+    // Check if there are previous highscores in the cookies
     // 'Check for undefined' credit to:
     // Flaviocopes
     // https://flaviocopes.com/how-to-check-undefined-property-javascript/
     if (typeof (scoreNumbers) === 'undefined') {
         console.log('No previous scores to show');
     } else if (!scoreNumbers.includes(',')) {
-        // There is only 1 entry
-        addHighscore(scoreNumbers, scoreNames, 1);
+        // There is 1 entry
+        addHighscoreToTable(scoreNumbers, scoreNames, 1);
     } else {
         // There is more than 1 entry
-        // So make an array, and loop through
+        // So convert to arrays, and loop through
         scoreNumbers = scoreNumbers.split(',');
         scoreNames = scoreNames.split(',');
         for (let i = 0; i < scoreNumbers.length; i++) {
-            addHighscore(scoreNumbers[i], scoreNames[i], i + 1);
+            addHighscoreToTable(scoreNumbers[i], scoreNames[i], i + 1);
         }
     }
 
@@ -291,15 +293,19 @@ function setHighscores(e) {
     // Get the cookies containing the current highscores
     let scoreNumbers = getCookie('Highscore-numbers');
     let scoreNames = getCookie('Highscore-names');
-    let sortedHighscores;
+    let sortedHighscores = [];
 
     // Add the new score
     // 'Check for undefined' credit to:
     // Flaviocopes
     // https://flaviocopes.com/how-to-check-undefined-property-javascript/
     if (typeof (scoreNumbers) === 'undefined') {
-        scoreNumbers = score;
-        scoreNames = name;
+        scoreNumbers = [score];
+        scoreNames = [name];
+        sortedHighscores = {
+            arrayNumbers: score,
+            arrayNames: name
+        };
     } else {
         // If there is a previous value, add a comma
         scoreNumbers += ',' + score;
@@ -309,13 +315,6 @@ function setHighscores(e) {
         sortedHighscores = sortHighscores(scoreNumbers.split(','), scoreNames.split(','));
         scoreNumbers = sortedHighscores.arrayNumbers;
         scoreNames = sortedHighscores.arrayNames;
-
-        // If the number of highscores is greater than 10
-        // Pop the lowest one out
-        if (scoreNumbers.length > 10) {
-            scoreNumbers.pop();
-            scoreNames.pop();
-        }
     }
 
     // Rewrite the cookies
@@ -324,10 +323,11 @@ function setHighscores(e) {
 
     // // Show the submitted highscore and highlight it
     getHighscores();
-    highlightScore(score, name, sortedHighscores);
+    highlightHighscore(score, name, sortedHighscores);
 }
 
-function addHighscore(score, name, number) {
+function addHighscoreToTable(score, name, number) {
+    // Add a new row to the highscores table.
     let highScore = `
     <tr id=${number}>
         <td>${number}</td>
@@ -337,7 +337,7 @@ function addHighscore(score, name, number) {
     $('#highscores').append(highScore);
 }
 
-function highlightScore(score, name, highscores) {
+function highlightHighscore(score, name, highscores) {
     let arrayNumbers = highscores.arrayNumbers;
     let arrayNames = highscores.arrayNames;
     // Find the new highscore and add the highlight class to it
@@ -369,6 +369,13 @@ function sortHighscores(arrayNumbers, arrayNames) {
         arrayNames[i] = mergeArray[i][1];
     }
 
+    // If the number of highscores is greater than 10
+    // Pop the lowest one out
+    if (arrayNumbers.length > 10) {
+        arrayNumbers.pop();
+        arrayNames.pop();
+    }
+
     // Return both arrays as an object
     // Credit to the return object idea from:
     // https://stackoverflow.com/questions/2917175/return-multiple-values-in-javascript
@@ -387,7 +394,7 @@ function generateNewRandomNumber(oldNum) {
     let numCheck = false;
 
     // Only try to process if the input supplied is a number
-    // Credit to using the Number.isFinite() method for checking goes to:
+    // Credit to using the Number.isFinite() method for checking to:
     // Marcus Sanatan
     // https://stackabuse.com/javascript-check-if-variable-is-a-number/
     if (Number.isFinite(Number(oldNum)) || Number(oldNum) === 0) {
@@ -409,7 +416,7 @@ function setCookie(cookieName, value, ttl) {
     // + the specified number of days (time to live)
     let date = addDays(ttl);
     // Create the cookie 
-    document.cookie = `${cookieName}=${value}; expires = ${date.toUTCString()}; path = /;SameSite=Lax;`;
+    document.cookie = `${cookieName}=${value};expires=${date.toUTCString()};path=/;SameSite=Lax;`;
 }
 
 function getCookie(cookieName) {
@@ -445,6 +452,7 @@ function addDays(days) {
 }
 
 function hideOverlay() {
+    // Hide all the overlay items
     $('#overlay').addClass('hidden');
     $('#results-pane').addClass('hidden');
     $('#play-button').addClass('hidden');
