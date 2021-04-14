@@ -300,11 +300,12 @@ function setHighscores(e) {
     // Flaviocopes
     // https://flaviocopes.com/how-to-check-undefined-property-javascript/
     if (typeof (scoreNumbers) === 'undefined') {
-        scoreNumbers = [score];
-        scoreNames = [name];
+        scoreNumbers = score;
+        scoreNames = name;
+        // Fill the object so we can highlight the last score
         sortedHighscores = {
-            arrayNumbers: score,
-            arrayNames: name
+            arrayNumbers: [score],
+            arrayNames: [name]
         };
     } else {
         // If there is a previous value, add a comma
@@ -340,13 +341,13 @@ function addHighscoreToTable(score, name, number) {
 function highlightHighscore(score, name, highscores) {
     let arrayNumbers = highscores.arrayNumbers;
     let arrayNames = highscores.arrayNames;
+
     // Find the new highscore and add the highlight class to it
     for (let i = 0; i < arrayNumbers.length; i++) {
         if (score === arrayNumbers[i] && name === arrayNames[i]) {
             $('tr#' + (i + 1)).addClass('highlight-score');
         }
     }
-
     // Remove the class when done
     setTimeout(function () {
         $(`.highlight-score`).removeClass('highlight-score');
@@ -359,7 +360,6 @@ function sortHighscores(arrayNumbers, arrayNames) {
     for (let i = 0; i < arrayNumbers.length; i++) {
         mergeArray.push([arrayNumbers[i], arrayNames[i]]);
     }
-
     // Sort the merged array by the numbers
     mergeArray.sort(function (a, b) { return Number(b[0]) - Number(a[0]) });
 
