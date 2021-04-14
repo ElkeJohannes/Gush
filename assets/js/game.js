@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     $('#play-button').click(playGame);
     $('.play-again-button').click(playAgain);
     $('#overlay').click(hideOverlay)
-    $('.highscores-button').click(getHighscores);
+    $('.highscores-button').click(displayHighscores);
     $('.close-button').click(hideOverlay);
     $('#highscore-form').on('submit', setHighscores);
 
@@ -242,13 +242,9 @@ function wrongAnswerGiven() {
 }
 
 // -------- Highscore functions ------
-function getHighscores() {
+function displayHighscores() {
     // Hide the overlay
     hideOverlay();
-
-    // Fetch the previous highscores (if any)
-    let scoreNumbers = getCookie('Highscore-numbers');
-    let scoreNames = getCookie('Highscore-names');
 
     // Reset the highscores table by redefining it's content
     $('#highscores').html(`
@@ -258,28 +254,48 @@ function getHighscores() {
       <th>Score</th>
     </tr> `);
 
-    // Check if there are previous highscores in the cookies
-    // 'Check for undefined' credit to:
-    // Flaviocopes
-    // https://flaviocopes.com/how-to-check-undefined-property-javascript/
-    if (typeof (scoreNumbers) === 'undefined') {
-        console.log('No previous scores to show');
-    } else if (!scoreNumbers.includes(',')) {
-        // There is 1 entry
-        addHighscoreToTable(scoreNumbers, scoreNames, 1);
+    // Fetch the highscores and store in object
+    let highscoreObject = getHighscores();
+    if (highscoreObject.arrayNumbers.length == 0) {
+        // No previous highscores found
+        addHighscoreToTable('> 9000', 'Goku', 1);
     } else {
-        // There is more than 1 entry
-        // So convert to arrays, and loop through
-        scoreNumbers = scoreNumbers.split(',');
-        scoreNames = scoreNames.split(',');
-        for (let i = 0; i < scoreNumbers.length; i++) {
-            addHighscoreToTable(scoreNumbers[i], scoreNames[i], i + 1);
+        // Loop through the arrays and add to the table
+        for (let i = 0; i < highscoreObject.arrayNumbers.length; i++) {
+            addHighscoreToTable(highscoreObject.arrayNumbers[i],
+                highscoreObject.arrayNames[i], i + 1);
         }
     }
 
     // Make the highscores visible
     $('#overlay').removeClass('hidden');
     $('#highscores-pane').removeClass('hidden');
+}
+
+function getHighscores() {
+    // Fetch the cookies containing the highscores
+    let scoreNumbers = getCookie('Highscore-numbers');
+    let scoreNames = getCookie('Highscore-names');
+
+    // 'Check for undefined' credit to:
+    // Flaviocopes
+    // https://flaviocopes.com/how-to-check-undefined-property-javascript/
+    if (typeof (scoreNumbers) === 'undefined') {
+        // There are no highscores, return empty array's
+        return {
+            arrayNumbers: [],
+            arrayNames: []
+        };
+    } else {
+        // Convert to array's
+        scoreNumbers = scoreNumbers.split(',');
+        scoreNames = scoreNames.split(',');
+        // Return the two array's as an object
+        return {
+            arrayNumbers: scoreNumbers,
+            arrayNames: scoreNames
+        };
+    }
 }
 
 function setHighscores(e) {
@@ -290,41 +306,24 @@ function setHighscores(e) {
     let score = $('#score').html();
     let name = $('#name').val();
 
-    // Get the cookies containing the current highscores
-    let scoreNumbers = getCookie('Highscore-numbers');
-    let scoreNames = getCookie('Highscore-names');
-    let sortedHighscores = [];
+    // Fetch the highscores and store in object
+    let highscoreObject = getHighscores();
+    highscoreObject.arrayNumbers.push(score);
+    highscoreObject.arrayNames.push(name);
 
-    // Add the new score
-    // 'Check for undefined' credit to:
-    // Flaviocopes
-    // https://flaviocopes.com/how-to-check-undefined-property-javascript/
-    if (typeof (scoreNumbers) === 'undefined') {
-        scoreNumbers = score;
-        scoreNames = name;
-        // Fill the object so we can highlight the last score
-        sortedHighscores = {
-            arrayNumbers: [score],
-            arrayNames: [name]
-        };
-    } else {
-        // If there is a previous value, add a comma
-        scoreNumbers += ',' + score;
-        scoreNames += ',' + name;
-
-        // Sort the highscores
-        sortedHighscores = sortHighscores(scoreNumbers.split(','), scoreNames.split(','));
-        scoreNumbers = sortedHighscores.arrayNumbers;
-        scoreNames = sortedHighscores.arrayNames;
+    // Check if it was the first highscore
+    if (highscoreObject.arrayNumbers.length !== 1) {
+        // It wasn't so sort the scores
+        highscoreObject = sortHighscores(highscoreObject.arrayNumbers, highscoreObject.arrayNames);
     }
 
     // Rewrite the cookies
-    setCookie('Highscore-numbers', scoreNumbers, 365);
-    setCookie('Highscore-names', scoreNames, 365);
+    setCookie('Highscore-numbers', highscoreObject.arrayNumbers, 365);
+    setCookie('Highscore-names', highscoreObject.arrayNames, 365);
 
     // // Show the submitted highscore and highlight it
-    getHighscores();
-    highlightHighscore(score, name, sortedHighscores);
+    displayHighscores();
+    highlightHighscore(score, name, highscoreObject);
 }
 
 function addHighscoreToTable(score, name, number) {
@@ -339,12 +338,9 @@ function addHighscoreToTable(score, name, number) {
 }
 
 function highlightHighscore(score, name, highscores) {
-    let arrayNumbers = highscores.arrayNumbers;
-    let arrayNames = highscores.arrayNames;
-
     // Find the new highscore and add the highlight class to it
-    for (let i = 0; i < arrayNumbers.length; i++) {
-        if (score === arrayNumbers[i] && name === arrayNames[i]) {
+    for (let i = 0; i < highscores.arrayNumbers.length; i++) {
+        if (score === highscores.arrayNumbers[i] && name === highscores.arrayNames[i]) {
             $('tr#' + (i + 1)).addClass('highlight-score');
         }
     }
