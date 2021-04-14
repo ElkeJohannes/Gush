@@ -161,6 +161,21 @@ body {
     border-bottom-right-radius: 10px;
 }
 
+/* ------------- Results window ------------- */
+
+#results-pane p {
+    margin: 10px;
+}
+
+#highscore-form {
+    margin: 10px;
+}
+
+#name {
+    max-width: 140px;
+    margin-bottom: 5px;
+}
+
 /* ------------- Game controls ------------- */
 
 .game-controls>* {
