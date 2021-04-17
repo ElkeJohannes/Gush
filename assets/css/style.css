@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
 /* ------------- Variables ------------- */
 
@@ -13,10 +14,6 @@
 
 /* ------------- General settings ------------- */
 
-body, button {
-    font-family: 'Oswald', sans-serif;
-}
-
 body {
     text-align: center;
 }
@@ -25,8 +22,8 @@ body {
 
 .header {
     margin: 0 auto;
-    font-style: italic;
-    text-decoration: underline;
+    font-family: 'Monoton', cursive;
+    font-weight: 400;
 }
 
 .header-main {
@@ -40,6 +37,7 @@ body {
 
 .hyphen {
     display: none;
+    font-family: 'Oswald', sans-serif;
 }
 
 /* ------------- Game area ------------- */
@@ -57,6 +55,7 @@ body {
     flex-direction: row;
     justify-content: space-between;
     margin: 10px;
+    font-family: 'Oswald', sans-serif;
 }
 
 #game-info {
@@ -65,6 +64,7 @@ body {
     border-collapse: separate;
     border-spacing: 0px;
     min-width: 150px;
+
 }
 
 #game-info th {
@@ -190,6 +190,7 @@ body {
     border-color: #922b94;
     padding: 5px 15px;
     color: #922b94;
+    font-family: 'Oswald', sans-serif;
     font-weight: 900;
     margin: 2px 0px;
     min-width: 100px;
