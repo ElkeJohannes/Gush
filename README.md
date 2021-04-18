@@ -42,16 +42,22 @@ The website will feature soft, unobtrusive colors like off-white. This is so cho
     * Allows adjusting of both the number of shapes and the speed at which they are shown. 
 
 ### Features Left to Implement
-Website is written using a combination of HTML5, CSS3 and Javascript. 
-Libraries used are: 
-- [JQuery 3.5.1](https://jquery.com/)
-  * This makes creating the game logic faster and shorter. It also makes it easier to read for humans, which will be usefull in future collaborations. 
-
+  - Dynamic number of shapes
+    * For example start at 4 shapes, then go to 6 then 9 etc.. 
+  - Check correct answer
+    * After you click the wrong answer, you can click on a button to show you the remainder of the shapes you should've clicked.
+  - Play again in highscores
+    * A play again button in the highscores display panel would allow the player to quickly get back into the action.
+  - Global highscores
+    * You would then have the option of viewing your local highscores or the global ones.
 
 ---
 
 ## Technologies Used
-
+Website is written using a combination of HTML5, CSS3 and Javascript. 
+Libraries used are: 
+- [JQuery 3.5.1](https://jquery.com/)
+  * This makes creating the game logic faster and shorter. It also makes it easier to read for humans, which will be usefull in future collaborations. 
 
 
 ---
@@ -72,7 +78,13 @@ Libraries used are:
 1. During a first run of the game, removeClass() would throw an error
     - shapeID is always empty during the first run in the interval (). Added an if statement to only removeClass() when it isn't empty.
 2. During a run, the same number could be generated twice in a row. This would result in no shape being highlighted
-    - Added a do while loop before adding the class, so the number is checked against the number of the previous run first.    
+    - Added a do while loop before adding the class, so the number is checked against the number of the previous run first. 
+3. When submitting the first highscore, the fade in effect doesn't work
+    - Highlighting is dependent upon the input being an object. Changed setHighscores() function to always fill the object so it is passed through to highlightHighscore()
+4. When playing on mobile, the hover effect for the shapes stays after the round, causing confusion.
+    - Changed the effect to only be active on larger then mobile screens, as the issue is touch vs. mouse.
+5. When playing on mobile, the playing sound can be delayed causing it to only start playing when the round has already begun. 
+    - Preloaded the playing audio element in the html, and call it using js. This ensures the data is present when needed instead of lazy loading. 
 ---
 
 ## Deployment
@@ -104,7 +116,11 @@ Alternatively you can clone this repository by using the GitHub cli. Should you 
 
 ### Media
 * Amazing shapes designed and created by myself in MS Paint
+* Audio is from [MixKit](https://mixkit.co/free-sound-effects/game/)
 
 ### Acknowledgements
 * [learn.jquery](https://learn.jquery.com/) that provided me with lots of extra info on how to use jquery.
-* [w3schools](https://wwww.w3schools.com) for being my 'cheat sheet'.
+* [w3schools](https://wwww.w3schools.com) for being my 'cheat sheet' on all things html, css and javascript.
+* [This stackoverflow thread](https://stackoverflow.com/questions/9419263/how-to-play-audio) with the info on how to play audio from javascript.
+* [Colorhunt](https://colorhunt.co) for the color scheme used.
+* [Brian's code](https://brianscode.com/html-table-rounded-corners-example/) For the code to make table have round corners.    
