@@ -46,7 +46,7 @@ function setShapesToShow(numOfShapes) {
 
 function highlightShapes(shapesToShow) {
     // Retrieve the current game settings
-    let speed = $('#speed').html();
+    let speed = Number($('#speed').html()) + 4;
     let shapes = $('#shapes').html();
     // Set up some variables that we'll be needing
     let counter = 0;
@@ -122,7 +122,7 @@ function playGame() {
 function playAgain() {
     // Reset the settings
     $('#speed').html('1');
-    $('#shapes').html('0');
+    $('#shapes').html('1');
 
     // Reset the score
     $('#score').html('0');
