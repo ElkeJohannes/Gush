@@ -64,7 +64,6 @@ body {
     border-collapse: separate;
     border-spacing: 0px;
     min-width: 150px;
-
 }
 
 #game-info th {
@@ -103,12 +102,6 @@ body {
     margin: 5px;
     padding: 5px;
     border-radius: 10px;
-}
-
-.clickableShape:hover {
-    border: 5px dotted var(--correct);
-    margin: 0px;
-    cursor: pointer;
 }
 
 /* ------------- Highscores ------------- */
@@ -356,6 +349,11 @@ body {
     }
     .game-controls {
         flex-direction: column;
+    }
+    .clickableShape:hover {
+        border: 5px dotted var(--correct);
+        margin: 0px;
+        cursor: pointer;
     }
 }
 

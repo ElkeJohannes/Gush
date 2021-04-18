@@ -54,7 +54,8 @@ function highlightShapes(shapesToShow) {
     let speedString = `speed${speed}`;
 
     // Start running the game sound
-    let playingSound = new Audio('assets/audio/playing.wav');
+    let playingSound = $('#playing-sound')[0];
+    playingSound.currentTime = 0;
     playingSound.play();
 
     // Start the interval
