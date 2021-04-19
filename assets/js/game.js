@@ -161,14 +161,10 @@ function prepareNewRound() {
     $('#current-round-counter').html(`${currentRound}`);
 }
 
-function playTutorial(){
+function playTutorial() {
     // Enable overlay
-
-}
-
-function displayNormalStart(){
-    // Display the start button
-    $('#play-button').removeClass('hidden');
+    $('#overlay').removeClass('hidden');
+    $('#tutorial').removeClass('hidden');
 }
 
 // -------- Answer functions ------
@@ -466,20 +462,20 @@ function hideOverlay() {
     $('#results-pane').addClass('hidden');
     $('#play-button').addClass('hidden');
     $('#highscores-pane').addClass('hidden');
+    $('#tutorial').addClass('hidden');
 }
 
-function checkFirstVisit(){
+function checkFirstVisit() {
     // See if we can get the cookie
     let firstVisitCookie = getCookie('firstVisit');
 
-    if(typeof(firstVisitCookie) === 'undefined'){
-        // There is no cookie so make one
+    if (typeof (firstVisitCookie) === 'undefined') {
+        // First visit, give them a cookie
         setCookie('firstVisit', 'true', 365)
-
         // Play tutorial
         playTutorial();
     } else {
         // Not the first visit, display normal play button
-        displayNormalStart();
+        $('#play-button').removeClass('hidden');
     }
 }
