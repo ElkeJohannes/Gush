@@ -57,7 +57,10 @@
     <div id="overlay"></div>
     <!-- Game results window -->
     <div id="results-pane" class="hidden">
-        <input type='button' class="close-button" />
+        <div class="menu-bar">
+            <h3 class="title">Game results</h3>
+            <input type='button' class="close-button" />
+        </div>
         <p>Aaah wrong answer...</P>
         <p>You guessed: <span id="highscore">0</span> shape(s) right.</p>
         <form action='#' method='POST' id="highscore-form">
@@ -68,7 +71,10 @@
     </div>
     <!-- Highscores window -->
     <div id="highscores-pane" class="hidden">
-        <input type='button' class="close-button" />
+        <div class="menu-bar">
+            <h3 class="title">Highscores</h3>
+            <input type='button' class="close-button" />
+        </div>
         <table id="highscores">
         </table>
     </div>

@@ -211,7 +211,7 @@ body {
     z-index: 2;
 }
 
-#results-pane, #play-button, #highscores-pane {
+#results-pane, #play-button, #highscores-pane, #tutorial {
     position: absolute;
     top: 45%;
     left: 50%;
@@ -225,15 +225,6 @@ body {
     flex-flow: column;
     border-radius: 10px;
     padding: 5px;
-}
-
-#tutorial {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 4;
-
 }
 
 .menu-bar {
