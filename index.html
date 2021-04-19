@@ -42,6 +42,7 @@
             <div class="game-controls d-sm-flex">
                 <button class='game-control play-again-button'>Play again!</button>
                 <button class="game-control highscores-button">View Highscores</button>
+                <button class="game-control tutorial-button">How to play</button>
             </div>
         </div>
         <!-- Game area containing the shapes -->
@@ -52,6 +53,7 @@
         </div>
     </div>
 
+    <!-- Overlay items -->
     <div id="overlay"></div>
     <!-- Game results window -->
     <div id="results-pane" class="hidden">
@@ -63,7 +65,6 @@
             <input type='text' id='name' name='Name' placeholder='John Doe' /><br>
             <input type='submit' class='game-control submit-highscore-button' value='Submit highscore' />
         </form>
-
     </div>
     <!-- Highscores window -->
     <div id="highscores-pane" class="hidden">
@@ -71,9 +72,16 @@
         <table id="highscores">
         </table>
     </div>
-    <!-- The starting play button -->
-    <button id="play-button" class="game-control">Play!</button>
-
+    <!-- Starting play button -->
+    <button id="play-button" class="game-control hidden">Play!</button>
+    <!-- Tutorial -->
+    <div class="tutorial hidden">
+        <p>After you click play, the music will start and a number of random shapes will be highlighted.
+            Your goal is to remember which ones were highlighted, and click on those afterwards.
+        </p>
+        <img src="/assets/screenshots/tutorial.gif" alt="Tutorial gif" class="gif">
+    </div>
+    <!-- / Overlay items -->
 
     <!-- Hidden area -->
     <div id="answers" class="hidden"></div>

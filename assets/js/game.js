@@ -6,10 +6,12 @@ document.addEventListener("DOMContentLoaded", function () {
     $('.play-again-button').click(playAgain);
     $('#overlay').click(hideOverlay)
     $('.highscores-button').click(displayHighscores);
+    $('.tutorial-button').click(playTutorial);
     $('.close-button').click(hideOverlay);
     $('#highscore-form').on('submit', setHighscores);
 
     loadShapes();
+    checkFirstVisit();
 });
 
 // -------- Shapes functions ------
@@ -157,6 +159,16 @@ function prepareNewRound() {
     let currentRound = Number($('#current-round-counter').html());
     currentRound++;
     $('#current-round-counter').html(`${currentRound}`);
+}
+
+function playTutorial(){
+    // Enable overlay
+
+}
+
+function displayNormalStart(){
+    // Display the start button
+    $('#play-button').removeClass('hidden');
 }
 
 // -------- Answer functions ------
@@ -454,4 +466,20 @@ function hideOverlay() {
     $('#results-pane').addClass('hidden');
     $('#play-button').addClass('hidden');
     $('#highscores-pane').addClass('hidden');
+}
+
+function checkFirstVisit(){
+    // See if we can get the cookie
+    let firstVisitCookie = getCookie('firstVisit');
+
+    if(typeof(firstVisitCookie) === 'undefined'){
+        // There is no cookie so make one
+        setCookie('firstVisit', 'true', 365)
+
+        // Play tutorial
+        playTutorial();
+    } else {
+        // Not the first visit, display normal play button
+        displayNormalStart();
+    }
 }
