@@ -253,6 +253,10 @@ body {
     padding: 5px;
 }
 
+#tutorial {
+    max-width: 95vw;
+}
+
 .menu-bar {
     display: flex;
     flex-direction: row;
