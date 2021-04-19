@@ -40,16 +40,17 @@
             </div>
             <!-- / Current game info -->
             <div class="game-controls d-sm-flex">
-                <button class='game-control play-again-button'>Play again!</button>
+                <button class='game-control play-again-button'>Play again</button>
                 <button class="game-control highscores-button">View Highscores</button>
                 <button class="game-control tutorial-button">How to play</button>
             </div>
         </div>
         <!-- Game area containing the shapes -->
         <div id="shape-container"></div>
-        <div class="d-sm-hidden game-controls">
-            <button class='game-control play-again-button'>Play again!</button>
+        <div class="d-sm-hidden game-controls controls-bottom">
+            <button class='game-control play-again-button'>Play again</button>
             <button class="game-control highscores-button">View Highscores</button>
+            <button class="game-control tutorial-button">How to play</button>
         </div>
     </div>
 
@@ -66,7 +67,7 @@
         <form action='#' method='POST' id="highscore-form">
             <label for='name'>Name:</label>
             <input type='text' id='name' name='Name' placeholder='John Doe' /><br>
-            <input type='submit' class='game-control submit-highscore-button' value='Submit highscore' />
+            <input type='submit' class='overlay-control submit-highscore-button' value='Submit highscore' />
         </form>
     </div>
     <!-- Highscores window -->
@@ -79,7 +80,7 @@
         </table>
     </div>
     <!-- Starting play button -->
-    <button id="play-button" class="game-control hidden">Play!</button>
+    <button id="play-button" class="overlay-control hidden">Play</button>
     <!-- Tutorial -->
     <div id="tutorial" class="hidden">
         <div class="menu-bar">
@@ -87,7 +88,7 @@
             <input type='button' class="close-button" />
         </div>
         <p>After you click play, the music will start and a number of random shapes will be highlighted.
-            Your goal is to remember which ones were highlighted, and click on those afterwards.
+            Your goal is to remember which ones were highlighted, and click on those in the same order afterwards.
         </p>
         <img src="assets/screenshots/tutorial.gif" alt="Tutorial gif" class="gif">
     </div>
