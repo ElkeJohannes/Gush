@@ -17,245 +17,197 @@ document.addEventListener("DOMContentLoaded", function () {
 // -------- Shapes functions ------
 function loadShapes() {
     // Load in 9 shapes using a loop
-    // This being a function allows for easy changing of number of shapes
+    // Using a function allows for easy changing of number of shapes
     // In a future release
     let shapes = $('#shape-container')[0];
+    let shapesElements = [];
     for (i = 1; i < 10; i++) {
-        shapes.innerHTML += `
-            <img src="assets/images/shape${i}.png" class="shape" id="shape${i}" />`
+        shapesElements.push(`<img src="assets/images/shape${i}.png" class="shape" id="shape${i}" />`);
     }
+    shapes.innerHTML = shapesElements.join('');
 }
 
 function setShapesToShow(numOfShapes) {
     // Generate the correct answers and store them
     // inside the array of this object for later use
-    let i = 0;
-    let randomNum = 0;
-    let ShapesToShow = [];
+    let count = 0;
+    let currentRandomNum = 0;
+    let shapesToShow = [];
     do {
-        // Generate a new random number each loop
-        randomNum = generateNewRandomNumber(randomNum);
-        // Add the number to the array
-        ShapesToShow.push(randomNum);
-        i++;
-    } while (i < numOfShapes)
+        const excludedNum = currentRandomNum;
+        currentRandomNum = generateNewRandomNum(excludedNum);
+        shapesToShow.push(currentRandomNum);
+        count++;
+    } while (count < numOfShapes)
 
     // Write down the correct answers
-    $('#answers').html(`${ShapesToShow}`);
+    $('#answers').html(`${shapesToShow}`);
 
-    return ShapesToShow;
+    return shapesToShow;
 }
 
 function highlightShapes(shapesToShow) {
-    // Retrieve the current game settings
-    let speed = Number($('#speed').html()) + 4;
-    let shapes = $('#shapes').html();
-    // Set up some variables that we'll be needing
+    // Get the current game speed and number of shapes to show
+    // Then highlight the appropiate number of shapes
+    // By temporarily applying the game speed as a css class
+    const numberOfShapes = $('#shapes').html();
+    const gameSpeed = Number($('#speed').html()) + 3;
+    const gameSpeedString = `speed${gameSpeed}`;
     let counter = 0;
     let shapeID = '';
-    let speedString = `speed${speed}`;
 
-    // Start running the game sound
-    let playingSound = $('#playing-sound')[0];
-    playingSound.currentTime = 0;
-    playingSound.play();
+    let gameIsRunningSound = $('#playing-sound')[0];
+    gameIsRunningSound.currentTime = 0;
+    gameIsRunningSound.play();
 
-    // Start the interval
     let interval = setInterval(function () {
-        // Check if we've processed the required amount of shapes
-        if (counter < shapes) {
-            // Remove the class from the previous shape shown
-            if (shapeID !== '') {
-                $(shapeID).removeClass(speedString);
-            }
-            // Add the identifier to the number
-            // Select the right element using jQuery and add the class
+        // Each interval, remove the css class from the previous tick
+        // Then get the new shape and add the class
+        if (shapeID !== '') {
+            $(shapeID).removeClass(gameSpeedString);
+        }
+        if (counter < numberOfShapes) {
             shapeID = '#shape' + String(shapesToShow[counter]);
-            $(shapeID).addClass(speedString);
+            $(shapeID).addClass(gameSpeedString);
         } else {
-            // We're done, stop the interval
             clearInterval(interval);
-            // Remove the class from the last shape shown
-            $(shapeID).removeClass(speedString);
-            // Stop the game sound
-            playingSound.pause();
-            // Get ready for the user to input the answers
+            gameIsRunningSound.pause();
             enableAnswers();
         }
-        // Increment the counter so we know when to stop
         counter++;
     }, 1000);
 }
 
 // -------- Game state functions ------
 function setGameSettings() {
-    // Retrieve the current game settings
-    let speed = Number($('#speed').html());
-    let shapes = Number($('#shapes').html());
-
     // Set the new game settings
-    // Number of shapes always just gets incremented by one
+    // Number of shapes always gets incremented by one
     // Speed is incremented every 3 shapes
-    shapes++;
-    if (shapes % 3 === 0) {
-        speed++;
+    let gameSpeed = Number($('#speed').html());
+    let numberOfShapes = Number($('#shapes').html());
+    numberOfShapes++;
+
+    if (numberOfShapes % 3 === 0) {
+        gameSpeed++;
     }
 
-    // Now write the new values back to the DOM
-    $('#speed').html(`${speed}`);
-    $('#shapes').html(`${shapes}`);
+    $('#speed').html(gameSpeed);
+    $('#shapes').html(numberOfShapes);
 }
 
 function playGame() {
-    // Hide overlay
-    hideOverlay();
-    // Setup for a new round
+    // Run the game by loading the settings and shapes,
+    // and hiding the overlay with the play button
     prepareNewRound();
-    // Update the game settings
     setGameSettings();
-    // Retrieve the game settings
-    let shapes = $('#shapes').html();
-    // Generate the shapes that will be shown
-    let shapesToHighlight = setShapesToShow(shapes);
-    // Start highlighting those shapes
+    const numberOfShapes = $('#shapes').html();
+    let shapesToHighlight = setShapesToShow(numberOfShapes);
     highlightShapes(shapesToHighlight);
+    hideOverlay();
 }
 
 function playAgain() {
-    // Reset the settings
-    $('#speed').html('1');
-    $('#shapes').html('1');
+    // Reset the game settings, then start playing normally
+    const defaultGameSpeed = 1;
+    const defaultNumberofShapes = 1;
+    const initialGameScore = 0;
+    const initialGameLevel = 0;
+    $('#speed').html(defaultGameSpeed);
+    $('#shapes').html(defaultNumberofShapes);
+    $('#score').html(initialGameScore);
+    $('#current-round-counter').html(initialGameLevel);
 
-    // Reset the score
-    $('#score').html('0');
-
-    // Reset the round number
-    $('#current-round-counter').html('0');
-
-    // Start playing normally
     playGame();
 }
 
 function displayResults() {
-    // Show the overlay with the results pane
+    // Show the results pane, with filled in highscore
     $('#overlay').removeClass('hidden');
     $('#results-pane').removeClass('hidden');
 
-    // Retrieve the score
-    let score = $('#score').html();
-
-    // Fill in the score in the results pane
-    $('#highscore').html(`${score}`);
+    const highscore = $('#score').html();
+    $('#highscore').html(highscore);
 }
 
 function prepareNewRound() {
-    // Empty the div containing the correct answers
-    $('#answers').html('');
-
-    // Disable the posibility to give an answer
+    // Make sure the player can't click on a shape during 
+    // the highlighting, and increment the level counter
     disableAnswers();
 
-    // Increment the round number
-    let currentRound = Number($('#current-round-counter').html());
-    currentRound++;
-    $('#current-round-counter').html(`${currentRound}`);
+    let currentLevel = Number($('#current-round-counter').html());
+    currentLevel++;
+    $('#current-round-counter').html(currentLevel);
 }
 
 function playTutorial() {
-    // Enable overlay
+    // Enable overlay with the tutorial visible
     $('#overlay').removeClass('hidden');
     $('#tutorial').removeClass('hidden');
 }
 
 // -------- Answer functions ------
 function enableAnswers() {
-    // Add event listeners to all the shapes so user
-    // can click on them
+    // Add event listeners and hover effect to all the shapes,
+    // so user can click on them
     $('.shape').click(function () {
         checkAnswer(this.id);
-    });
-
-    // Add hover effect to the shapes for added clarity
-    $('.shape').addClass('clickableShape');
+    }).addClass('clickableShape');
 }
 
 function disableAnswers() {
-    // Remove the click function from the shapes
-    // Credit on how to do this:
-    // The Electric toolbox
-    // https://electrictoolbox.com/jquery-assign-remove-click-handler/
-    $('.shape').unbind('click');
-
-    // Remove the hover effect
-    $('.shape').removeClass('clickableShape');
+    // Remove the click function and hover effect from the shapes
+    $('.shape').unbind('click').removeClass('clickableShape');
 }
 
 function checkAnswer(shape) {
     // Get all the answers from the div
     // Take out the first one to check against 
     // the shape that was clicked
-    let answers = $('#answers').html().split(',');
-    let correctAnswer = Number(answers[0]);
-
-    // Get the number from the shape
-    // that was clicked
-    let shapeID = Number(shape.slice(5));
+    let answersArray = $('#answers').html().split(',');
+    const correctAnswer = Number(answersArray[0]);
+    const shapeID = Number(shape.slice(5));
 
     if (shapeID === correctAnswer) {
-        // Correct answer given, process
         correctAnswerGiven(shape);
-        // Remove the correct(first) answer from the array
-        answers.shift();
-        // Check if all the correct answers are given
-        if (answers.length === 0) {
-            // Start a new round
+        answersArray.shift();
+        if (answersArray.length === 0) {
             playGame();
         } else {
-            // If not, then write the array back to the div
-            $('#answers').html(`${answers}`);
+            $('#answers').html(`${answersArray}`);
         }
     } else {
-        // Wrong answer given
         wrongAnswerGiven();
     }
 }
 
 function correctAnswerGiven(shape) {
     // Increment the score counter
+    // And provide audio and visual feedback for the player
     let score = Number($('#score').html());
     score++;
     $('#score').html(score);
 
-    // Play confirming sound
-    let correctSound = new Audio('assets/audio/correct.wav');
+    const correctSound = new Audio('assets/audio/correct.wav');
     correctSound.play();
 
-    // Light up the background in green for a second
-    // to provide visual feedback that the correct answer was given
     $(`#${shape}`).addClass('correct');
     setTimeout(function () {
         $(`#${shape}`).removeClass('correct');
-    }, 400)
+    }, 400);
 }
 
 function wrongAnswerGiven() {
-    // Play losing sound
+    // Give feedback to player and go to results
     let losingSound = new Audio('assets/audio/lose.wav');
     losingSound.play();
-
-    // Disable the posibility to give an answer
     disableAnswers();
-
-    // Display results
     displayResults();
 }
 
 // -------- Highscore functions ------
 function displayHighscores() {
-    // Hide the overlay
-    hideOverlay();
-
-    // Reset the highscores table by redefining it's content
+    // Redefine the highscores table
+    // Fetch the highscores, and add them to that table
     $('#highscores').html(`
     <tr id='skip-sort'>
       <th>#</th>  
@@ -263,26 +215,17 @@ function displayHighscores() {
       <th>Score</th>
     </tr> `);
 
-    // Fetch the highscores and store in object
-    let highscoreObject = getHighscores();
-    if (highscoreObject.arrayNumbers.length == 0) {
-        // No previous highscores found
-        addHighscoreToTable('> 9000', 'Goku', 1);
-    } else {
-        // Loop through the arrays and add to the table
-        for (let i = 0; i < highscoreObject.arrayNumbers.length; i++) {
-            addHighscoreToTable(highscoreObject.arrayNumbers[i],
-                highscoreObject.arrayNames[i], i + 1);
-        }
-    }
+    const highscoreObject = getHighscores();
+    addHighscoresToTable(highscoreObject);
 
-    // Make the highscores visible
+    $('#results-pane').addClass('hidden');
     $('#overlay').removeClass('hidden');
     $('#highscores-pane').removeClass('hidden');
 }
 
 function getHighscores() {
-    // Fetch the cookies containing the highscores
+    // Get the cookies containing the highscores and
+    // store the data into 2 array's in an object
     let scoreNumbers = getCookie('Highscore-numbers');
     let scoreNames = getCookie('Highscore-names');
 
@@ -290,16 +233,13 @@ function getHighscores() {
     // Flaviocopes
     // https://flaviocopes.com/how-to-check-undefined-property-javascript/
     if (typeof (scoreNumbers) === 'undefined') {
-        // There are no highscores, return empty array's
         return {
             arrayNumbers: [],
             arrayNames: []
         };
     } else {
-        // Convert to array's
         scoreNumbers = scoreNumbers.split(',');
         scoreNames = scoreNames.split(',');
-        // Return the two array's as an object
         return {
             arrayNumbers: scoreNumbers,
             arrayNames: scoreNames
@@ -308,80 +248,81 @@ function getHighscores() {
 }
 
 function setHighscores(e) {
-    // Prevent the default submit browser action
+    // Add the submitted highscores to the existing ones
+    // Go the the highscores screen, and highlight the new entry
     e.preventDefault();
 
-    // Retrieve the score and name
-    let score = $('#score').html();
-    let name = $('#name').val();
-
-    // Fetch the highscores and store in object
+    const score = $('#score').html();
+    const name = $('#name').val();
     let highscoreObject = getHighscores();
     highscoreObject.arrayNumbers.push(score);
     highscoreObject.arrayNames.push(name);
 
-    // Check if it was the first highscore
-    if (highscoreObject.arrayNumbers.length !== 1) {
-        // It wasn't so sort the scores
+    if (highscoreObject.arrayNumbers.length > 1) {
         highscoreObject = sortHighscores(highscoreObject.arrayNumbers, highscoreObject.arrayNames);
     }
 
-    // Rewrite the cookies
-    setCookie('Highscore-numbers', highscoreObject.arrayNumbers, 365);
-    setCookie('Highscore-names', highscoreObject.arrayNames, 365);
+    const cookieExpirationTime = 365;
+    let cookieName = 'Highscore-numbers';
+    setCookie(cookieName, highscoreObject.arrayNumbers, cookieExpirationTime);
+    cookieName = 'Highscore-names';
+    setCookie(cookieName, highscoreObject.arrayNames, cookieExpirationTime);
 
-    // // Show the submitted highscore and highlight it
     displayHighscores();
     highlightHighscore(score, name, highscoreObject);
 }
 
-function addHighscoreToTable(score, name, number) {
-    // Add a new row to the highscores table.
-    let highScore = `
-    <tr id=${number}>
-        <td>${number}</td>
-        <td>${name}</td>
-        <td>${score}</td>
-    </tr >`;
-    $('#highscores').append(highScore);
+function addHighscoresToTable(highscoresObject) {
+    // Iterate through the received array and create a new array with
+    // all table entries. Then pass that to the DOM.
+    let highscores = [];
+    for (i = 0; i < highscoresObject.arrayNumbers.length; i++) {
+        const name = highscoresObject.arrayNames[i];
+        const score = highscoresObject.arrayNumbers[i];
+        const rank = i + 1;
+        highscores.push(`
+        <tr id=${rank}>
+            <td>${rank}</td>
+            <td>${name}</td>
+            <td>${score}</td>
+        </tr >`);
+    };
+    $('#highscores').append(highscores);
 }
 
 function highlightHighscore(score, name, highscores) {
-    // Find the new highscore and add the highlight class to it
-    for (let i = 0; i < highscores.arrayNumbers.length; i++) {
+    // Find the new highscore and for 1 sec add the highlight class to it
+    for (i = 0; i < highscores.arrayNumbers.length; i++) {
         if (score === highscores.arrayNumbers[i] && name === highscores.arrayNames[i]) {
-            $('tr#' + (i + 1)).addClass('highlight-score');
+            const rank = i + 1;
+            const tableRowID = 'tr#' + rank;
+            $(tableRowID).addClass('highlight-score');
         }
     }
-    // Remove the class when done
     setTimeout(function () {
         $(`.highlight-score`).removeClass('highlight-score');
     }, 1000);
 }
 
 function sortHighscores(arrayNumbers, arrayNames) {
-    // Merge the arrays together so the values stay paired
+    // Merge the arrays together, and sort the by the scores array
+    // If there's more than 10 after this, pop the lowest one out
     let mergeArray = [];
-    for (let i = 0; i < arrayNumbers.length; i++) {
+    for (i = 0; i < arrayNumbers.length; i++) {
         mergeArray.push([arrayNumbers[i], arrayNames[i]]);
     }
-    // Sort the merged array by the numbers
     mergeArray.sort(function (a, b) { return Number(b[0]) - Number(a[0]) });
 
-    // Now split them back up
-    for (let i = 0; i < mergeArray.length; i++) {
+    for (i = 0; i < mergeArray.length; i++) {
         arrayNumbers[i] = mergeArray[i][0];
         arrayNames[i] = mergeArray[i][1];
     }
 
-    // If the number of highscores is greater than 10
-    // Pop the lowest one out
     if (arrayNumbers.length > 10) {
         arrayNumbers.pop();
         arrayNames.pop();
     }
 
-    // Return both arrays as an object
     // Credit to the return object idea from:
     // https://stackoverflow.com/questions/2917175/return-multiple-values-in-javascript
     return {
@@ -391,91 +332,80 @@ function sortHighscores(arrayNumbers, arrayNames) {
 }
 
 // -------- Helper functions ------
-function generateNewRandomNumber(oldNum) {
+function generateNewRandomNum(oldNum) {
     // Create a new random number between 1 and 9
-    // ensure this is a different number from the one inputted by doing
-    // a do while loop until we have a different number. 
-    let newNum;
-    let numCheck = false;
+    // Ensure this is a different number from the one inputted.
+    const oldNumber = Number(oldNum);
+    let newNumber;    
+    let numberCheck = false;
 
-    // Only try to process if the input supplied is a number
-    // Credit to using the Number.isFinite() method for checking to:
+    // Credit to using the Number.isFinite() method for checking:
     // Marcus Sanatan
     // https://stackabuse.com/javascript-check-if-variable-is-a-number/
-    if (Number.isFinite(Number(oldNum)) || Number(oldNum) === 0) {
+    if (Number.isFinite(oldNumber)) {
         do {
-            newNum = Math.floor(Math.random() * 9) + 1
-            if (newNum !== oldNum) {
-                numCheck = true;
+            newNumber = Math.floor(Math.random() * 9) + 1
+            if (newNumber !== oldNumber) {
+                numberCheck = true;
             }
-        } while (numCheck == false);
+        } while (numberCheck == false);
 
-        return newNum;
+        return newNumber;
     } else {
-        console.log(`Wrong input supplied. Given: ${Number(oldNum)}`);
+        console.log(`Wrong input supplied. Given: ${oldNumber}`);
     }
 }
 
 function setCookie(cookieName, value, ttl) {
-    // Create a date object of the current date
-    // + the specified number of days (time to live)
-    let date = addDays(ttl);
-    // Create the cookie 
-    document.cookie = `${cookieName}=${value};expires=${date.toUTCString()};path=/;SameSite=Lax;`;
+    // Create a cookie with a dynamically set expiry date.
+    let cookieExpiryDate = addDays(ttl);
+    document.cookie = `${cookieName}=${value};expires=${cookieExpiryDate.toUTCString()};path=/;SameSite=Lax;`;
 }
 
 function getCookie(cookieName) {
-    // Get all the cookies
-    let cookies = document.cookie.split(';');
-    // Get the length of the string we are looking for
-    let len = cookieName.length;
+    // Get all cookies as an array, loop through and return
+    // the one with the name that was passed.
+    const cookies = document.cookie.split(';');
+    const cookieNamelength = cookieName.length;
     for (cookie of cookies) {
-        // Ensure there is no whitespace counted
         cookie = cookie.trim();
-        // Get the name part of the cookie
-        let cookieSlice = cookie.slice(0, len);
-        // Now check each value in the array
+        const cookieSlice = cookie.slice(0, cookieNamelength);
         if (cookieSlice === cookieName) {
-            return cookie.slice(len + 1);
+            return cookie.slice(cookieNamelength + 1);
         }
     }
 }
 
 function addDays(days) {
-    // Genereate new date object outside the if so we can 
-    // always return this if days provided is 0
-    let date = new Date();
-    if (days !== 0 | days !== NaN | days !== null) {
-        // Convert the input days to miliseconds
-        let miliseconds = days * 24 * 60 * 60 * 1000;
-        miliseconds = date.getTime() + miliseconds;
-        // Redeclare the date variable with a new timestamp
-        date = new Date(miliseconds);
+    // Generate new date object and optionally increase it
+    // with the number of days passed in.
+    let expiryDate = new Date();
+    const numberOfDays = Number(days);
+    if (Number.isFinite(numberOfDays) && numberOfDays > 0) {
+        let dateInMiliseconds = numberOfDays * 24 * 60 * 60 * 1000;
+        dateInMiliseconds = expiryDate.getTime() + dateInMiliseconds;
+        expiryDate = new Date(dateInMiliseconds);
     }
-    // Always return a date object
-    return date;
+    return expiryDate;
 }
 
 function hideOverlay() {
-    // Hide all the overlay items
-    $('#overlay').addClass('hidden');
-    $('#results-pane').addClass('hidden');
-    $('#play-button').addClass('hidden');
-    $('#highscores-pane').addClass('hidden');
-    $('#tutorial').addClass('hidden');
+    // Hide all overlay items
+    $('.overlay-item').addClass('hidden');
 }
 
 function checkFirstVisit() {
-    // See if we can get the cookie
-    let firstVisitCookie = getCookie('firstVisit');
+    // Try to get the cookie. If it doesn't exist, create it
+    // and run the tutorial.
+    const firstVisitCookie = getCookie('firstVisit');
 
     if (typeof (firstVisitCookie) === 'undefined') {
-        // First visit, give them a cookie
-        setCookie('firstVisit', 'true', 365)
-        // Play tutorial
+        const cookieName = 'firstVisit';
+        const cookieValue = 'true';
+        const cookieExpirationTime = 365;
+        setCookie(cookieName, cookieValue, cookieExpirationTime)
         playTutorial();
     } else {
-        // Not the first visit, display normal play button
         $('#play-button').removeClass('hidden');
     }
 }
