@@ -58,7 +58,7 @@ body {
     font-family: 'Oswald', sans-serif;
 }
 
-#top-info>*{
+#top-info>* {
     margin: auto 0;
 }
 
@@ -182,9 +182,7 @@ body {
 
 .game-controls {
     flex-wrap: wrap;
-    justify-content: flex-end;
-    max-width: 33%;
-    width: min-content;
+    flex-flow: column;
 }
 
 .controls-bottom {
@@ -193,7 +191,7 @@ body {
     margin-top: 5px;
 }
 
-.controls-bottom .game-control{
+.controls-bottom .game-control {
     max-width: 33%;
     min-width: 30%;
 }
@@ -212,9 +210,10 @@ body {
     min-width: 100px;
 }
 
-.game-control {
-    padding: 2px;
+.game-control, .overlay-control {
+    padding: 5px 15px;;
     margin: 1px;
+    font-size: medium;
 }
 
 .game-control:hover, .overlay-control:hover {
@@ -229,6 +228,11 @@ body {
     margin-bottom: 0px;
 }
 
+#play-button {
+    font-size: x-large;
+    padding: 10px 40px;
+}
+
 /* ------------- Overlay ------------- */
 
 #overlay {
@@ -241,7 +245,7 @@ body {
     z-index: 2;
 }
 
-#overlay>*{
+#overlay>* {
     max-width: 95%;
 }
 
@@ -276,7 +280,7 @@ body {
     border-bottom: 1px solid black;
 }
 
-.menu-bar>*{
+.menu-bar>* {
     margin: 0px;
 }
 
@@ -387,6 +391,7 @@ h3.title {
 }
 
 /* ------------- Media Queries ------------- */
+
 @media(min-width: 400px) {
     .shape {
         width: 28%;
