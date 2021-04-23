@@ -95,14 +95,20 @@ body {
     border-radius: 10px;
     padding: 5px;
     display: flex;
+    position: relative;
+    max-height: 70vh;
+}
+
+#shape-container-inner {
+    display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
 .shape {
-    width: 25%;
-    max-height: calc(66vh / 3);
-    margin: 5px;
+    width: 80px;
+    height: 80px;
+    margin: auto;
     padding: 5px;
     border-radius: 10px;
 }
@@ -226,15 +232,17 @@ body {
 /* ------------- Overlay ------------- */
 
 #overlay {
-    position: fixed;
+    position: absolute;
     top: 0;
-    right: 0;
-    bottom: 0;
     right: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 2;
+}
+
+#overlay>*{
+    max-width: 95%;
 }
 
 #results-pane, #play-button, #highscores-pane, #tutorial {
@@ -254,7 +262,9 @@ body {
 }
 
 #tutorial {
-    max-width: 95vw;
+    transform: translate(-50%, -45%);
+    max-height: 260px;
+    overflow: auto;
 }
 
 .menu-bar {
@@ -377,6 +387,15 @@ h3.title {
 }
 
 /* ------------- Media Queries ------------- */
+@media(min-width: 400px) {
+    .shape {
+        width: 28%;
+        height: 28%;
+    }
+    #tutorial {
+        max-height: 100%;
+    }
+}
 
 @media(min-width: 567px) {
     .hyphen {

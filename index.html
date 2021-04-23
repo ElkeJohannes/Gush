@@ -46,53 +46,56 @@
             </div>
         </div>
         <!-- Game area containing the shapes -->
-        <div id="shape-container"></div>
+        <div id="shape-container">
+            <!-- Overlay items -->
+            <div id="overlay" class="overlay-item">
+                <!-- Game results window -->
+                <div id="results-pane" class="overlay-item hidden">
+                    <div class="menu-bar">
+                        <h3 class="title">Game results</h3>
+                        <input type='button' class="close-button" />
+                    </div>
+                    <p>Aaah wrong answer...</P>
+                    <p>You guessed: <span id="highscore">0</span> shape(s) right.</p>
+                    <form action='#' method='POST' id="highscore-form">
+                        <label for='name'>Name:</label>
+                        <input type='text' id='name' name='Name' placeholder='John Doe' /><br>
+                        <input type='submit' class='overlay-control submit-highscore-button' value='Submit highscore' />
+                    </form>
+                </div>
+                <!-- Highscores window -->
+                <div id="highscores-pane" class="hidden overlay-item">
+                    <div class="menu-bar">
+                        <h3 class="title">Highscores</h3>
+                        <input type='button' class="close-button" />
+                    </div>
+                    <table id="highscores">
+                    </table>
+                </div>
+                <!-- Starting play button -->
+                <button id="play-button" class="overlay-item overlay-control hidden">Play</button>
+                <!-- Tutorial -->
+                <div id="tutorial" class="hidden overlay-item">
+                    <div class="menu-bar">
+                        <h3 class="title">How to play</h3>
+                        <input type='button' class="close-button" />
+                    </div>
+                    <p>After you click play, the music will start and a number of random shapes will be highlighted.
+                        Your goal is to remember which ones were highlighted, and click on those in the same order
+                        afterwards.
+                    </p>
+                    <img src="assets/screenshots/tutorial.gif" alt="Tutorial gif" class="gif">
+                </div>
+            </div>
+            <!-- / Overlay items -->
+            <div id="shape-container-inner"></div>
+        </div>
         <div class="d-sm-hidden game-controls controls-bottom">
             <button class='game-control play-again-button'>Play again</button>
             <button class="game-control highscores-button">View Highscores</button>
             <button class="game-control tutorial-button">How to play</button>
         </div>
     </div>
-
-    <!-- Overlay items -->
-    <div id="overlay" class="overlay-item"></div>
-    <!-- Game results window -->
-    <div id="results-pane" class="overlay-item hidden">
-        <div class="menu-bar">
-            <h3 class="title">Game results</h3>
-            <input type='button' class="close-button" />
-        </div>
-        <p>Aaah wrong answer...</P>
-        <p>You guessed: <span id="highscore">0</span> shape(s) right.</p>
-        <form action='#' method='POST' id="highscore-form">
-            <label for='name'>Name:</label>
-            <input type='text' id='name' name='Name' placeholder='John Doe' /><br>
-            <input type='submit' class='overlay-control submit-highscore-button' value='Submit highscore' />
-        </form>
-    </div>
-    <!-- Highscores window -->
-    <div id="highscores-pane" class="hidden overlay-item">
-        <div class="menu-bar">
-            <h3 class="title">Highscores</h3>
-            <input type='button' class="close-button" />
-        </div>
-        <table id="highscores">
-        </table>
-    </div>
-    <!-- Starting play button -->
-    <button id="play-button" class="overlay-item overlay-control hidden">Play</button>
-    <!-- Tutorial -->
-    <div id="tutorial" class="hidden overlay-item">
-        <div class="menu-bar">
-            <h3 class="title">How to play</h3>
-            <input type='button' class="close-button" />
-        </div>
-        <p>After you click play, the music will start and a number of random shapes will be highlighted.
-            Your goal is to remember which ones were highlighted, and click on those in the same order afterwards.
-        </p>
-        <img src="assets/screenshots/tutorial.gif" alt="Tutorial gif" class="gif">
-    </div>
-    <!-- / Overlay items -->
 
     <!-- Hidden area -->
     <div id="answers" class="hidden"></div>

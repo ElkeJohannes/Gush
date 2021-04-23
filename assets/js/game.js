@@ -19,7 +19,7 @@ function loadShapes() {
     // Load in 9 shapes using a loop
     // Using a function allows for easy changing of number of shapes
     // In a future release
-    let shapes = $('#shape-container')[0];
+    let shapes = $('#shape-container-inner')[0];
     let shapesElements = [];
     for (i = 1; i < 10; i++) {
         shapesElements.push(`<img src="assets/images/shape${i}.png" class="shape" id="shape${i}" />`);
