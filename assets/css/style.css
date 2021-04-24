@@ -104,10 +104,11 @@ body {
 }
 
 .shape {
-    width: 80px;
-    height: 80px;
+    width: 58px;
+    height: 58px;
     padding: 5px;
     border-radius: 10px;
+    margin: 10px;
 }
 
 /* ------------- Highscores ------------- */
@@ -208,7 +209,7 @@ body {
 }
 
 .game-control, .overlay-control {
-    padding: 5px 15px;;
+    padding: 5px 15px;
     margin: 1px;
     font-size: medium;
     max-width: 150px;
@@ -354,9 +355,27 @@ h3.title {
 @keyframes shape-active {
     0% {
         background-color: var(--background);
+        width: 58px;
+        height: 58px;
+        margin: 10px;
+    }
+    25% {
+        background-color: var(--active);
+        width: 68px;
+        height: 68px;
+        margin: 5px;
+    }
+    50% {
+        background-color: var(--background);
+        width: 58px;
+        height: 58px;
+        margin: 10px;
     }
     100% {
         background-color: var(--active);
+        width: 68px;
+        height: 68px;
+        margin: 5px;
     }
 }
 
@@ -396,11 +415,37 @@ h3.title {
 
 @media(min-width: 400px) {
     .shape {
-        width: 28%;
-        height: 28%;
+        width: 27%;
+        height: 27%;
     }
     #tutorial {
         max-height: 100%;
+    }
+    @keyframes shape-active {
+        0% {
+            background-color: var(--background);
+            width: 27%;
+            height: 27%;
+            margin: 10px;
+        }
+        25% {
+            background-color: var(--active);
+            width: calc(27% + 10px);
+            height: calc(27% + 10px);
+            margin: 5px;
+        }
+        50% {
+            background-color: var(--background);
+            width: 27%;
+            height: 27%;
+            margin: 10px;
+        }
+        100% {
+            background-color: var(--active);
+            width: calc(27% + 10px);
+            height: calc(27% + 10px);
+            margin: 5px;
+        }
     }
 }
 
@@ -422,7 +467,7 @@ h3.title {
     }
     .clickableShape:hover {
         border: 5px dotted var(--correct);
-        margin: -5px;
+        margin: 5px;
         cursor: pointer;
     }
 }

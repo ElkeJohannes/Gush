@@ -50,7 +50,8 @@ function highlightShapes(shapesToShow) {
     // Then highlight the appropiate number of shapes
     // By temporarily applying the game speed as a css class
     const numberOfShapes = $('#shapes').html();
-    const gameSpeed = Number($('#speed').html()) + 3;
+    // const gameSpeed = Number($('#speed').html()) + 3;
+    const gameSpeed = Number($('#speed').html());
     const gameSpeedString = `speed${gameSpeed}`;
     let counter = 0;
     let shapeID = '';
@@ -114,7 +115,7 @@ function playAgain() {
     $('#speed').html(defaultGameSpeed);
     $('#shapes').html(defaultNumberofShapes);
     $('#score').html(initialGameScore);
-    $('#level').html(initialGameLevel);
+    $('#current-level').html(initialGameLevel);
 
     playGame();
 }
@@ -133,9 +134,9 @@ function prepareNewRound() {
     // the highlighting, and increment the level counter
     disableAnswers();
 
-    let currentLevel = Number($('#level').html());
+    let currentLevel = Number($('#current-level').html());
     currentLevel++;
-    $('#level').html(currentLevel);
+    $('#current-level').html(currentLevel);
 }
 
 function playTutorial() {
