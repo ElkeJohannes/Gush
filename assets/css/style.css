@@ -63,9 +63,6 @@ body {
 }
 
 #game-info {
-    border: 3px solid var(--grey);
-    border-radius: 11px;
-    border-collapse: separate;
     border-spacing: 0px;
     min-width: 150px;
 }

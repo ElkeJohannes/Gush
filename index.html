@@ -25,19 +25,15 @@
             <table id="game-info">
                 <tr>
                     <th>Speed</th>
-                    <th>Shapes</th>
+                    <th>Level</th>
                     <th>Score</th>
                 </tr>
                 <tr>
                     <td id="speed">1</td>
-                    <td id="shapes">1</td>
+                    <td id="level">1</td>
                     <td id="score">0</td>
                 </tr>
             </table>
-            <div id="current-round">
-                <span>Current Round</span>
-                <div id="current-round-counter">0</div>
-            </div>
             <!-- / Current game info -->
             <div class="game-controls d-sm-flex">
                 <button class="game-control highscores-button">View Highscores</button>
@@ -99,6 +95,7 @@
 
     <!-- Hidden area -->
     <div id="answers" class="hidden"></div>
+    <div id="shapes" class="hidden"></div>
     <audio id="playing-sound" src="assets/audio/playing.wav"></audio>
 
     <!-- Include my own javascript files at the bottom of the page -->
