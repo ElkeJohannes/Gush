@@ -214,6 +214,7 @@ body {
     padding: 5px 15px;;
     margin: 1px;
     font-size: medium;
+    max-width: 150px;
 }
 
 .game-control:hover, .overlay-control:hover {
@@ -231,6 +232,10 @@ body {
 #play-button {
     font-size: x-large;
     padding: 10px 40px;
+}
+
+.play-again-button {
+    margin: auto;
 }
 
 /* ------------- Overlay ------------- */

@@ -2,12 +2,11 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     // Add events to play buttons and overlay
-    $('#play-button').click(playGame);
+    $('#play-button').click(playAgain);
     $('.play-again-button').click(playAgain);
-    $('#overlay').click(hideOverlay)
     $('.highscores-button').click(displayHighscores);
     $('.tutorial-button').click(playTutorial);
-    $('.close-button').click(hideOverlay);
+    $('.close-button').click(resetOverlay);
     $('#highscore-form').on('submit', setHighscores);
 
     loadShapes();
@@ -103,7 +102,7 @@ function playGame() {
     const numberOfShapes = $('#shapes').html();
     let shapesToHighlight = setShapesToShow(numberOfShapes);
     highlightShapes(shapesToHighlight);
-    hideOverlay();
+    $('.overlay-item').addClass('hidden');
 }
 
 function playAgain() {
@@ -218,7 +217,7 @@ function displayHighscores() {
     const highscoreObject = getHighscores();
     addHighscoresToTable(highscoreObject);
 
-    $('#results-pane').addClass('hidden');
+    $('.overlay-item').addClass('hidden');
     $('#overlay').removeClass('hidden');
     $('#highscores-pane').removeClass('hidden');
 }
@@ -389,9 +388,12 @@ function addDays(days) {
     return expiryDate;
 }
 
-function hideOverlay() {
-    // Hide all overlay items
+function resetOverlay() {
+    // Hide all overlay items, except the overlay itself 
+    // and the play button
     $('.overlay-item').addClass('hidden');
+    $('#overlay').removeClass('hidden');
+    $('#play-button').removeClass('hidden');
 }
 
 function checkFirstVisit() {
