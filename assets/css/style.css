@@ -24,6 +24,7 @@ body {
     margin: 0 auto;
     font-family: 'Monoton', cursive;
     font-weight: 400;
+    font-size: 2em;
 }
 
 .header-main {
@@ -43,7 +44,6 @@ body {
 /* ------------- Game area ------------- */
 
 #game-container {
-    max-width: 95%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -53,8 +53,8 @@ body {
 #top-info {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    margin: 5px 0px;
+    justify-content: center;
+    margin: 10px 0px 20px 0px;
     font-family: 'Oswald', sans-serif;
 }
 
@@ -104,11 +104,11 @@ body {
 }
 
 .shape {
-    width: 58px;
-    height: 58px;
+    width: 70px;
+    height: 70px;
     padding: 5px;
     border-radius: 10px;
-    margin: 10px;
+    margin: 5px;
 }
 
 /* ------------- Highscores ------------- */
@@ -179,9 +179,11 @@ body {
 /* ------------- Game controls ------------- */
 
 .game-controls {
+    display: flex;
     flex-wrap: wrap;
-    justify-content: flex-end;
+    justify-content: space-evenly;
     height: 80px;
+    margin-top: 10px;
 }
 
 .game-control, .overlay-control {
@@ -335,27 +337,27 @@ h3.title {
 @keyframes shape-active {
     0% {
         background-color: var(--background);
-        width: 58px;
-        height: 58px;
-        margin: 10px;
+        width: 70px;
+        height: 70px;
+        margin: 5px;
     }
     25% {
         background-color: var(--active);
-        width: 68px;
-        height: 68px;
-        margin: 5px;
+        width: 80px;
+        height: 80px;
+        margin: 0px;
     }
     50% {
         background-color: var(--background);
-        width: 58px;
-        height: 58px;
-        margin: 10px;
+        width: 70px;
+        height: 70px;
+        margin: 5px;
     }
     100% {
         background-color: var(--active);
-        width: 68px;
-        height: 68px;
-        margin: 5px;
+        width: 80px;
+        height: 80px;
+        margin: 0px;
     }
 }
 
@@ -395,46 +397,57 @@ h3.title {
 
 @media(min-width: 400px) {
     .shape {
-        width: 27%;
-        height: 27%;
+        width: 25%;
+        height: 25%;
     }
     #tutorial {
         max-height: 100%;
     }
+    .header {
+        font-size: 2.5em;
+    }
     @keyframes shape-active {
         0% {
             background-color: var(--background);
-            width: 27%;
-            height: 27%;
-            margin: 10px;
+            width: 25%;
+            height: 25%;
+            margin: 5px;
         }
         25% {
             background-color: var(--active);
-            width: calc(27% + 10px);
-            height: calc(27% + 10px);
-            margin: 5px;
+            width: calc(25% + 10px);
+            height: calc(25% + 10px);
+            margin: 0px;
         }
         50% {
             background-color: var(--background);
-            width: 27%;
-            height: 27%;
-            margin: 10px;
+            width: 25%;
+            height: 25%;
+            margin: 5px;
         }
         100% {
             background-color: var(--active);
-            width: calc(27% + 10px);
-            height: calc(27% + 10px);
-            margin: 5px;
+            width: calc(25% + 10px);
+            height: calc(25% + 10px);
+            margin: 0px;
         }
     }
 }
 
 @media(min-width: 567px) {
+    .shape {
+        width: 27%;
+        height: 27%;
+    }
     .hyphen {
         display: inline;
     }
     .header-sub {
         display: inline;
+    }
+    #top-info {
+        justify-content: space-between;
+        margin: 5px 0px 15px 0px;
     }
     #game-container {
         max-width: 70%;
@@ -449,6 +462,32 @@ h3.title {
         border: 5px dotted var(--correct);
         margin: 5px;
         cursor: pointer;
+    }
+    @keyframes shape-active {
+        0% {
+            background-color: var(--background);
+            width: 27%;
+            height: 27%;
+            margin: 5px;
+        }
+        25% {
+            background-color: var(--active);
+            width: calc(27% + 10px);
+            height: calc(27% + 10px);
+            margin: 0px;
+        }
+        50% {
+            background-color: var(--background);
+            width: 27%;
+            height: 27%;
+            margin: 5px;
+        }
+        100% {
+            background-color: var(--active);
+            width: calc(27% + 10px);
+            height: calc(27% + 10px);
+            margin: 0px;
+        }
     }
 }
 
