@@ -180,18 +180,8 @@ body {
 
 .game-controls {
     flex-wrap: wrap;
-    flex-flow: column;
-}
-
-.controls-bottom {
-    max-width: 100%;
-    width: auto;
-    margin-top: 5px;
-}
-
-.controls-bottom .game-control {
-    max-width: 33%;
-    min-width: 30%;
+    justify-content: flex-end;
+    height: 80px;
 }
 
 .game-control, .overlay-control {
@@ -200,36 +190,26 @@ body {
     border-style: none outset outset none;
     border-width: 2px;
     border-color: #922b94;
-    padding: 5px 15px;
+    padding: 0px 10px;
+    margin: auto 2px;
     color: #922b94;
     font-family: 'Oswald', sans-serif;
     font-weight: 900;
-    margin: 2px 0px;
-    min-width: 100px;
-}
-
-.game-control, .overlay-control {
-    padding: 5px 15px;
-    margin: 1px;
     font-size: medium;
-    max-width: 150px;
+    height: 60px;
+    width: 110px;
 }
 
 .game-control:hover, .overlay-control:hover {
     cursor: pointer;
     color: #8619FF;
     border-color: #8619FF;
-    border-width: 3px;
-    margin-bottom: 1px;
-}
-
-.game-control:hover {
-    margin-bottom: 0px;
+    border-width: 6px;
+    font-size: large;
 }
 
 #play-button {
     font-size: x-large;
-    padding: 10px 40px;
 }
 
 .play-again-button {
