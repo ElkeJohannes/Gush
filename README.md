@@ -71,7 +71,7 @@ Initially the site will contain one game. The game needs only one page, as it wo
 As the site will feature one page with a single game on it, there will be no need for a menu. As the game itself will be flashy and draw focus, the rest of the page will be minimalistic to keep the users' focus on the game. The amount of always visible buttons will be kept to a minimum. There will be a start button displayed over the game area that disappears when the game is running. At the top, there will be some information about the currently running game such as score and level. 
 
 ### **<ins>Skeleton</ins>**
-The following wireframes were made to give a rough idea of the project. No part of these is definitive, and especially the colors and fonts will vary from the end result. 
+The following wireframes were made using [Balsamiq](https://balsamiq.com/) to give a rough idea of the project. No part of these is definitive, and especially the colors and fonts will vary from the end result. 
 - [Start page](assets/wireframes/start.png)
 - [Playing - example 1](assets/wireframes/playing1.png)
 - [Playing - example 2](assets/wireframes/playing2.png)
@@ -112,12 +112,15 @@ The font of the main title is Monoton, to provide the retro look. This font is h
 
 ## &rarr; **Technologies Used**
 ### **<ins>Languages</ins>**
-Website is written using a combination of HTML5, CSS3 and Javascript. 
+
+| <div align="center">HTML5</div> | <div align="center">CSS3</div> | <div align="center">Javascript</div> |
+|-|-|-|
+| ![html5](assets/images/html5.png) | ![css3](assets/images/css3.png) | ![javascript](assets/images/javascript.png) |
+
 
 ### **<ins>Libraries & Frameworks</ins>**
-Libraries used are: 
 - [JQuery 3.5.1](https://jquery.com/)
-  * This makes creating the game logic faster and shorter. It also makes it easier to read for humans, which will be usefull in future collaborations. 
+  * This made creating the game logic faster and shorter. It also made it easier to read for humans, which will be usefull in future collaborations. 
 
 ---
 
@@ -151,6 +154,7 @@ Alternatively you can clone this repository by using the GitHub cli. Should you 
 ### **<ins>Media</ins>**
 * Amazing shapes created by myself in MS Paint 3D
 * Audio is from [MixKit](https://mixkit.co/free-sound-effects/game/)
+* In this README, the HTML5, CSS3 and Javascript images are from [Wikimedia](https://commons.wikimedia.org/wiki/Main_Page)
 
 ### **<ins>Acknowledgements</ins>**
 * [learn.jquery](https://learn.jquery.com/) that provided me with lots of extra info on how to use jquery.
