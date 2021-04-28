@@ -1,5 +1,15 @@
+<div align="center">
+
 # Gush - Guess Pictures
-Gush is a game where you are shown a number of shapes in rapid succession, and you need to click those shapes in the correct order afterwards. 
+![Gush - Starting page](assets/screenshots/start.png)
+
+---
+
+Gush is a game where a number of random shapes will be highlighted. Your goal is to remember which ones were highlighted, and click on those in the same order afterwards.
+
+**-- [Play the game](https://elkejohannes.github.io/Gush/) --**
+
+</div>
 
 ---
 
@@ -85,6 +95,8 @@ Libraries used are:
     - Changed the effect to only be active on larger then mobile screens, as the issue is touch vs. mouse.
 5. When playing on mobile, the playing sound can be delayed causing it to only start playing when the round has already begun. 
     - Preloaded the playing audio element in the html, and call it using js. This ensures the data is present when needed instead of lazy loading. 
+6. When playing on mobile, the tutorial text is not entirely visible..
+    - This is due to the position: absolute. Fixed by setting the max width to 95vw. 
 ---
 
 ## Deployment
@@ -123,4 +135,5 @@ Alternatively you can clone this repository by using the GitHub cli. Should you 
 * [w3schools](https://wwww.w3schools.com) for being my 'cheat sheet' on all things html, css and javascript.
 * [This stackoverflow thread](https://stackoverflow.com/questions/9419263/how-to-play-audio) with the info on how to play audio from javascript.
 * [Colorhunt](https://colorhunt.co) for the color scheme used.
-* [Brian's code](https://brianscode.com/html-table-rounded-corners-example/) For the code to make table have round corners.    
+* [Brian's code](https://brianscode.com/html-table-rounded-corners-example/) For the code to make tables have round corners.
+* [Lucy Jones](https://github.com/Lucyjpjones/lj-fscr) for inspiration on the various README.MD tricks you can do to make the file prettier.
