@@ -459,7 +459,7 @@ h3.title {
     }
     .clickableShape:hover {
         border: 5px dotted var(--correct);
-        margin: 5px;
+        margin: 0px;
         cursor: pointer;
     }
     @keyframes shape-active {
