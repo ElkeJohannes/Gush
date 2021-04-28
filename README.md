@@ -89,18 +89,24 @@ The font of the main title is Monoton, to provide the retro look. This font is h
 ## &rarr; **Features**
 
 ### **<ins>Existing features</ins>**
+  - Green dots surrounding hovered over shape (devices > mobile)
+    * Allows for easy identification of the shape being hovered over.
   - Highscores
-    * Allows you to view previous highscores made on the computer via cookies
-  - Dificulty settings
-    * Allows adjusting of both the number of shapes and the speed at which they are shown. 
+    * Allows player to view previous highscores made on the device via a dedicated button.
+  - Responsive design
+    * On mobile, the highscores and tutorial buttons appear below the game area. 
+  - Tutorial with gif
+    * When loading the website for the first time on a device, the tutorial appears. This has a basic instruction and a gif playing to demonstrate how to play. 
+  - Speed, Level and Score counters
+    * At the top (middle on mobile, left on > mobile) that show the current game state.
 
 ### **<ins>Future features</ins>**
-  - Dynamic number of shapes
-    * For example start at 4 shapes, then go to 6 then 9 etc.. 
-  - Check correct answer
+  - Dynamically increasing number of shapes
+    * For example start at 4 shapes, then go to 6 then 9 etc...
+  - See correct answer
     * After you click the wrong answer, you can click on a button to show you the remainder of the shapes you should've clicked.
   - Global highscores
-    * You would then have the option of viewing your local highscores or the global ones.
+    * A addition to the highscores screen which would give you the option of viewing your local highscores or the global ones.
 
 ---
 
