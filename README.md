@@ -62,23 +62,27 @@ Below user stories are all written from the perspective of someone visiting the 
 - I want to be able to start a new game, after finishing one.
 
 ### **<ins>Strategy</ins>**
-The goal of this website is to provide a place for the game 'Gush' to exist. This game itself meant as both entertainment and a light exercise in memory skills, mainly aimed at my nieces and nephews but also enjoyable for adults.
+The game is meant as an entertaining way to exercise the brain of (mainly) my nieces and nephews, who are the target audience. It will do this using shapes, colors and sounds that appeal to children to captivate the attention. Meanwhile the game will be hard enough to be challenging and provide an actual workout. 
 
 ### **<ins>Scope</ins>**
-Initially the site will contain one game. The game needs only one page, as it works with dynamic content that is displayed. There will be some features to expand upon the base game, such as highscores, and invite a friend. 
+Initially the site will contain one game. The game needs only one page, as it works with dynamic content that is displayed inside the game area. Using an overlay there will be windows that give to, or take information from, the user. These windows are the game results, the highscores and a tutorial. Highscores will be contained to whatever device the user is playing on. This is because global highscores demand server side storage, which is deemed beyond the current scope of the project. 
 
 ### **<ins>Structure</ins>**
-As the site will feature one page with a single game on it, there will be no need for a menu. As the game itself will be flashy and draw focus, the rest of the page will be minimalistic to keep the users focus on the game. 
+As the site will feature one page with a single game on it, there will be no need for a menu. As the game itself will be flashy and draw focus, the rest of the page will be minimalistic to keep the users' focus on the game. The amount of always visible buttons will be kept to a minimum. There will be a start button displayed over the game area that disappears when the game is running. At the top, there will be some information about the currently running game such as score and level. 
 
 ### **<ins>Skeleton</ins>**
-1. [Start page](assets/wireframes/start.png)
-2. [Playing - example 1](assets/wireframes/playing1.png)
-3. [Playing - example 2](assets/wireframes/playing2.png)
-6. [Result - failed](assets/wireframes/result-failed.png)
-8. [Highscores](assets/wireframes/highscores.png)
+The following wireframes were made to give a rough idea of the project. No part of these is definitive, and especially the colors and fonts will vary from the end result. 
+- [Start page](assets/wireframes/start.png)
+- [Playing - example 1](assets/wireframes/playing1.png)
+- [Playing - example 2](assets/wireframes/playing2.png)
+- [Game results](assets/wireframes/game-results.png)
+- [Highscores](assets/wireframes/highscores.png)
 
 ### **<ins>Surface</ins>**
-The website will feature soft, unobtrusive colors like off-white. This is so chosen because the shapes in the game will have strong vibrant colors to provide maximal contrast. The chosen font is Oswald. The shapes are created in MS Paint as this allows for simplistic shapes that are easily recognisable. This is important because the target audience is children. 
+The website will feature flashy and bright colors. This, combined with the game sounds will provide a retro or arcade look and feel. The shapes are created in MS Paint 3D as this allows for simplistic shapes that are easily recognisable. This is important because the main target audience is children. 
+
+#### **Fonts**
+The font of the main title is Monoton, to provide the retro look. This font is however not very clear and easily readable, which is why for all other text on the site, the chosen font is Oswald.
 
 ---
 
