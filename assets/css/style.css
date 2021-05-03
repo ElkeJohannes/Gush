@@ -10,12 +10,16 @@
     --header: #68B091;
     --button-from: #ffee00;
     --botton-to: #01f7ff;
+    --link-text: #6451ff;
+    --link-text-hover: #922b94;
 }
 
 /* ------------- General settings ------------- */
 
 body {
     text-align: center;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.1px;
 }
 
 /* ------------- Header ------------- */
@@ -191,9 +195,9 @@ body {
     border-radius: 10px;
     border-style: none outset outset none;
     border-width: 2px;
-    border-color: #922b94;
+    border-color: var(--link-text);
     margin: auto 2px; 
-    color: #922b94;
+    color: var(--link-text);
     font-family: 'Oswald', sans-serif;
     font-weight: 900;
     font-size: medium;
@@ -203,8 +207,8 @@ body {
 
 .game-control:hover, .overlay-control:hover {
     cursor: pointer;
-    color: #8619FF;
-    border-color: #8619FF;
+    color: var(--link-text-hover);
+    border-color: var(--link-text-hover);
     border-width: 6px;
     font-size: large;
 }
@@ -390,6 +394,26 @@ h3.title {
 
 .close-button:hover {
     cursor: pointer;
+}
+
+/* ------------- Footer ------------- */
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 5px;
+    width: calc(100vw - 10px);
+    text-align: center;
+}
+
+.footer a {
+    text-decoration: none;
+    color: var(--link-text);
+}
+
+.footer a:hover {
+    color: var(--link-text-hover);
 }
 
 /* ------------- Media Queries ------------- */
