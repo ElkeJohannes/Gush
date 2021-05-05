@@ -402,13 +402,13 @@ function checkFirstVisit() {
     // and run the tutorial.
     const firstVisitCookie = getCookie('firstVisit');
 
-    // if (typeof (firstVisitCookie) === 'undefined') {
-    //     const cookieName = 'firstVisit';
-    //     const cookieValue = 'true';
-    //     const cookieExpirationTime = 365;
-    //     setCookie(cookieName, cookieValue, cookieExpirationTime);
-    //     playTutorial();
-    // } else {
+    if (typeof (firstVisitCookie) === 'undefined') {
+        const cookieName = 'firstVisit';
+        const cookieValue = 'true';
+        const cookieExpirationTime = 365;
+        setCookie(cookieName, cookieValue, cookieExpirationTime);
+        playTutorial();
+    } else {
         $('#play-button').removeClass('hidden');
-    // }
+    }
 }
