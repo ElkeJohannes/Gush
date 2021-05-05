@@ -20,6 +20,9 @@ body {
     text-align: center;
     font-family: 'Oswald', sans-serif;
     letter-spacing: 0.1px;
+    overflow: auto;
+    margin: 0px;
+    padding: 0px;
 }
 
 /* ------------- Header ------------- */
@@ -98,6 +101,7 @@ body {
     display: flex;
     position: relative;
     max-height: 70vh;
+    margin-bottom: 10px;
 }
 
 #shape-container-inner {
@@ -187,7 +191,6 @@ body {
     flex-wrap: wrap;
     justify-content: space-evenly;
     height: 70px;
-    margin-top: 10px;
 }
 
 .game-control, .overlay-control {
@@ -196,7 +199,7 @@ body {
     border-style: none outset outset none;
     border-width: 2px;
     border-color: var(--link-text);
-    margin: auto 2px; 
+    margin: auto 2px;
     color: var(--link-text);
     font-family: 'Oswald', sans-serif;
     font-weight: 900;
@@ -399,17 +402,20 @@ h3.title {
 /* ------------- Footer ------------- */
 
 .footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    background-color: var(--background);
+    margin: auto;
     width: calc(100vw - 10px);
     text-align: center;
+    line-height: 16px;
 }
 
 .footer a {
     text-decoration: none;
     color: var(--link-text);
+    margin: 0px 3px;
 }
 
 .footer a:hover {
@@ -417,6 +423,12 @@ h3.title {
 }
 
 /* ------------- Media Queries ------------- */
+
+@media(min-width: 330px) {
+    .game-controls {
+        margin-bottom: 20px;
+    }
+}
 
 @media(min-width: 400px) {
     .shape {
@@ -468,12 +480,15 @@ h3.title {
     .header-sub {
         display: inline;
     }
+    #shape-container {
+        margin-bottom: 30px;
+    }    
     #top-info {
         justify-content: space-between;
         margin: 5px 0px 15px 0px;
     }
     #game-container {
-        max-width: 70%;
+        max-width: 80%;
     }
     .d-sm-flex {
         display: flex;
@@ -516,6 +531,6 @@ h3.title {
 
 @media(min-width: 992px) {
     #game-container {
-        max-width: 50%;
+        max-width: 70%;
     }
 }
