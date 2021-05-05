@@ -1,6 +1,6 @@
 <div align="center">
 
-![Gush - Starting page](assets/screenshots/start.png)
+![Gush - Responsive design](assets/screenshots/responsive-mockup.png)
 
 ---
 
