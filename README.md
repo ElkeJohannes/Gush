@@ -30,7 +30,7 @@ Gush is a game where a number of random shapes will be highlighted. Your goal is
 
 **<details><summary>Technologies Used</summary>**
   - [Languages](#languages)
-  - [Libraries & Frameworks](#libraries-&-frameworks)
+  - [Libraries, Frameworks and programs](#Libraries,-Frameworks-and-programs)
 </details>
 
 **<details><summary>Testing</summary>**
@@ -118,9 +118,17 @@ The font of the main title is Monoton, to provide the retro look. This font is h
 | ![html5](assets/images/html5.png) | ![css3](assets/images/css3.png) | ![javascript](assets/images/javascript.png) |
 
 
-### **<ins>Libraries & Frameworks</ins>**
+### **<ins>Libraries, Frameworks and programs</ins>**
 - [JQuery 3.5.1](https://jquery.com/)
-  * This made creating the game logic faster and shorter. It also made it easier to read for humans, which will be usefull in future collaborations. 
+  * Used throughout the game.js file for easier DOM access.
+- [XBox game bar](https://www.microsoft.com/en-us/p/xbox-game-bar/9nzkpstsnw4p?activetab=pivot:overviewtab)
+  * Used to do a screen recording to create the tutorial.
+- [Video to Gif](https://hnet.com/video-to-gif/)
+  * Used to convert the tutorial recording to a gif.
+- [MS Paint 3D](https://www.microsoft.com/en-us/p/paint-3d/9nblggh5fv99?activetab=pivot:overviewtab)
+  * To create the shapes with a transparant background.
+- [Multi device mockup generator](http://techsini.com/multi-mockup/index.php)
+  * Used to create the header image of this readme file.
 
 ---
 
@@ -152,9 +160,8 @@ Alternatively you can clone this repository by using the GitHub cli. Should you 
 * All text is written by myself
 
 ### **<ins>Media</ins>**
-* Amazing shapes created by myself in MS Paint 3D
 * Audio is from [MixKit](https://mixkit.co/free-sound-effects/game/)
-* In this README, the HTML5, CSS3 and Javascript images are from [Wikimedia](https://commons.wikimedia.org/wiki/Main_Page)
+* The HTML5, CSS3 and Javascript images used in this readme file are from [Wikimedia](https://commons.wikimedia.org/wiki/Main_Page)
 
 ### **<ins>Acknowledgements</ins>**
 * [learn.jquery](https://learn.jquery.com/) that provided me with lots of extra info on how to use jquery.
