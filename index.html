@@ -15,9 +15,9 @@
 <body>
     <!-- Main title bar top -->
     <h1 class="header">
-        <div class="header-main">Gush </div>
+        <span class="header-main">Gush </span>
         <span class="hyphen">- - </span>
-        <div class="header-sub">Guess &nbsp Shapes</div>
+        <span class="header-sub">Guess &nbsp; Shapes</span>
     </h1>
 
     <div id="game-container">
@@ -49,7 +49,7 @@
                 <div id="results-pane" class="overlay-item hidden">
                     <div class="menu-bar">
                         <h3 class="title">Game results</h3>
-                        <input type='button' class="close-button" />
+                        <input type='button' class="close-button" value="x" />
                     </div>
                     <p>Aaah wrong answer...</P>
                     <p>You guessed: <span id="highscore">0</span> shape(s) right.</p>
@@ -63,7 +63,7 @@
                 <div id="highscores-pane" class="hidden overlay-item">
                     <div class="menu-bar">
                         <h3 class="title">Highscores</h3>
-                        <input type='button' class="close-button" />
+                        <input type='button' class="close-button" value="x"/>
                     </div>
                     <table id="highscores">
                     </table>
@@ -75,7 +75,7 @@
                 <div id="tutorial" class="hidden overlay-item">
                     <div class="menu-bar">
                         <h3 class="title">How to play</h3>
-                        <input type='button' class="close-button" />
+                        <input type='button' class="close-button" value="x" />
                     </div>
                     <p>After you click play, the music will start and a number of random shapes will be highlighted.
                         Your goal is to remember which ones were highlighted, and click on those in the same order
@@ -105,7 +105,7 @@
     <audio id="playing-sound" src="assets/audio/playing.wav"></audio>
 
     <!-- Include my own javascript files at the bottom of the page -->
-    <script src="assets/js/game.js" type="text/javascript"></script>
+    <script src="assets/js/game.js"></script>
 </body>
 
 </html>
