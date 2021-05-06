@@ -263,6 +263,7 @@ body {
 #tutorial {
     transform: translate(-50%, -45%);
     border: 10px solid rgba(0, 0, 0, 0.7);
+    max-width: 95%;
 }
 
 .menu-bar {
@@ -437,9 +438,7 @@ h3.title {
     .header {
         font-size: 2.5em;
     }
-    #tutorial {
-        border: none;
-    }
+
     @keyframes shape-active {
         0% {
             background-color: var(--background);
@@ -531,6 +530,9 @@ h3.title {
 @media(min-width: 992px) {
     #game-container {
         max-width: 70%;
+    }
+    #tutorial {
+        border: none;
     }
 }
 
