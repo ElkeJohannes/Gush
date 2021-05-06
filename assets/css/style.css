@@ -4,12 +4,8 @@
 
 :root {
     --grey: #363636;
-    --correct: #4AFF0D;
     --active: #F2FF00;
-    --background: white;
     --header: #68B091;
-    --button-from: #ffee00;
-    --botton-to: #01f7ff;
     --link-text: #6451ff;
     --link-text-hover: #922b94;
 }
@@ -140,13 +136,13 @@ body {
 }
 
 #highscores tr {
-    background-color: var(--background);
+    background-color: white;
     color: var(--grey);
 }
 
 #highscores tr:nth-child(even) {
     background-color: var(--grey);
-    color: var(--background);
+    color: white;
 }
 
 #highscores td:nth-child(2) {
@@ -194,7 +190,7 @@ body {
 }
 
 .game-control, .overlay-control {
-    background-image: linear-gradient(to bottom right, var(--button-from), var(--botton-to));
+    background: linear-gradient(to bottom right, #ffee00, #01f7ff);
     border-radius: 10px;
     border-style: none outset outset none;
     border-width: 2px;
@@ -253,7 +249,7 @@ body {
 }
 
 #results-pane, #highscores-pane, #tutorial {
-    background-color: var(--background);
+    background-color: white;
     display: flex;
     flex-flow: column;
     border-radius: 10px;
@@ -337,16 +333,16 @@ h3.title {
 
 @keyframes shape-correct {
     0% {
-        background-color: var(--correct);
+        background-color: #4AFF0D;
     }
     100% {
-        background-color: var(--background);
+        background-color: white;
     }
 }
 
 @keyframes shape-active {
     0% {
-        background-color: var(--background);
+        background-color: white;
         width: 70px;
         height: 70px;
         margin: 5px;
@@ -358,7 +354,7 @@ h3.title {
         margin: 0px;
     }
     50% {
-        background-color: var(--background);
+        background-color: white;
         width: 70px;
         height: 70px;
         margin: 5px;
@@ -395,7 +391,7 @@ h3.title {
     width: 25px;
     border-radius: 50%;
     z-index: 10;
-    background-image: url("../images/close.png"), linear-gradient(to bottom right, var(--button-from), var(--botton-to));
+    background-image: url("../images/close.png"), linear-gradient(to bottom right, #ffee00, #01f7ff);
     background-size: contain;
 }
 
@@ -441,7 +437,7 @@ h3.title {
 
     @keyframes shape-active {
         0% {
-            background-color: var(--background);
+            background-color: white;
             width: 25%;
             height: 25%;
             margin: 5px;
@@ -453,7 +449,7 @@ h3.title {
             margin: 0px;
         }
         50% {
-            background-color: var(--background);
+            background-color: white;
             width: 25%;
             height: 25%;
             margin: 5px;
@@ -495,13 +491,13 @@ h3.title {
         display: none;
     }
     .clickableShape:hover {
-        border: 5px dotted var(--correct);
+        border: 5px dotted #4AFF0D;
         margin: 0px;
         cursor: pointer;
     }
     @keyframes shape-active {
         0% {
-            background-color: var(--background);
+            background-color: white;
             width: 27%;
             height: 27%;
             margin: 5px;
@@ -513,7 +509,7 @@ h3.title {
             margin: 0px;
         }
         50% {
-            background-color: var(--background);
+            background-color: white;
             width: 27%;
             height: 27%;
             margin: 5px;
@@ -533,6 +529,7 @@ h3.title {
     }
     #tutorial {
         border: none;
+        max-width: 85%;
     }
 }
 
