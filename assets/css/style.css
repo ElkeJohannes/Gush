@@ -530,3 +530,9 @@ h3.title {
         max-width: 70%;
     }
 }
+
+@media(min-width: 1440px) {
+    #game-container {
+        max-width: 60%;
+    }
+}
