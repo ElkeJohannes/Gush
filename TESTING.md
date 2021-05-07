@@ -1,14 +1,33 @@
 
-## &rarr; **Testing**
-### Code validators
-* Tested for valid code using [w3 validator](https://validator.w3.org/nu/#textarea)
-* Tested for accessibility using [achecker](https://achecker.ca/checker/index.php)
+## <ins>**Testing**</ins>
 
-### User story tests
+---
+
+**<details><summary>Table of contents</summary>**
+  - [Code validation](#code-validation)
+  - [User story tests](#user-story-tests)
+  - [Manual testing script](#manual-testing-script)
+  - [Feature tests](#feature-tests)
+  - [Bugs](#bugs)
+</details>
+
+## &rarr; **Code validation**
+- Tested for valid HTML code using [w3 validator](https://validator.w3.org/nu/)
+![html validation](assets/screenshots/html-validation.png)
+- Tested for valid CSS code using [Jigsaw validator](https://jigsaw.w3.org/css-validator/)
+![css validation](assets\screenshots\css-validation.png)
+    ** There were 5 warnings reported. These are all because I've chosen to use CSS variables.
+    ![css validation warnings](assets\screenshots\css-validation-warnings.png)
+- Tested for valid Javascript using [Jshint](https://jshint.com/)
+![jshint validation](assets\screenshots\jshint-validation.png)
+
+## &rarr; **User story tests**
 
 
-### Test script
+## &rarr; **Manual testing script**
 
+
+## &rarr; **Feature tests**
 
 
 ## &rarr; **Bugs**

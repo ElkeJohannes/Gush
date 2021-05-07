@@ -129,7 +129,8 @@ The font of the main title is Monoton, to provide the retro look. This font is h
   * To create the shapes with a transparant background.
 - [Multi device mockup generator](http://techsini.com/multi-mockup/index.php)
   * Used to create the header image of this readme file.
-
+- [Favicon generator](https://favicon.io/favicon-generator/)
+  * Used to create a custom favicon.
 ---
 
 ## &rarr; **Deployment** 
@@ -170,3 +171,4 @@ Alternatively you can clone this repository by using the GitHub cli. Should you 
 * [Colorhunt](https://colorhunt.co) for the color scheme used.
 * [Brian's code](https://brianscode.com/html-table-rounded-corners-example/) For the code to make tables have round corners.
 * [Lucy Jones](https://github.com/Lucyjpjones/lj-fscr) for inspiration on the various README.MD tricks you can do to make the file prettier.
+* [W3 org article](https://www.w3.org/2005/10/howto-favicon) for instructions on how to add a favicon.
