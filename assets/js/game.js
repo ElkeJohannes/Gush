@@ -20,7 +20,7 @@ function loadShapes() {
     // In a future release
     let shapes = $('#shape-container-inner')[0];
     let shapesElements = [];
-    for (i = 1; i < 10; i++) {
+    for (let i = 1; i < 10; i++) {
         shapesElements.push(`<img src="assets/images/shape${i}.png" class="shape" id="shape${i}" />`);
     }
     shapes.innerHTML = shapesElements.join('');
@@ -37,7 +37,7 @@ function setShapesToShow(numOfShapes) {
         currentRandomNum = generateNewRandomNum(excludedNum);
         shapesToShow.push(currentRandomNum);
         count++;
-    } while (count < numOfShapes)
+    } while (count < numOfShapes);
 
     // Write down the correct answers
     $('#answers').html(`${shapesToShow}`);
@@ -276,7 +276,7 @@ function addHighscoresToTable(highscoresObject) {
     // Iterate through the received array and create a new array with
     // all table entries. Then pass that to the DOM.
     let highscores = [];
-    for (i = 0; i < highscoresObject.arrayNumbers.length; i++) {
+    for (let i = 0; i < highscoresObject.arrayNumbers.length; i++) {
         const name = highscoresObject.arrayNames[i];
         const score = highscoresObject.arrayNumbers[i];
         const rank = i + 1;
@@ -286,13 +286,13 @@ function addHighscoresToTable(highscoresObject) {
             <td>${name}</td>
             <td>${score}</td>
         </tr >`);
-    };
+    }
     $('#highscores').append(highscores);
 }
 
 function highlightHighscore(score, name, highscores) {
     // Find the new highscore and for 1 sec add the highlight class to it
-    for (i = 0; i < highscores.arrayNumbers.length; i++) {
+    for (let i = 0; i < highscores.arrayNumbers.length; i++) {
         if (score === highscores.arrayNumbers[i] && name === highscores.arrayNames[i]) {
             const rank = i + 1;
             const tableRowID = 'tr#' + rank;
@@ -308,12 +308,12 @@ function sortHighscores(arrayNumbers, arrayNames) {
     // Merge the arrays together, and sort the by the scores array
     // If there's more than 10 after this, pop the lowest one out
     let mergeArray = [];
-    for (i = 0; i < arrayNumbers.length; i++) {
+    for (let i = 0; i < arrayNumbers.length; i++) {
         mergeArray.push([arrayNumbers[i], arrayNames[i]]);
     }
-    mergeArray.sort(function (a, b) { return Number(b[0]) - Number(a[0]) });
+    mergeArray.sort(function (a, b) { return Number(b[0]) - Number(a[0]); });
 
-    for (i = 0; i < mergeArray.length; i++) {
+    for (let i = 0; i < mergeArray.length; i++) {
         arrayNumbers[i] = mergeArray[i][0];
         arrayNames[i] = mergeArray[i][1];
     }
@@ -344,7 +344,7 @@ function generateNewRandomNum(oldNum) {
     // https://stackabuse.com/javascript-check-if-variable-is-a-number/
     if (Number.isFinite(oldNumber)) {
         do {
-            newNumber = Math.floor(Math.random() * 9) + 1
+            newNumber = Math.floor(Math.random() * 9) + 1;
             if (newNumber !== oldNumber) {
                 numberCheck = true;
             }
@@ -367,7 +367,7 @@ function getCookie(cookieName) {
     // the one with the name that was passed.
     const cookies = document.cookie.split(';');
     const cookieNamelength = cookieName.length;
-    for (cookie of cookies) {
+    for (let cookie of cookies) {
         cookie = cookie.trim();
         const cookieSlice = cookie.slice(0, cookieNamelength);
         if (cookieSlice === cookieName) {
