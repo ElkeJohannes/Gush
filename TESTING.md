@@ -114,4 +114,6 @@ For testing, 2 device types are defined:
     - Preloaded the playing audio element in the html, and call it using js. This ensures the data is present when needed instead of lazy loading. 
 6. When playing on mobile, the tutorial text is not entirely visible..
     - This is due to the position: absolute. Fixed by setting the max width to 95vw. 
+7. During play, the 'level' counter in the game information is never updated
+    - This is caused by a mismatch in element naming. The name of the element called from javascript was different then the actual name. Corrected.
 ---

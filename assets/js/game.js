@@ -115,7 +115,7 @@ function playAgain() {
     $('#speed').html(defaultGameSpeed);
     $('#shapes').html(defaultNumberofShapes);
     $('#score').html(initialGameScore);
-    $('#current-level').html(initialGameLevel);
+    $('#level').html(initialGameLevel);
 
     playGame();
 }
@@ -134,9 +134,9 @@ function prepareNewRound() {
     // the highlighting, and increment the level counter
     disableAnswers();
 
-    let currentLevel = Number($('#current-level').html());
+    let currentLevel = Number($('#level').html());
     currentLevel++;
-    $('#current-level').html(currentLevel);
+    $('#level').html(currentLevel);
 }
 
 function playTutorial() {
