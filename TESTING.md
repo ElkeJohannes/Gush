@@ -7,7 +7,7 @@
   - [Code validation](#code-validation)
   - [User story tests](#user-story-tests)
   - [Manual testing script](#manual-testing-script)
-  - [Feature tests](#feature-tests)
+  - [Feature test scripts](#feature-test-scripts)
   - [Bugs](#bugs)
 </details>
 
@@ -53,8 +53,53 @@
 ## &rarr; **Manual testing script**
 
 
-## &rarr; **Feature tests**
+## &rarr; **Feature test scripts**
+For testing, 2 device types are defined:
+- Mobile
+    * Any device with a horizontal screen width **smaller** then 567px. This can also be achieved using browser developer tools.
+- Mobile+
+    * Any device with a horizontal screen width **larger** then 567px
 
+|1|Green dots on Hover|
+|-|-|
+* Open the website on a **mobile+** device
+* Click on the play button
+* After the animation finishes, hover the mouse over the individual shapes
+* Confirm an outline of green dots appear around the hovered over shape when doing so
+
+|2|Highscores|
+|-|-|
+* Open the website on **any** device
+* Click or tap on the button that says 'View highscores'
+* Confirm an overlay appears, with a screen that shows the local highscores
+
+|3|Responsive design|
+|-|-|
+* Open the website on a **mobile+** device
+* Confirm the 'View highscores' and 'How to play' buttons appear at the top right of the game area
+* Open the browsers' developer tools (usually F12 on a windows computer)
+* Toggle the device toolbar (usually 'Ctrl + shift + M' on a windows computer)
+* Set the device width to a **mobile** device size
+* Confirm the 'View highscores' and 'How to play' buttons appear below the game area
+
+|4|Tutorial with gif|
+|-|-|
+* Open the website on **any** device for the first time (alternatively, you can delete the website's cookies)
+* Confirm the tutorial is shown before you can start playing a game.
+
+|5|Current game information|
+|-|-|
+* Open the website on a **mobile** device
+* Confirm the Game information is visible centered above the game area
+* Start playing a game, by tapping on the 'Play' button
+* Tap on 1 correct shape
+* Confirm the 'score' counter is incremented by 1
+* Correctly finish the round, by clicking on the remaining correct shapes
+* Confirm the level increases after finishing each round
+* Play through several rounds
+* Confirm the speed increases every 3 levels
+* Open the website on a **mobile+** device
+* Confirm the game information is now visible above the game area, aligned to the left side
 
 ## &rarr; **Bugs**
 1. During a first run of the game, removeClass() would throw an error
