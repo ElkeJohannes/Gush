@@ -88,25 +88,21 @@ The font of the main title is Monoton, to provide the retro look. This font is h
 
 ## &rarr; **Features**
 
-### **<ins>Existing features</ins>**
-  - Green dots surrounding hovered over shape (devices > mobile)
-    * Allows for easy identification of the shape being hovered over.
-  - Highscores
-    * Allows player to view previous highscores made on the device via a dedicated button.
-  - Responsive design
-    * On mobile, the highscores and tutorial buttons appear below the game area. 
-  - Tutorial with gif
-    * When loading the website for the first time on a device, the tutorial appears. This has a basic instruction and a gif playing to demonstrate how to play. 
-  - Speed, Level and Score counters
-    * At the top (middle on mobile, left on > mobile) that show the current game state.
+#### **<ins>Existing features</ins>**
+|#|Name|Description|
+|-|-|-|
+|1|Green dots on Hover|When hovering over a shape on a device > mobile, green dots will outline the shape.|
+|2|Highscores|A screen in an overlay, showing the local highscores.|
+|3|Responsive design|On mobile, the highscores and tutorial buttons appear below the game area.|
+|4|Tutorial with gif|When loading the website for the first time on a device, the tutorial appears. This has a basic instruction and a gif playing to demonstrate how to play.|
+|5|Current game information|Counters at the top (middle on mobile, left on > mobile) that show current Speed, level and score.|
 
-### **<ins>Future features</ins>**
-  - Dynamically increasing number of shapes
-    * For example start at 4 shapes, then go to 6 then 9 etc...
-  - See correct answer
-    * After you click the wrong answer, you can click on a button to show you the remainder of the shapes you should've clicked.
-  - Global highscores
-    * A addition to the highscores screen which would give you the option of viewing your local highscores or the global ones.
+#### **<ins>Future features</ins>**
+|#|Name|Description|
+|-|-|-|
+|1|Dynamically increasing shapes|The number of shapes in the game area can increase during gameplay, to further increase complexity.|
+|2|View correct answer|After you click the wrong answer, the ability to click on a button to show the remainder of the shapes you should've clicked.|
+|3|Global highscores|An addition to the highscores screen which would give you the option of viewing the local highscores or the global ones.|
 
 ---
 
