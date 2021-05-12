@@ -15,14 +15,40 @@
 - Tested for valid HTML code using [w3 validator](https://validator.w3.org/nu/)
 ![html validation](assets/screenshots/html-validation.png)
 - Tested for valid CSS code using [Jigsaw validator](https://jigsaw.w3.org/css-validator/)
-![css validation](assets\screenshots\css-validation.png)
+![css validation](assets/screenshots/css-validation.png)
     ** There were 5 warnings reported. These are all because I've chosen to use CSS variables.
-    ![css validation warnings](assets\screenshots\css-validation-warnings.png)
+    ![css validation warnings](assets/screenshots/css-validation-warnings.png)
 - Tested for valid Javascript using [Jshint](https://jshint.com/)
-![jshint validation](assets\screenshots\jshint-validation.png)
+![jshint validation](assets/screenshots/jshint-validation.png)
 
 ## &rarr; **User story tests**
+- I want to receive instructions on how to play the game.
+    * When loading the game for the first time, you are presented with a tutorial text and gif.
+    <img src="assets/screenshots/user-story-tutorial.png" width="400px" height="300px" alt="User story - Tutorial">
+- I want to revisit the instructions, should I feel the need. 
+    * There is a button on the bottom right (mobile), or top right (> mobile) labeled 'How to play'. When clicking on this button, the tutorial window will appear again. 
 
+        | <div align="center">Mobile</div> | <div align="center">> Mobile</div> |
+        |-|-|
+        |<img src="assets/screenshots/user-story-how-to-play-bottom.png" width="200px" height="300px" alt="User story - How to play mobile">|<img src="assets/screenshots/user-story-how-to-play-top.png" width="400px" height="300px" alt="User story - How to play mobile plus">|
+
+- I want to be able to keep track of how I'm doing in the current game.
+    * Between the game title and the game area, there is an informational panel. The panel shows you the current game speed, level and your score so far.
+    
+        <img src="assets/screenshots/user-story-game-info.png" width="400px" height="300px" alt="User story - Game info">
+- I want to be able to view my highscores.
+    * There is a button on the bottom left (mobile), or top right (> mobile) labeled 'View highscores'. When clicking on this button, the highscores window will appear.
+
+        | <div align="center">Mobile</div> | <div align="center">> Mobile</div> |
+        |-|-|
+        |<img src="assets/screenshots/user-story-highscores-bottom.png" width="200px" height="300px" alt="User story - Highscores mobile">|<img src="assets/screenshots/user-story-highscores-top.png" width="400px" height="300px" alt="User story - Highscores mobile plus">|
+
+- I want to be able to start a new game, after finishing one.
+    * When you click on the wrong shape, the game will end and you will be presented with a screen to submit your highscore. You can either choose to submit your score, after which you will be taken to the highscore screen, where there is a play again button:
+        <img src="assets/screenshots/user-story-play-again.png" width="200px" height="300px" alt="User story - Play again button">
+
+        Or you can close the submit highscore screen using the (X) close button, in which case you can click on the default Play button:
+        <img src="assets/screenshots/user-story-play.png" width="200px" height="300px" alt="User story - Play button">
 
 ## &rarr; **Manual testing script**
 
