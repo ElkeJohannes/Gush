@@ -51,7 +51,23 @@
         <img src="assets/screenshots/user-story-play.png" width="200px" height="300px" alt="User story - Play button">
 
 ## &rarr; **Manual testing script**
+In all below testing actions, it is assumed you have opened the website on **any** device. 
 
+|Test name|Actions|
+|-|-|
+|<ins>View highscores button</ins>|- Click on the 'View highscores' button <br>- Confirm a window opens, listing highscores|
+|<ins>View highscores - Close button</ins>|- Click on the (X) button on the top right of this screen<br>- Confirm the highscores window closes|
+|<ins>View highscores - Play again button</ins>|- Click on the 'View highscores' button <br>- Click on the 'Play again' button<br>- Confirm the highscores screen closes, and the game starts playing, highlighting 2 shapes|
+|<ins>How to play button</ins>|- Click on the 'How to play' button<br>- Confirm the tutorial window opens, with a gif running|
+|<ins>How to play - Close button</ins>|- Click on the (X) button on the top right of this screen<br>- Confirm the tutorial window closes|
+|<ins>Play button</ins>|- Click on the play button<br>- Confirm the game starts running, and 2 shapes are highlighted|
+|<ins>Sounds - Playing</ins>|- Click on the play button<br>- Confirm music is playing during the highlighting of the shapes<br>- Play through a number of additional rounds<br>- Confirm this music is always playing during the highlighting|
+|<ins>Sounds - Correct</ins>|- Click on the play button<br>- Once possible, click on the correct shape<br>- Confirm a confirming sound is played|
+|<ins>Sounds - Incorrect</ins>|- Click on the play button<br>- Once possible, click on one of the incorrect shapes<br>- Confirm a game over sound is played|
+|<ins>Game results</ins>|- Click on the play button<br>- Once possible, click on on of the incorrect shapes<br>- Confirm the game results window appears|
+|<ins>Game results - Close button</ins>|- Click on the play button<br>- Once possible, click on on of the incorrect shapes<br>- Once the Game results window appears, click on the (X) button on the top right of this screen<br>- Confirm the Game results windows closes|
+|<ins>Game results - Submit highscore button</ins>|- Click on the play button<br>- Once possible, click on on of the incorrect shapes<br>- Once the Game results window appears, fill any name in and click on the 'Submit highscore' button<br>- Confirm you are taken to the Highscores window, and the name submitted appears|
+|<ins>Footer link</ins>|- Click on the name 'Elke Harmanny' in the footer<br>- Confirm you are taken to the website: https://elkejohannes.github.io/online-resume/|
 
 ## &rarr; **Feature test scripts**
 For testing, 2 device types are defined:
