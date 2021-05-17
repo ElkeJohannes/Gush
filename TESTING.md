@@ -78,58 +78,58 @@ For testing, 2 device types are defined:
 
 |1|Green dots on Hover|
 |-|-|
-* Open the website on a **mobile+** device
-* Click on the play button
-* After the animation finishes, hover the mouse over the individual shapes
-* Confirm an outline of green dots appear around the hovered over shape when doing so
+- Open the website on a **mobile+** device
+- Click on the play button
+- After the animation finishes, hover the mouse over the individual shapes
+- Confirm an outline of green dots appear around the hovered over shape when doing so
 
 |2|Highscores|
 |-|-|
-* Open the website on **any** device
-* Click or tap on the button that says 'View highscores'
-* Confirm an overlay appears, with a screen that shows the local highscores
+- Open the website on **any** device
+- Click or tap on the button that says 'View highscores'
+- Confirm an overlay appears, with a screen that shows the local highscores
 
 |3|Responsive design|
 |-|-|
-* Open the website on a **mobile+** device
-* Confirm the 'View highscores' and 'How to play' buttons appear at the top right of the game area
-* Open the browsers' developer tools (usually F12 on a windows computer)
-* Toggle the device toolbar (usually 'Ctrl + shift + M' on a windows computer)
-* Set the device width to a **mobile** device size
-* Confirm the 'View highscores' and 'How to play' buttons appear below the game area
+- Open the website on a **mobile+** device
+- Confirm the 'View highscores' and 'How to play' buttons appear at the top right of the game area
+- Open the browsers' developer tools (usually F12 on a windows computer)
+- Toggle the device toolbar (usually 'Ctrl + shift + M' on a windows computer)
+- Set the device width to a **mobile** device size
+- Confirm the 'View highscores' and 'How to play' buttons appear below the game area
 
 |4|Tutorial with gif|
 |-|-|
-* Open the website on **any** device for the first time (alternatively, you can delete the website's cookies)
-* Confirm the tutorial is shown before you can start playing a game.
+- Open the website on **any** device for the first time (alternatively, you can delete the website's cookies)
+- Confirm the tutorial is shown before you can start playing a game.
 
 |5|Current game information|
 |-|-|
-* Open the website on a **mobile** device
-* Confirm the Game information is visible centered above the game area
-* Start playing a game, by tapping on the 'Play' button
-* Tap on 1 correct shape
-* Confirm the 'score' counter is incremented by 1
-* Correctly finish the round, by clicking on the remaining correct shapes
-* Confirm the level increases after finishing each round
-* Play through several rounds
-* Confirm the speed increases every 3 levels
-* Open the website on a **mobile+** device
-* Confirm the game information is now visible above the game area, aligned to the left side
+- Open the website on a **mobile** device
+- Confirm the Game information is visible centered above the game area
+- Start playing a game, by tapping on the 'Play' button
+- Tap on 1 correct shape
+- Confirm the 'score' counter is incremented by 1
+- Correctly finish the round, by clicking on the remaining correct shapes
+- Confirm the level increases after finishing each round
+- Play through several rounds
+- Confirm the speed increases every 3 levels
+- Open the website on a **mobile+** device
+- Confirm the game information is now visible above the game area, aligned to the left side
 
 ## &rarr; **Bugs**
 1. During a first run of the game, removeClass() would throw an error
-    - shapeID is always empty during the first run in the interval (). Added an if statement to only removeClass() when it isn't empty.
+    * shapeID is always empty during the first run in the interval (). Added an if statement to only removeClass() when it isn't empty.
 2. During a run, the same number could be generated twice in a row. This would result in no shape being highlighted
-    - Added a do while loop before adding the class, so the number is checked against the number of the previous run first. 
+    * Added a do while loop before adding the class, so the number is checked against the number of the previous run first. 
 3. When submitting the first highscore, the fade in effect doesn't work
-    - Highlighting is dependent upon the input being an object. Changed setHighscores() function to always fill the object so it is passed through to highlightHighscore()
+    * Highlighting is dependent upon the input being an object. Changed setHighscores() function to always fill the object so it is passed through to highlightHighscore()
 4. When playing on mobile, the hover effect for the shapes stays after the round, causing confusion.
-    - Changed the effect to only be active on larger then mobile screens, as the issue is touch vs. mouse.
+    * Changed the effect to only be active on larger then mobile screens, as the issue is touch vs. mouse.
 5. When playing on mobile, the playing sound can be delayed causing it to only start playing when the round has already begun. 
-    - Preloaded the playing audio element in the html, and call it using js. This ensures the data is present when needed instead of lazy loading. 
+    * Preloaded the playing audio element in the html, and call it using js. This ensures the data is present when needed instead of lazy loading. 
 6. When playing on mobile, the tutorial text is not entirely visible..
-    - This is due to the position: absolute. Fixed by setting the max width to 95vw. 
+    * This is due to the position: absolute. Fixed by setting the max width to 95vw. 
 7. During play, the 'level' counter in the game information is never updated
-    - This is caused by a mismatch in element naming. The name of the element called from javascript was different then the actual name. Corrected.
+    * This is caused by a mismatch in element naming. The name of the element called from javascript was different then the actual name. Corrected.
 ---

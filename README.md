@@ -154,17 +154,17 @@ Alternatively you can clone this repository by using the GitHub cli. Should you 
 ## &rarr; **Credits**
 
 ### **<ins>Text</ins>**
-* All text is written by myself
+- All text is written by myself
 
 ### **<ins>Media</ins>**
-* Audio is from [MixKit](https://mixkit.co/free-sound-effects/game/)
-* The HTML5, CSS3 and Javascript images used in this readme file are from [Wikimedia](https://commons.wikimedia.org/wiki/Main_Page)
+- Audio is from [MixKit](https://mixkit.co/free-sound-effects/game/)
+- The HTML5, CSS3 and Javascript images used in this readme file are from [Wikimedia](https://commons.wikimedia.org/wiki/Main_Page)
 
 ### **<ins>Acknowledgements</ins>**
-* [learn.jquery](https://learn.jquery.com/) that provided me with lots of extra info on how to use jquery.
-* [w3schools](https://wwww.w3schools.com) for being my 'cheat sheet' on all things html, css and javascript.
-* [This stackoverflow thread](https://stackoverflow.com/questions/9419263/how-to-play-audio) with the info on how to play audio from javascript.
-* [Colorhunt](https://colorhunt.co) for the color scheme used.
-* [Brian's code](https://brianscode.com/html-table-rounded-corners-example/) For the code to make tables have round corners.
-* [Lucy Jones](https://github.com/Lucyjpjones/lj-fscr) for inspiration on the various README.MD tricks you can do to make the file prettier.
-* [W3 org article](https://www.w3.org/2005/10/howto-favicon) for instructions on how to add a favicon.
+- [learn.jquery](https://learn.jquery.com/) that provided me with lots of extra info on how to use jquery.
+- [w3schools](https://wwww.w3schools.com) for being my 'cheat sheet' on all things html, css and javascript.
+- [This stackoverflow thread](https://stackoverflow.com/questions/9419263/how-to-play-audio) with the info on how to play audio from javascript.
+- [Colorhunt](https://colorhunt.co) for the color scheme used.
+- [Brian's code](https://brianscode.com/html-table-rounded-corners-example/) For the code to make tables have round corners.
+- [Lucy Jones](https://github.com/Lucyjpjones/lj-fscr) for inspiration on the various README.MD tricks you can do to make the file prettier.
+- [W3 org article](https://www.w3.org/2005/10/howto-favicon) for instructions on how to add a favicon.
