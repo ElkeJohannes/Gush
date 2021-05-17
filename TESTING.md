@@ -11,15 +11,21 @@
   - [Bugs](#bugs)
 </details>
 
+---
+
 ## &rarr; **Code validation**
-- Tested for valid HTML code using [w3 validator](https://validator.w3.org/nu/)
-![html validation](assets/screenshots/html-validation.png)
-- Tested for valid CSS code using [Jigsaw validator](https://jigsaw.w3.org/css-validator/)
-![css validation](assets/screenshots/css-validation.png)
-    ** There were 5 warnings reported. These are all because I've chosen to use CSS variables.
-    ![css validation warnings](assets/screenshots/css-validation-warnings.png)
-- Tested for valid Javascript using [Jshint](https://jshint.com/)
-![jshint validation](assets/screenshots/jshint-validation.png)
+- Tested for valid HTML code using [w3 validator](https://validator.w3.org/nu/)<br>
+<img src="assets/screenshots/html-validation.png" width="400px" height="200px" alt="Validation tests - HTML">
+
+- Tested for valid CSS code using [Jigsaw validator](https://jigsaw.w3.org/css-validator/)<br>
+<img src="assets/screenshots/css-validation.png" width="400px" height="150px" alt="Validation tests - CSS"><br>
+    ** There were 5 warnings reported. These are all because I've chosen to use CSS variables.<br>
+        <img src="assets/screenshots/css-validation-warnings.png" width="300px" height="150px" alt="Validation tests - CSS validation warnings">
+
+- Tested for valid Javascript using [Jshint](https://jshint.com/)<br>
+<img src="assets/screenshots/jshint-validation.png" width="500px" height="250px" alt="Validation tests - Javascript linter">
+
+---
 
 ## &rarr; **User story tests**
 - I want to receive instructions on how to play the game.
@@ -33,9 +39,8 @@
         |<img src="assets/screenshots/user-story-how-to-play-bottom.png" width="200px" height="300px" alt="User story - How to play mobile">|<img src="assets/screenshots/user-story-how-to-play-top.png" width="400px" height="300px" alt="User story - How to play mobile plus">|
 
 - I want to be able to keep track of how I'm doing in the current game.
-    * Between the game title and the game area, there is an informational panel. The panel shows you the current game speed, level and your score so far.
-    
-        <img src="assets/screenshots/user-story-game-info.png" width="400px" height="300px" alt="User story - Game info">
+    * Between the game title and the game area, there is an informational panel. The panel shows you the current game speed, level and your score so far.<br>    
+        <img src="assets/screenshots/user-story-game-info.png" width="300px" height="200px" alt="User story - Game info">
 - I want to be able to view my highscores.
     * There is a button on the bottom left (mobile), or top right (> mobile) labeled 'View highscores'. When clicking on this button, the highscores window will appear.
 
@@ -49,6 +54,8 @@
 
         Or you can close the submit highscore screen using the (X) close button, in which case you can click on the default Play button:
         <img src="assets/screenshots/user-story-play.png" width="200px" height="300px" alt="User story - Play button">
+
+---
 
 ## &rarr; **Manual testing script**
 In all below testing actions, it is assumed you have opened the website on **any** device. 
@@ -68,6 +75,8 @@ In all below testing actions, it is assumed you have opened the website on **any
 |<ins>Game results - Close button</ins>|- Click on the play button<br>- Once possible, click on on of the incorrect shapes<br>- Once the Game results window appears, click on the (X) button on the top right of this screen<br>- Confirm the Game results windows closes|
 |<ins>Game results - Submit highscore button</ins>|- Click on the play button<br>- Once possible, click on on of the incorrect shapes<br>- Once the Game results window appears, fill any name in and click on the 'Submit highscore' button<br>- Confirm you are taken to the Highscores window, and the name submitted appears|
 |<ins>Footer link</ins>|- Click on the name 'Elke Harmanny' in the footer<br>- Confirm you are taken to the website: https://elkejohannes.github.io/online-resume/|
+
+---
 
 ## &rarr; **Feature test scripts**
 For testing, 2 device types are defined:
@@ -116,6 +125,8 @@ For testing, 2 device types are defined:
 - Confirm the speed increases every 3 levels
 - Open the website on a **mobile+** device
 - Confirm the game information is now visible above the game area, aligned to the left side
+
+---
 
 ## &rarr; **Bugs**
 1. During a first run of the game, removeClass() would throw an error
